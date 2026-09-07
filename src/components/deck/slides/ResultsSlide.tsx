@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { soundController } from "@/utils/soundController";
 import { PredictResponse } from "@/types/prediction";
 import {
-  CheckCircle2,
   Layers,
   Copy,
   Check,
@@ -98,19 +97,10 @@ export function ResultsSlide({ result, onGoToStudio }: ResultsSlideProps) {
     <div className="w-full min-h-[calc(100vh-8rem)] flex flex-col justify-center items-center px-4 sm:px-8 py-8 relative">
       <div className="max-w-6xl mx-auto w-full relative z-10">
         
-        {/* Header with Stamp */}
+        {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b-3 border-black pb-4 mb-6">
           <div>
-            <div className="flex items-center gap-2">
-              <span className="font-mono text-xs font-bold px-2 py-0.5 bg-black text-white rounded">
-                SLIDE 05 // TELEMETRY
-              </span>
-              <span className="brutal-badge brutal-badge-orange text-xs font-bold">
-                <CheckCircle2 className="w-3.5 h-3.5" />
-                <span>SUCCESSFULLY ALIGNED</span>
-              </span>
-            </div>
-            <h2 className="font-display text-2xl sm:text-4xl uppercase font-black tracking-tight text-black mt-1">
+            <h2 className="font-display text-2xl sm:text-4xl uppercase font-black tracking-tight text-black">
               Correspondence & Metrics Report
             </h2>
           </div>

@@ -65,13 +65,14 @@ export function StickyNotesModal({ isOpen, onClose }: StickyNoteProps) {
 export function StampBadge({ text, className = "" }: { text: string; className?: string }) {
   return (
     <div
-      className={`rubber-stamp cursor-default hover:scale-105 transition-transform ${className}`}
+      className={`inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 bg-[#EAEFEF] border-[2.5px] sm:border-[3px] border-dashed border-black rounded-xl shadow-[4px_4px_0_#000000] cursor-pointer hover:scale-105 active:scale-95 transition-all duration-200 select-none ${className}`}
       onClick={() => soundController.playPop()}
+      title="ISRO Problem Statement SIH26166"
     >
-      <div className="flex items-center gap-1.5">
-        <ShieldCheck className="w-4 h-4 text-black stroke-[3]" />
-        <span>{text}</span>
-      </div>
+      <ShieldCheck className="w-4 sm:w-5 h-4 sm:h-5 text-black stroke-[2.5]" />
+      <span className="font-display font-black text-xs sm:text-sm tracking-wide text-black uppercase">
+        {text}
+      </span>
     </div>
   );
 }
@@ -86,24 +87,24 @@ export function FloatingHighlighter() {
         setActive(!active);
       }}
       title="Click highlighter pen!"
-      className={`cursor-pointer transition-all duration-300 select-none ${
-        active ? "rotate-45 scale-110" : "rotate-12 hover:rotate-6"
+      className={`cursor-pointer transition-all duration-300 select-none filter drop-shadow-[5px_5px_0_#000000] ${
+        active ? "rotate-45 scale-110" : "rotate-[15deg] hover:rotate-[8deg] active:scale-95"
       }`}
     >
-      <div className="w-10 sm:w-14 h-32 sm:h-40 relative filter drop-shadow-[4px_4px_0_#000000]">
+      <div className="w-12 sm:w-15 flex flex-col items-center">
         {/* Cap / Tip */}
-        <div className="w-full h-8 bg-[#ef7618] border-3 border-black rounded-t-lg relative">
-          <div className="absolute top-1 left-2 right-2 h-2 bg-black/15 rounded-sm" />
+        <div className="w-full h-8 sm:h-9 bg-[#ef7618] border-[3.5px] border-black rounded-t-xl relative flex justify-center items-start pt-1.5">
+          <div className="w-7 sm:w-9 h-2 bg-[#c85a06] border border-black/20 rounded-full" />
         </div>
         {/* Body */}
-        <div className="w-full h-24 sm:h-28 bg-[#EAEFEF] border-3 border-t-0 border-black flex flex-col justify-center items-center">
-          <div className="w-2.5 h-full bg-[#ef7618] border-x-2 border-black" />
-          <span className="absolute text-[8px] sm:text-[9px] font-mono font-bold tracking-widest uppercase rotate-90 text-black">
+        <div className="w-full h-24 sm:h-28 bg-white border-x-[3.5px] border-black relative flex justify-center items-center">
+          <div className="w-3 sm:w-3.5 h-full bg-[#ef7618] border-x-2 border-black" />
+          <span className="absolute font-mono font-black text-[8px] sm:text-[9.5px] tracking-[0.2em] uppercase rotate-90 text-black whitespace-nowrap">
             LUNAR-LoFTR
           </span>
         </div>
         {/* Base */}
-        <div className="w-full h-4 bg-[#1283c8] border-3 border-black rounded-b-md" />
+        <div className="w-full h-4 sm:h-5 bg-[#1283c8] border-[3.5px] border-t-0 border-black rounded-b-lg" />
       </div>
     </div>
   );

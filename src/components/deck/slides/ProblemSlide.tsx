@@ -13,11 +13,6 @@ export function ProblemSlide({ onNext }: ProblemSlideProps) {
     <div className="w-full min-h-[calc(100vh-8rem)] flex flex-col justify-center items-center px-4 sm:px-8 py-8 relative">
       <div className="max-w-5xl mx-auto text-center relative z-10">
         
-        {/* Eyebrow */}
-        <div className="brutal-badge brutal-badge-navy mb-6 font-mono font-bold text-xs tracking-widest shadow-[3px_3px_0_#000]">
-          <span>THE SCIENTIFIC CHALLENGE // ISRO PROBLEM STATEMENT SIH26166</span>
-        </div>
-
         {/* Big Headline in Jet Black with Blue Collapse Badge */}
         <h2 className="font-display text-3xl sm:text-5xl md:text-6xl uppercase font-black tracking-tight leading-[1.05] text-black mb-8">
           Every orbit, sun angles shift by 45°, crater shadows{" "}

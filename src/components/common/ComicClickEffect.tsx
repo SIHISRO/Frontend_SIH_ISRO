@@ -120,74 +120,105 @@ export function ComicClickEffect() {
         <div
           className="fixed top-0 left-0 pointer-events-none z-[9999999] select-none will-change-transform transition-transform duration-75 ease-out"
           style={{
-            transform: `translate3d(${mousePos.x}px, ${mousePos.y}px, 0)`,
+            transform: isHovering || isClicking
+              ? `translate3d(${mousePos.x - 14}px, ${mousePos.y - 2}px, 0)`
+              : `translate3d(${mousePos.x}px, ${mousePos.y}px, 0)`,
           }}
           aria-hidden="true"
         >
           <div
             className={`relative transition-all duration-150 ${
               isClicking
-                ? "scale-90 rotate-[-14deg]"
+                ? "scale-90 rotate-[-10deg]"
                 : isHovering
-                ? "scale-110 rotate-[-4deg]"
+                ? "scale-110 rotate-[-3deg]"
                 : "scale-100 rotate-0"
             }`}
           >
-            {/* Pulsing Comic Ring when clicking */}
-            {isClicking && (
-              <div className="absolute -top-3 -left-3 w-10 h-10 animate-ping rounded-full border-2 border-[#ef7618] bg-[#ef7618]/30" />
-            )}
+            {/* If Hovering or Clicking: Black Pointing Hand Cursor 👆 */}
+            {isHovering || isClicking ? (
+              <div className="relative">
+                {/* Pulsing Comic Ring when clicking */}
+                {isClicking && (
+                  <div className="absolute -top-3 -left-3 w-10 h-10 animate-ping rounded-full border-2 border-black bg-black/20" />
+                )}
 
-            {/* Chunky Comic Arrow SVG */}
-            <svg
-              width="44"
-              height="44"
-              viewBox="0 0 44 44"
-              className="filter drop-shadow-[3px_3px_0_#000000]"
-            >
-              {/* Outer Bold Comic Border */}
-              <polygon
-                points="3,2 3,28 10,21 16,33 22,30 16,19 26,19"
-                fill={isClicking ? "#ef7618" : isHovering ? "#1283c8" : "#ffffff"}
-                stroke="#000000"
-                strokeWidth="3.5"
-                strokeLinejoin="round"
-                strokeLinecap="round"
-              />
-              {/* Inner Core Fill */}
-              <polygon
-                points="5,6 5,23 10.5,18 15,28 17.5,27 13.5,17 21,17"
-                fill={isClicking ? "#1283c8" : "#ef7618"}
-              />
-              {/* Comic Specular Glint */}
-              <polygon points="6,8 6,15 9,12" fill="#ffffff" opacity="0.9" />
-              <circle cx="7.5" cy="8" r="1.3" fill="#ffffff" />
-
-              {/* Comic Action Rays at tip on hover or click */}
-              {(isHovering || isClicking) && (
-                <g
-                  stroke={isClicking ? "#ef7618" : "#000000"}
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
+                {/* Black Comic Pointing Hand 👆 SVG */}
+                <svg
+                  width="44"
+                  height="44"
+                  viewBox="0 0 38 42"
+                  className="filter drop-shadow-[3px_3px_0_#000000]"
                 >
-                  <line x1="3" y1="2" x2="0" y2="0" />
-                  <line x1="3" y1="2" x2="3" y2="-2" />
-                  <line x1="3" y1="2" x2="-1" y2="3" />
-                </g>
-              )}
-            </svg>
+                  {/* Black Hand Silhouette 👆 */}
+                  <path
+                    d="M14 2 C12.5 2 11 3.5 11 5 L11 18 C10 17 8.5 17 7.5 18 C6.5 19 6.5 20.5 7.5 21.8 L10.5 26 C11.5 29.5 13.5 35 18 36 L25 36 C29.5 35 31 30 31 25 L31 20 C31 18.5 29.8 17.5 28.5 17.5 C27.8 17.5 27.2 17.8 26.8 18.3 C26.3 17.2 25.2 16.5 24 16.5 C23.4 16.5 22.8 16.7 22.4 17.1 C21.8 16.1 20.8 15.5 19.5 15.5 L17.5 15.5 L17.5 5 C17.5 3.5 16 2 14 2 Z"
+                    fill="#000000"
+                    stroke="#ffffff"
+                    strokeWidth="2.5"
+                    strokeLinejoin="round"
+                    strokeLinecap="round"
+                  />
+                  {/* White Knuckle Creases and Finger Separation Lines */}
+                  <line x1="19.5" y1="16" x2="19.5" y2="24" stroke="#ffffff" strokeWidth="1.8" strokeLinecap="round" />
+                  <line x1="24" y1="17" x2="24" y2="25" stroke="#ffffff" strokeWidth="1.8" strokeLinecap="round" />
+                  <line x1="28.5" y1="18" x2="28.5" y2="26" stroke="#ffffff" strokeWidth="1.8" strokeLinecap="round" />
+                  <line x1="12.5" y1="8" x2="16" y2="8" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" />
+                  <line x1="12.5" y1="12" x2="16" y2="12" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" />
+                  <path d="M 8 22 C 10.5 24, 14 25, 16 23" fill="none" stroke="#ffffff" strokeWidth="1.8" strokeLinecap="round" />
+                  {/* Subtle ISRO Orange Wrist Accent */}
+                  <rect x="15" y="34.5" width="10" height="2.5" rx="1.2" fill="#ef7618" stroke="#ffffff" strokeWidth="1" />
 
-            {/* Interactive Comic Button Badge next to Arrow */}
-            {(isHovering || isClicking) && (
-              <div
-                className={`absolute top-2 left-7 px-1.5 py-0.5 rounded border-2 border-black font-display font-black text-[9px] uppercase tracking-wider shadow-[2px_2px_0_#000000] whitespace-nowrap transition-transform ${
-                  isClicking
-                    ? "bg-[#1283c8] text-white scale-110 rotate-12"
-                    : "bg-[#ef7618] text-black scale-100 rotate-6"
-                }`}
-              >
-                {isClicking ? clickWord : "CLICK"}
+                  {/* Comic Action Rays at Fingertip when clicking */}
+                  {isClicking && (
+                    <g strokeLinecap="round">
+                      <line x1="14" y1="-2" x2="14" y2="-6" stroke="#ffffff" strokeWidth="3.5" />
+                      <line x1="14" y1="-2" x2="14" y2="-6" stroke="#000000" strokeWidth="2" />
+                      <line x1="10" y1="-1" x2="6" y2="-4" stroke="#ffffff" strokeWidth="3.5" />
+                      <line x1="10" y1="-1" x2="6" y2="-4" stroke="#000000" strokeWidth="2" />
+                      <line x1="18" y1="-1" x2="22" y2="-4" stroke="#ffffff" strokeWidth="3.5" />
+                      <line x1="18" y1="-1" x2="22" y2="-4" stroke="#000000" strokeWidth="2" />
+                    </g>
+                  )}
+                </svg>
+
+                {/* Interactive Comic Button Badge next to Hand */}
+                <div
+                  className={`absolute top-3 left-8 px-1.5 py-0.5 rounded border-2 border-black font-display font-black text-[9px] uppercase tracking-wider shadow-[2px_2px_0_#000000] whitespace-nowrap transition-transform ${
+                    isClicking
+                      ? "bg-black text-white scale-110 rotate-12"
+                      : "bg-[#ef7618] text-black scale-100 rotate-6"
+                  }`}
+                >
+                  {isClicking ? clickWord : "CLICK"}
+                </div>
               </div>
+            ) : (
+              /* Idle Comic Arrow SVG */
+              <svg
+                width="44"
+                height="44"
+                viewBox="0 0 44 44"
+                className="filter drop-shadow-[3px_3px_0_#000000]"
+              >
+                {/* Outer Bold Comic Border */}
+                <polygon
+                  points="3,2 3,28 10,21 16,33 22,30 16,19 26,19"
+                  fill="#ffffff"
+                  stroke="#000000"
+                  strokeWidth="3.5"
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                />
+                {/* Inner Core Fill */}
+                <polygon
+                  points="5,6 5,23 10.5,18 15,28 17.5,27 13.5,17 21,17"
+                  fill="#ef7618"
+                />
+                {/* Comic Specular Glint */}
+                <polygon points="6,8 6,15 9,12" fill="#ffffff" opacity="0.9" />
+                <circle cx="7.5" cy="8" r="1.3" fill="#ffffff" />
+              </svg>
             )}
           </div>
         </div>

@@ -22,13 +22,14 @@ import { ImpactSlide } from "./slides/ImpactSlide";
 import { IntroRubLoader } from "./IntroRubLoader";
 import { bgmController } from "@/utils/bgmController";
 import { ProblemStatementModal } from "@/components/common/ProblemStatementModal";
+import { SlideCurtainTransition } from "./SlideCurtainTransition";
 
 export function DeckContainer() {
   const [showIntro, setShowIntro] = useState<boolean>(true);
   const [currentSlide, setCurrentSlide] = useState<number>(0);
-  const [prevSlide, setPrevSlide] = useState<number | null>(null);
-  const [transitionDirection, setTransitionDirection] = useState<"next" | "prev">("next");
-  const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
+  const [targetSlide, setTargetSlide] = useState<number | null>(null);
+  const [isCurtainActive, setIsCurtainActive] = useState<boolean>(false);
+  const slideContainerRef = React.useRef<HTMLDivElement | null>(null);
   const [isNotesOpen, setIsNotesOpen] = useState<boolean>(false);
   const [isGridOpen, setIsGridOpen] = useState<boolean>(false);
   const [isMuted, setIsMuted] = useState<boolean>(!bgmController.getIsPlaying());
@@ -113,21 +114,30 @@ export function DeckContainer() {
   // Background color changes based on active slide (exact Nodeck pattern)
   const activeBgColor = slideData[currentSlide]?.color || "#1283c8";
 
-  const goToSlide = useCallback((index: number) => {
-    if (index === currentSlide || isTransitioning) return;
-    if (index >= 0 && index < totalSlides) {
-      const direction = index > currentSlide ? "next" : "prev";
-      setPrevSlide(currentSlide);
-      setCurrentSlide(index);
-      setTransitionDirection(direction);
-      setIsTransitioning(true);
+  const goToSlide = useCallback(
+    (index: number) => {
+      if (index === currentSlide || isCurtainActive) return;
+      if (index >= 0 && index < totalSlides) {
+        setTargetSlide(index);
+        setIsCurtainActive(true);
+      }
+    },
+    [currentSlide, isCurtainActive, totalSlides]
+  );
 
-      setTimeout(() => {
-        setIsTransitioning(false);
-        setPrevSlide(null);
-      }, 650);
+  const handleCurtainHold = useCallback(() => {
+    if (targetSlide !== null) {
+      setCurrentSlide(targetSlide);
+      if (slideContainerRef.current) {
+        slideContainerRef.current.scrollTop = 0;
+      }
     }
-  }, [currentSlide, isTransitioning, totalSlides]);
+  }, [targetSlide]);
+
+  const handleCurtainComplete = useCallback(() => {
+    setIsCurtainActive(false);
+    setTargetSlide(null);
+  }, []);
 
   const handlePrev = useCallback(() => {
     if (currentSlide > 0) {
@@ -391,44 +401,13 @@ export function DeckContainer() {
         </div>
       </header>
 
-      {/* Main Slide Stage with 3D Cube Rotation Transition */}
-      <main className="cube-viewport flex-1 flex flex-col justify-center items-center pt-14 pb-24 relative z-10 w-full min-h-[calc(100vh-6rem)]">
-        <div className="cube-wrapper w-full flex-1 flex items-center justify-center relative">
-          {/* Outgoing Slide Face during 3D Cube Rotation */}
-          {isTransitioning && prevSlide !== null && (
-            <div
-              key={`prev-slide-${prevSlide}`}
-              className={`cube-face absolute inset-0 w-full h-full flex flex-col items-center justify-center ${
-                transitionDirection === "next"
-                  ? "cube-animate-out-left"
-                  : "cube-animate-out-right"
-              }`}
-              style={{
-                backgroundColor: slideData[prevSlide]?.color || "#ef7618",
-              }}
-            >
-              {renderSlideContent(prevSlide)}
-            </div>
-          )}
-
-          {/* Incoming / Active Slide Face */}
-          <div
-            key={`curr-slide-${currentSlide}`}
-            className={`cube-face w-full flex-1 flex flex-col items-center justify-center ${
-              isTransitioning
-                ? transitionDirection === "next"
-                  ? "cube-animate-in-right"
-                  : "cube-animate-in-left"
-                : ""
-            }`}
-            style={{
-              backgroundColor: isTransitioning
-                ? slideData[currentSlide]?.color || "#ef7618"
-                : "transparent",
-            }}
-          >
-            {renderSlideContent(currentSlide)}
-          </div>
+      {/* Main Slide Stage with Free Natural Scrolling */}
+      <main
+        ref={slideContainerRef}
+        className="slide-stage-viewport flex-1 w-full min-h-[calc(100vh-6rem)] pt-14 pb-24 relative z-10 flex flex-col items-center justify-start overflow-y-auto overflow-x-hidden scroll-smooth"
+      >
+        <div className="w-full flex-1 flex flex-col items-center justify-center relative min-h-full">
+          {renderSlideContent(currentSlide)}
         </div>
       </main>
 
@@ -470,6 +449,17 @@ export function DeckContainer() {
       <ProblemStatementModal
         isOpen={isPSModalOpen}
         onClose={() => setIsPSModalOpen(false)}
+      />
+
+      {/* Interstitial Title Curtain Transition (Slide up, hold 1s, break out) */}
+      <SlideCurtainTransition
+        isActive={isCurtainActive}
+        targetSlideNumber={(targetSlide !== null ? targetSlide : currentSlide) + 1}
+        targetSlideTitle={
+          slideData[targetSlide !== null ? targetSlide : currentSlide]?.title || "COSMIC VISION"
+        }
+        onHoldStart={handleCurtainHold}
+        onComplete={handleCurtainComplete}
       />
     </div>
   );

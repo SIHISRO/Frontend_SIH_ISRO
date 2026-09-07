@@ -2,8 +2,9 @@
 
 import React from "react";
 import { soundController } from "@/utils/soundController";
-import { FloatingHighlighter, StampBadge } from "../StationeryProps";
 import { ArrowRight, Layers } from "lucide-react";
+import { FloatingHighlighter, StampBadge } from "../StationeryProps";
+import { FloatingSatellite } from "../FloatingSatellite";
 
 interface CoverSlideProps {
   onGoToStudio: () => void;
@@ -13,27 +14,30 @@ interface CoverSlideProps {
 export function CoverSlide({ onGoToStudio, onGoToProblem }: CoverSlideProps) {
   return (
     <div className="w-full min-h-[calc(100vh-8rem)] flex flex-col justify-center items-center px-4 sm:px-8 py-8 relative">
-      
-      {/* Stationery Props Floating on Top */}
-      <div className="absolute top-4 sm:top-10 right-4 sm:right-16 hidden sm:block z-10">
+      {/* Floating Interactive Chandrayaan-2 Satellite with Cursor Evasion */}
+      <FloatingSatellite />
+
+      {/* Stationery Props Floating on Top matching original design */}
+      <div className="absolute top-4 sm:top-8 right-4 sm:right-12 z-20">
         <FloatingHighlighter />
       </div>
 
-      <div className="absolute top-6 left-4 sm:left-12 hidden md:block z-10">
-        <StampBadge text="ISRO PS SIH26166" className="-rotate-6 bg-[#EAEFEF]" />
+      <div className="absolute top-4 sm:top-8 left-4 sm:left-8 z-20">
+        <StampBadge text="ISRO PS SIH26166" className="-rotate-6" />
       </div>
-
       {/* Main Container */}
       <div className="max-w-5xl mx-auto text-center relative z-10 flex flex-col items-center">
-        {/* Massive Punchy Display Title (Nodeck style) */}
-        <h1 className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl uppercase font-black tracking-tight leading-[0.92] text-white mb-6 select-none">
-          COSMIC<span className="text-[#ef7618] drop-shadow-[5px_5px_0_#000000]">YAAN</span>
+        {/* Massive Punchy Display Title matching user screenshot */}
+        <h1 className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl uppercase font-black tracking-tight leading-[0.92] text-white mb-6 select-none drop-shadow-[6px_6px_0_#000000]">
+          COSMIC<span className="text-[#ef7618] drop-shadow-[6px_6px_0_#000000]">YAAN</span>
         </h1>
 
         {/* Tagline with highlighter mark */}
         <p className="font-display text-xl sm:text-3xl md:text-4xl text-white font-extrabold max-w-3xl leading-snug mb-6">
           A lunar correspondence tool that sells{" "}
-          <span className="bg-[#ef7618] text-black px-2 py-0.5 rounded border-2 border-black inline-block shadow-[2px_2px_0_#000]">thinking & sub-pixel precision,</span>{" "}
+          <span className="bg-[#ef7618] text-black px-2 py-0.5 rounded border-2 border-black inline-block shadow-[2px_2px_0_#000]">
+            thinking & sub-pixel precision,
+          </span>{" "}
           not misaligned crater slides.
         </p>
 

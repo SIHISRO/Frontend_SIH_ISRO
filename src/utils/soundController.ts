@@ -137,6 +137,33 @@ class SoundController {
       // Ignore
     }
   }
+
+  /** Crisp swoosh for curtain slide-up and breakout */
+  public playSwoosh() {
+    if (this.isMuted) return;
+    try {
+      this.initCtx();
+      if (!this.audioCtx) return;
+
+      const osc = this.audioCtx.createOscillator();
+      const gain = this.audioCtx.createGain();
+
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(180, this.audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(540, this.audioCtx.currentTime + 0.12);
+
+      gain.gain.setValueAtTime(0.08, this.audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, this.audioCtx.currentTime + 0.12);
+
+      osc.connect(gain);
+      gain.connect(this.audioCtx.destination);
+
+      osc.start();
+      osc.stop(this.audioCtx.currentTime + 0.12);
+    } catch {
+      // Ignore
+    }
+  }
 }
 
 export const soundController = new SoundController();

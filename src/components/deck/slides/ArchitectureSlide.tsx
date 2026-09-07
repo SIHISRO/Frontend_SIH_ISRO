@@ -41,11 +41,6 @@ export function ArchitectureSlide() {
     <div className="w-full min-h-[calc(100vh-8rem)] flex flex-col justify-center items-center px-4 sm:px-8 py-8 relative">
       <div className="max-w-5xl mx-auto w-full relative z-10 text-center">
         
-        {/* Eyebrow */}
-        <div className="brutal-badge brutal-badge-orange mb-4 font-mono font-bold text-xs tracking-widest shadow-[3px_3px_0_#000]">
-          <span>DEEP ML PIPELINE ARCHITECTURE // SIH26166 DELIVERABLES</span>
-        </div>
-
         {/* Headline */}
         <h2 className="font-display text-3xl sm:text-5xl uppercase font-black tracking-tight text-[#EAEFEF] mb-6">
           How Lunar LoFTR Works

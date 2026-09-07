@@ -62,11 +62,8 @@ export function RegistrationSlide({
     <div className="w-full min-h-[calc(100vh-8rem)] flex flex-col justify-center items-center px-4 sm:px-8 py-8 relative">
       <div className="max-w-5xl mx-auto w-full relative z-10">
         
-        {/* Eyebrow & Headline */}
+        {/* Headline */}
         <div className="text-center mb-6">
-          <div className="brutal-badge brutal-badge-orange mb-3 font-mono font-bold text-xs tracking-widest shadow-[3px_3px_0_#000]">
-            <span>INTERACTIVE REGISTRATION STUDIO // LoFTR ML ENGINE</span>
-          </div>
           <h2 className="font-display text-3xl sm:text-5xl uppercase font-black tracking-tight text-black">
             Upload Sensor Imagery
           </h2>
