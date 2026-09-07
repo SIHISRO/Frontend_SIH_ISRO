@@ -76,20 +76,6 @@ export function ImpactSlide({ onGoToStudio }: ImpactSlideProps) {
     <div className="w-full min-h-[calc(100vh-8rem)] flex flex-col justify-center items-center px-4 sm:px-8 py-8 relative">
       <div className="max-w-6xl mx-auto w-full relative z-10 text-center">
         
-        {/* Top Header Badge */}
-        <div className="flex items-center justify-center gap-3 mb-2">
-          <div className="brutal-badge brutal-badge-white font-mono font-black text-xs px-3 py-1 shadow-[2px_2px_0_#000]">
-            <span className="text-[#ef7618]">COSMIC</span>
-            <span className="text-[#1283c8] ml-1">VISION</span>
-          </div>
-          <span className="font-mono text-xs font-bold text-black/60 hidden sm:inline">
-            {"// OUTCOME & VALUE DELIVERABLES"}
-          </span>
-          <div className="brutal-badge brutal-badge-navy font-mono font-black text-xs px-3 py-1 shadow-[2px_2px_0_#000]">
-            SIH 2026
-          </div>
-        </div>
-
         {/* Main Title Banner matching user PPT */}
         <h2 className="font-display text-3xl sm:text-5xl uppercase font-black tracking-tight text-black mb-1">
           <span className="text-[#ef7618] border-b-4 border-[#ef7618] pb-0.5">Impact</span>
