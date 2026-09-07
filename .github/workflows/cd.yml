@@ -1,0 +1,34 @@
+name: CD Pipeline
+
+on:
+  workflow_run:
+    workflows: ["CI Pipeline"]
+    types: [completed]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: self-hosted
+    env:
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      DOCKER_IMAGE_NAME: sih_isro_frontend
+
+    steps:
+      - name: Ensure Docker network exists
+        run: sudo docker network inspect "sih_isro" >/dev/null 2>&1 || sudo docker network create "sih_isro"
+
+      - name: Pull Docker image
+        run: sudo docker pull "${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:latest"
+
+      - name: Remove old container
+        run: sudo docker rm -f "sih_isro_frontend-container" || true
+
+      - name: Run Docker Container on same network
+        run: |
+          sudo docker run -d \
+            --name "sih_isro_frontend-container" \
+            --network "sih_isro" \
+            -p 3000:3000 \
+            "${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:latest"
