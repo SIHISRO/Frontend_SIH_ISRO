@@ -14,6 +14,7 @@ jobs:
       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       DOCKER_IMAGE_NAME: sih_isro_frontend
+      FASTAPI_BASE_URL: ${{ secrets.FASTAPI_BASE_URL }}
 
     steps:
       - name: Ensure Docker network exists
@@ -31,4 +32,5 @@ jobs:
             --name "sih_isro_frontend-container" \
             --network "sih_isro" \
             -p 3000:3000 \
+            -e FASTAPI_BASE_URL="${FASTAPI_BASE_URL}" \
             "${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:latest"
