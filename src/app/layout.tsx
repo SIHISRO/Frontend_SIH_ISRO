@@ -2,13 +2,15 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { PredictionProvider } from "@/context/PredictionContext";
 import { NavigationShell } from "@/components/layout/NavigationShell";
+import { ComicClickEffect } from "@/components/common/ComicClickEffect";
 import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
-  title: "LunarReg — SIH26166 | Chandrayaan-2 Lunar Image Correspondence",
+  title: "Cosmic Vision — SIH26166 | Chandrayaan-2 Lunar Image Correspondence",
   description:
-    "Multi-modal, Sun angle and scale invariant image correspondence using Chandrayaan-2 optical images (OHRC, TMC-2, IIRS) and Lunar reference imagery. Built for ISRO / Smart India Hackathon 2026.",
+    "Cosmic Vision: Multi-modal, Sun angle and scale invariant image correspondence using Chandrayaan-2 optical images (OHRC, TMC-2, IIRS) and Lunar reference imagery. Built for ISRO / Smart India Hackathon 2026.",
   keywords: [
+    "Cosmic Vision",
     "SIH2026",
     "SIH26166",
     "ISRO",
@@ -29,8 +31,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="min-h-screen text-black antialiased selection:bg-black selection:text-[#DEF915]">
+      <body className="min-h-screen text-black antialiased selection:bg-[#1283c8] selection:text-white">
         <PredictionProvider>
+          <ComicClickEffect />
           <NavigationShell>{children}</NavigationShell>
           <Toaster
             position="top-right"

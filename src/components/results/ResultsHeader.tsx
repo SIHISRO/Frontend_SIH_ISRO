@@ -4,7 +4,7 @@ import React from "react";
 import { QualityBadge } from "./QualityBadge";
 import { Button } from "../common/Button";
 import { PredictMetrics } from "@/types/prediction";
-import { PlusCircle, Sparkles, DownloadCloud } from "lucide-react";
+import { PlusCircle, DownloadCloud } from "lucide-react";
 
 export interface ResultsHeaderProps {
   metrics: PredictMetrics;
@@ -27,7 +27,7 @@ export function ResultsHeader({
     >
       <div>
         <div className="flex items-center gap-3 mb-1.5 flex-wrap">
-          <span className="px-2 py-0.5 text-xs font-mono uppercase rounded bg-[#FF9B51]/15 text-[#FF9B51] border border-[#FF9B51]/30">
+          <span className="px-2 py-0.5 text-xs font-mono uppercase rounded bg-[#ef7618]/15 text-[#ef7618] border border-[#ef7618]/30">
             Pipeline Output
           </span>
           <QualityBadge metrics={metrics} homography={homography} />
@@ -46,7 +46,7 @@ export function ResultsHeader({
             variant="secondary"
             size="md"
             onClick={onDownloadAll}
-            icon={<DownloadCloud className="w-4 h-4 text-[#FF9B51]" />}
+            icon={<DownloadCloud className="w-4 h-4 text-[#ef7618]" />}
           >
             Export All
           </Button>

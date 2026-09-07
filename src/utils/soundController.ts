@@ -41,6 +41,14 @@ class SoundController {
     return this.isMuted;
   }
 
+  public setMuted(muted: boolean): boolean {
+    this.isMuted = muted;
+    if (typeof window !== "undefined") {
+      localStorage.setItem("nodeck_sfx_muted", String(this.isMuted));
+    }
+    return this.isMuted;
+  }
+
   public getMuted(): boolean {
     return this.isMuted;
   }

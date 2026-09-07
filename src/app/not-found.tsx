@@ -10,11 +10,11 @@ export default function NotFound() {
   return (
     <PageLayout className="flex items-center justify-center min-h-[60vh]">
       <div className="glass-panel-elevated p-8 sm:p-12 rounded-3xl border border-[#BFC9D1]/25 text-center max-w-lg mx-auto">
-        <div className="w-16 h-16 rounded-full bg-[#FF9B51]/15 text-[#FF9B51] flex items-center justify-center mx-auto mb-6 border border-[#FF9B51]/30">
+        <div className="w-16 h-16 rounded-full bg-[#ef7618]/15 text-[#ef7618] flex items-center justify-center mx-auto mb-6 border border-[#ef7618]/30">
           <Compass className="w-8 h-8" />
         </div>
 
-        <span className="text-xs font-mono uppercase text-[#FF9B51] tracking-widest font-semibold">
+        <span className="text-xs font-mono uppercase text-[#ef7618] tracking-widest font-semibold">
           Error 404
         </span>
 

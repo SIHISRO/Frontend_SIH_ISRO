@@ -19,34 +19,33 @@ export function ImagePreview({
   onRemove,
   disabled = false,
 }: ImagePreviewProps) {
-  const [previewUrl, setPreviewUrl] = useState<string>("");
   const [dimensions, setDimensions] = useState<{ width: number; height: number } | null>(
     null
   );
 
-  useEffect(() => {
-    const url = URL.createObjectURL(file);
-    setPreviewUrl(url);
+  const previewUrl = React.useMemo(() => URL.createObjectURL(file), [file]);
 
-    // Calculate dimensions
+  useEffect(() => {
+    return () => {
+      URL.revokeObjectURL(previewUrl);
+    };
+  }, [previewUrl]);
+
+  useEffect(() => {
     const img = new Image();
     img.onload = () => {
       setDimensions({ width: img.naturalWidth, height: img.naturalHeight });
     };
-    img.src = url;
-
-    return () => {
-      URL.revokeObjectURL(url);
-    };
-  }, [file]);
+    img.src = previewUrl;
+  }, [previewUrl]);
 
   return (
-    <div className="relative w-full rounded-2xl glass-panel-elevated border border-[#BFC9D1]/30 p-4 overflow-hidden flex flex-col group transition-all duration-200 hover:border-[#FF9B51]/50">
+    <div className="relative w-full rounded-2xl glass-panel-elevated border border-[#BFC9D1]/30 p-4 overflow-hidden flex flex-col group transition-all duration-200 hover:border-[#ef7618]/50">
       {/* Top Header info */}
       <div className="flex items-center justify-between gap-2 mb-3">
         <div className="flex items-center gap-2 min-w-0">
           {slotBadge && (
-            <span className="px-2 py-0.5 text-[10px] font-mono uppercase font-bold rounded bg-[#FF9B51]/20 text-[#FF9B51] border border-[#FF9B51]/40 flex-shrink-0">
+            <span className="px-2 py-0.5 text-[10px] font-mono uppercase font-bold rounded bg-[#ef7618]/20 text-[#ef7618] border border-[#ef7618]/40 flex-shrink-0">
               {slotBadge}
             </span>
           )}

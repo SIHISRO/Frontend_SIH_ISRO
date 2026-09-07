@@ -68,7 +68,7 @@ export function KeypointsSummary({
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#BFC9D1]/15">
         <div className="flex items-center gap-2.5">
-          <div className="p-2 rounded-lg bg-[#FF9B51]/15 text-[#FF9B51] border border-[#FF9B51]/30">
+          <div className="p-2 rounded-lg bg-[#ef7618]/15 text-[#ef7618] border border-[#ef7618]/30">
             <Crosshair className="w-5 h-5" />
           </div>
           <div>
@@ -87,7 +87,7 @@ export function KeypointsSummary({
               variant="outline"
               size="sm"
               onClick={downloadCSV}
-              icon={<Download className="w-3.5 h-3.5 text-[#FF9B51]" />}
+              icon={<Download className="w-3.5 h-3.5 text-[#ef7618]" />}
             >
               Export Points CSV
             </Button>
@@ -114,7 +114,7 @@ export function KeypointsSummary({
         <p>
           Correspondences maintain uniform distribution across both images to ensure global geometric consistency and avoid localized distortion.
         </p>
-        <span className="font-mono text-[11px] text-[#FF9B51] flex-shrink-0">
+        <span className="font-mono text-[11px] text-[#ef7618] flex-shrink-0">
           RANSAC Threshold: 3.0px
         </span>
       </div>
@@ -124,7 +124,7 @@ export function KeypointsSummary({
         <div className="mt-6 pt-4 border-t border-[#BFC9D1]/15 space-y-4 animate-in fade-in duration-200">
           <div className="overflow-x-auto max-h-96 rounded-xl border border-[#BFC9D1]/20">
             <table className="min-w-full divide-y divide-[#BFC9D1]/15 font-mono text-xs">
-              <thead className="bg-[#18232c]/90 sticky top-0 z-10 text-[#BFC9D1]">
+              <thead className="bg-[#0b2545]/95 sticky top-0 z-10 text-[#BFC9D1]">
                 <tr>
                   <th className="py-2.5 px-3 text-left">#</th>
                   <th className="py-2.5 px-3 text-left">Reference (x, y)</th>
@@ -133,7 +133,7 @@ export function KeypointsSummary({
                   <th className="py-2.5 px-3 text-center">Status</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#BFC9D1]/10 bg-[#25343F]/40 text-[#EAEFEF]">
+              <tbody className="divide-y divide-[#BFC9D1]/10 bg-[#0b2545]/40 text-[#EAEFEF]">
                 {keypoints.reference.slice(0, visibleCount).map((refPt, idx) => {
                   const srcPt = keypoints.source[idx] || [0, 0];
                   const conf = keypoints.confidence[idx] || 0;
@@ -142,7 +142,7 @@ export function KeypointsSummary({
                   return (
                     <tr
                       key={idx}
-                      className={`hover:bg-[#384d5d]/40 transition-colors ${
+                      className={`hover:bg-[#1283c8]/20 transition-colors ${
                         isInlier ? "" : "opacity-60 bg-rose-950/10"
                       }`}
                     >
@@ -153,7 +153,7 @@ export function KeypointsSummary({
                       <td className="py-2 px-3">
                         ({formatDecimal(srcPt[0], 1)}, {formatDecimal(srcPt[1], 1)})
                       </td>
-                      <td className="py-2 px-3 font-semibold text-[#FF9B51]">
+                      <td className="py-2 px-3 font-semibold text-[#ef7618]">
                         {formatDecimal(conf, 3)}
                       </td>
                       <td className="py-2 px-3 text-center">

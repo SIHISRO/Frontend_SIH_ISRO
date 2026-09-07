@@ -22,14 +22,14 @@ export function RegistrationStatus({
   const containerStyles = {
     good: "border-emerald-500/30 bg-emerald-950/20 text-emerald-200",
     fair: "border-amber-500/30 bg-amber-950/20 text-amber-200",
-    poor: "border-[#FF9B51]/40 bg-[#FF9B51]/10 text-[#EAEFEF]",
+    poor: "border-[#ef7618]/40 bg-[#ef7618]/10 text-[#EAEFEF]",
     failed: "border-rose-500/30 bg-rose-950/20 text-rose-200",
   };
 
   const icons = {
     good: <CheckCircle2 className="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5" />,
     fair: <Info className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />,
-    poor: <AlertTriangle className="w-5 h-5 text-[#FF9B51] flex-shrink-0 mt-0.5" />,
+    poor: <AlertTriangle className="w-5 h-5 text-[#ef7618] flex-shrink-0 mt-0.5" />,
     failed: <XCircle className="w-5 h-5 text-rose-400 flex-shrink-0 mt-0.5" />,
   };
 

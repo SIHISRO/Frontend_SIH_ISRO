@@ -79,7 +79,7 @@ export function Modal({
         className={`relative w-full ${maxWidthClasses[maxWidth]} glass-panel-elevated rounded-2xl border border-[#BFC9D1]/30 shadow-2xl flex flex-col overflow-hidden outline-none`}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-[#BFC9D1]/20 bg-[#25343F]/80">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-[#BFC9D1]/20 bg-[#0b2545]/90">
           {title ? (
             <h3 className="text-lg font-bold text-[#EAEFEF] tracking-wide">
               {title}
@@ -91,7 +91,7 @@ export function Modal({
             type="button"
             onClick={onClose}
             aria-label="Close dialog"
-            className="p-2 rounded-lg text-[#BFC9D1] hover:text-[#EAEFEF] hover:bg-[#384d5d] transition-colors focus:outline-none focus:ring-2 focus:ring-[#FF9B51]"
+            className="p-2 rounded-lg text-[#BFC9D1] hover:text-[#EAEFEF] hover:bg-[#1283c8]/30 transition-colors focus:outline-none focus:ring-2 focus:ring-[#ef7618]"
           >
             <X className="w-5 h-5" />
           </button>

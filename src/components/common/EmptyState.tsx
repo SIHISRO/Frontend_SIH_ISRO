@@ -22,7 +22,7 @@ export function EmptyState({
     <div
       className={`glass-panel rounded-2xl p-8 sm:p-12 text-center flex flex-col items-center justify-center max-w-lg mx-auto ${className}`}
     >
-      <div className="w-16 h-16 rounded-full bg-[#384d5d]/40 flex items-center justify-center text-[#FF9B51] mb-4 border border-[#BFC9D1]/20">
+      <div className="w-16 h-16 rounded-full bg-[#1283c8]/20 flex items-center justify-center text-[#ef7618] mb-4 border border-[#1283c8]/40">
         {icon || <Telescope className="w-8 h-8" />}
       </div>
       <h3 className="text-lg font-bold text-[#EAEFEF] mb-2">{title}</h3>

@@ -63,7 +63,7 @@ export function ImageLightbox({
         className="relative max-w-6xl w-full max-h-[92vh] flex flex-col glass-panel-elevated rounded-2xl border border-[#BFC9D1]/30 overflow-hidden shadow-2xl"
       >
         {/* Top bar */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-[#BFC9D1]/20 bg-[#25343F]/90">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-[#BFC9D1]/20 bg-[#0b2545]/95">
           <h3 className="text-base sm:text-lg font-bold text-[#EAEFEF] truncate">
             {title}
           </h3>
@@ -72,7 +72,7 @@ export function ImageLightbox({
               type="button"
               onClick={() => downloadBase64Image(src, filename)}
               aria-label="Download high resolution output"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-[#FF9B51] bg-[#FF9B51]/15 hover:bg-[#FF9B51]/25 border border-[#FF9B51]/40 transition-colors focus:outline-none focus:ring-2 focus:ring-[#FF9B51]"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-[#ef7618] bg-[#ef7618]/15 hover:bg-[#ef7618]/25 border border-[#ef7618]/40 transition-colors focus:outline-none focus:ring-2 focus:ring-[#ef7618]"
             >
               <Download className="w-4 h-4" />
               <span className="hidden sm:inline">Download</span>
@@ -81,7 +81,7 @@ export function ImageLightbox({
               type="button"
               onClick={onClose}
               aria-label="Close full-screen image view"
-              className="p-2.5 rounded-lg text-[#BFC9D1] hover:text-[#EAEFEF] hover:bg-[#384d5d]/60 border border-transparent hover:border-[#BFC9D1]/30 transition-all focus:outline-none focus:ring-2 focus:ring-[#FF9B51]"
+              className="p-2.5 rounded-lg text-[#BFC9D1] hover:text-[#EAEFEF] hover:bg-[#1283c8]/30 border border-transparent hover:border-[#BFC9D1]/30 transition-all focus:outline-none focus:ring-2 focus:ring-[#ef7618]"
             >
               <X className="w-5 h-5" />
             </button>

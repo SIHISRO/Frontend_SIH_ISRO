@@ -2,8 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useLoadingMessages } from "@/hooks/useLoadingMessages";
-import { soundController } from "@/utils/soundController";
-import { Radar, Sparkles } from "lucide-react";
+import { Radar } from "lucide-react";
 
 export interface LoadingOverlayProps {
   isVisible: boolean;
@@ -45,7 +44,7 @@ export function LoadingOverlay({ isVisible, customMessage }: LoadingOverlayProps
         {/* BOLD LETTERS: PS SIH26166 */}
         <div className="relative my-2">
           <h2 className="font-display text-5xl sm:text-6xl uppercase font-black tracking-tight text-black leading-none drop-shadow-[3px_3px_0_#000000]">
-            PS SIH<span className="text-[#FF9B51]">26166</span>
+            PS SIH<span className="text-[#ef7618]">26166</span>
           </h2>
 
           {/* Animated Rubbing Eraser Prop */}
@@ -55,8 +54,8 @@ export function LoadingOverlay({ isVisible, customMessage }: LoadingOverlayProps
               transform: `translate(calc(-50% + ${rubX}px), -50%) rotate(${rubAngle}deg)`,
             }}
           >
-            <div className="w-16 h-8 bg-[#FF9B51] border-2 border-black rounded shadow-[2px_2px_0_#000] flex overflow-hidden">
-              <div className="w-2/3 h-full bg-[#FF9B51] flex items-center justify-center border-r border-black">
+            <div className="w-16 h-8 bg-[#ef7618] border-2 border-black rounded shadow-[2px_2px_0_#000] flex overflow-hidden">
+              <div className="w-2/3 h-full bg-[#ef7618] flex items-center justify-center border-r border-black">
                 <span className="text-[8px] font-mono font-black text-black uppercase">
                   RUB
                 </span>
@@ -69,7 +68,7 @@ export function LoadingOverlay({ isVisible, customMessage }: LoadingOverlayProps
             </div>
             {/* Crumbs */}
             <div className="absolute -bottom-1 left-1/2 flex gap-1">
-              <div className="w-1 h-1 rounded-full bg-[#FF9B51]" />
+              <div className="w-1 h-1 rounded-full bg-[#ef7618]" />
               <div className="w-1.5 h-1 rounded-full bg-black" />
             </div>
           </div>
@@ -78,7 +77,7 @@ export function LoadingOverlay({ isVisible, customMessage }: LoadingOverlayProps
         {/* Dynamic status message */}
         <div className="mt-4 p-3 bg-white border-2 border-black rounded-lg w-full max-w-sm shadow-[2px_2px_0_#000]">
           <div className="flex items-center justify-center gap-2 text-xs font-mono font-bold text-black">
-            <Radar className="w-4 h-4 text-[#FF9B51] animate-spin" />
+            <Radar className="w-4 h-4 text-[#ef7618] animate-spin" />
             <span aria-live="polite">{customMessage || currentMessage}</span>
           </div>
         </div>
@@ -90,7 +89,7 @@ export function LoadingOverlay({ isVisible, customMessage }: LoadingOverlayProps
               key={idx}
               className={`h-2.5 rounded-full border border-black transition-all duration-300 ${
                 idx === currentIndex
-                  ? "w-8 bg-[#FF9B51] shadow-[1px_1px_0_#000]"
+                  ? "w-8 bg-[#ef7618] shadow-[1px_1px_0_#000]"
                   : idx < currentIndex
                   ? "w-2.5 bg-black"
                   : "w-2.5 bg-[#BFC9D1]"

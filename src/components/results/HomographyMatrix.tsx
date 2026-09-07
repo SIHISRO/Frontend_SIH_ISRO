@@ -23,7 +23,7 @@ export function HomographyMatrix({
     >
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4 pb-4 border-b border-[#BFC9D1]/15">
         <div className="flex items-center gap-2.5">
-          <div className="p-2 rounded-lg bg-[#FF9B51]/15 text-[#FF9B51] border border-[#FF9B51]/30">
+          <div className="p-2 rounded-lg bg-[#ef7618]/15 text-[#ef7618] border border-[#ef7618]/30">
             <Grid className="w-5 h-5" />
           </div>
           <div>
@@ -58,9 +58,9 @@ export function HomographyMatrix({
                     {row.map((cellVal, colIdx) => (
                       <td
                         key={colIdx}
-                        className="py-2.5 px-4 text-center text-[#EAEFEF] font-bold bg-[#18232c]/50 rounded m-1 border border-[#BFC9D1]/10 hover:border-[#FF9B51]/50 transition-colors"
+                        className="py-2.5 px-4 text-center text-[#EAEFEF] font-bold bg-[#18232c]/50 rounded m-1 border border-[#BFC9D1]/10 hover:border-[#ef7618]/50 transition-colors"
                       >
-                        <span className={colIdx === 2 ? "text-[#FF9B51]" : ""}>
+                        <span className={colIdx === 2 ? "text-[#ef7618]" : ""}>
                           {cellVal}
                         </span>
                       </td>

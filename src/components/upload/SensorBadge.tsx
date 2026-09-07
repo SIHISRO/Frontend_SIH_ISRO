@@ -30,8 +30,8 @@ export function SensorBadge({
             title={opt.detail || opt.label}
             className={`px-2 py-0.5 text-[11px] font-mono rounded transition-all cursor-pointer ${
               isSelected
-                ? "bg-[#FF9B51] text-[#18232c] font-bold shadow-sm shadow-[#FF9B51]/30"
-                : "bg-[#25343F] text-[#BFC9D1] border border-[#BFC9D1]/30 hover:border-[#FF9B51]/50 hover:text-[#EAEFEF]"
+                ? "bg-[#ef7618] text-black font-bold shadow-sm shadow-[#ef7618]/30"
+                : "bg-[#1283c8]/30 text-[#BFC9D1] border border-[#1283c8]/40 hover:border-[#ef7618]/50 hover:text-white"
             }`}
           >
             {opt.label}

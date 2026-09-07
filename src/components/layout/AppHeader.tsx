@@ -4,11 +4,13 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { soundController } from "@/utils/soundController";
-import { Menu, X, Orbit, ArrowLeft, Layers, Info } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import { ProblemStatementModal } from "@/components/common/ProblemStatementModal";
 
 export function AppHeader() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isPSModalOpen, setIsPSModalOpen] = useState(false);
 
   const navLinks = [
     { href: "/", label: "SLIDE DECK" },
@@ -32,14 +34,14 @@ export function AppHeader() {
             onClick={() => soundController.playPop()}
             className="flex items-center gap-2.5 brutal-card-white py-1.5 px-3 hover:scale-105 active:scale-95 transition-transform"
           >
-            <div className="w-6 h-6 rounded-full bg-[#DEF915] border-2 border-black flex items-center justify-center font-display font-black text-xs text-black">
-              L
+            <div className="w-6 h-6 rounded-full bg-[#ef7618] border-2 border-black flex items-center justify-center font-display font-black text-xs text-white">
+              CV
             </div>
             <div className="flex items-center gap-1.5">
               <span className="font-display font-black text-base uppercase tracking-tight text-black">
-                LUNAR<span className="text-[#FF5A87]">·REG</span>
+                COSMIC<span className="text-[#1283c8]">·VISION</span>
               </span>
-              <span className="font-mono text-[10px] font-bold px-1.5 py-0.5 rounded bg-[#DEF915] border border-black text-black">
+              <span className="font-mono text-[10px] font-bold px-1.5 py-0.5 rounded bg-[#1283c8] text-white border border-black">
                 ISRO
               </span>
             </div>
@@ -56,7 +58,7 @@ export function AppHeader() {
                   onClick={() => soundController.playClick()}
                   className={`px-3.5 py-1.5 rounded-lg text-xs font-mono font-bold tracking-wide transition-all ${
                     active
-                      ? "bg-[#DEF915] text-black border-2 border-black shadow-[2px_2px_0_#000]"
+                      ? "bg-[#ef7618] text-black border-2 border-black shadow-[2px_2px_0_#000]"
                       : "text-black hover:bg-white border-2 border-transparent hover:border-black"
                   }`}
                 >
@@ -66,9 +68,17 @@ export function AppHeader() {
             })}
 
             <div className="ml-3 pl-3 border-l-2 border-black/20 flex items-center gap-2">
-              <span className="brutal-badge brutal-badge-yellow text-[11px] font-bold">
+              <button
+                type="button"
+                onClick={() => {
+                  soundController.playPop();
+                  setIsPSModalOpen(true);
+                }}
+                className="brutal-badge brutal-badge-orange text-[11px] font-bold hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-[2px_2px_0_#000]"
+                title="View Problem Statement Details"
+              >
                 SIH26166 READY
-              </span>
+              </button>
             </div>
           </nav>
 
@@ -104,7 +114,7 @@ export function AppHeader() {
                   }}
                   className={`block px-4 py-2 rounded-lg text-xs font-mono font-bold uppercase ${
                     active
-                      ? "bg-[#DEF915] text-black border-2 border-black shadow-[2px_2px_0_#000]"
+                      ? "bg-[#ef7618] text-black border-2 border-black shadow-[2px_2px_0_#000]"
                       : "text-black hover:bg-white"
                   }`}
                 >
@@ -112,9 +122,28 @@ export function AppHeader() {
                 </Link>
               );
             })}
+            <div className="pt-2 border-t border-black/20">
+              <button
+                type="button"
+                onClick={() => {
+                  soundController.playPop();
+                  setMobileMenuOpen(false);
+                  setIsPSModalOpen(true);
+                }}
+                className="w-full text-left brutal-badge brutal-badge-orange text-xs font-bold py-2 px-3"
+              >
+                VIEW PS SIH26166 DETAILS
+              </button>
+            </div>
           </div>
         )}
       </div>
+
+      {/* Official Problem Statement Details Modal (Apple Open Animation) */}
+      <ProblemStatementModal
+        isOpen={isPSModalOpen}
+        onClose={() => setIsPSModalOpen(false)}
+      />
     </header>
   );
 }

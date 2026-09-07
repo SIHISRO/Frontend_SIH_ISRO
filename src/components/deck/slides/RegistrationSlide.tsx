@@ -91,7 +91,7 @@ export function RegistrationSlide({
                   }}
                   className={`text-xs font-mono font-bold px-2.5 py-1 rounded border-2 border-black transition-all ${
                     selectedSensor === sensor
-                      ? "bg-[#FF9B51] shadow-[2px_2px_0_#000] font-black text-black"
+                      ? "bg-[#ef7618] shadow-[2px_2px_0_#000] font-black text-black"
                       : "bg-white hover:bg-[#BFC9D1]/30"
                   }`}
                 >
@@ -108,7 +108,7 @@ export function RegistrationSlide({
                   await onLoadSample();
                 }}
                 disabled={loadingSample || isLoading}
-                className="text-xs font-mono font-bold py-1.5 px-3 rounded-lg border-2 border-black bg-[#FF9B51] text-black flex items-center gap-1.5 shadow-[2px_2px_0_#000] hover:translate-y-0.5 active:translate-y-1 transition-all disabled:opacity-50"
+                className="text-xs font-mono font-bold py-1.5 px-3 rounded-lg border-2 border-black bg-[#ef7618] text-black flex items-center gap-1.5 shadow-[2px_2px_0_#000] hover:translate-y-0.5 active:translate-y-1 transition-all disabled:opacity-50"
               >
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>{loadingSample ? "LOADING SAMPLE..." : "LOAD SAMPLE PAIR"}</span>
@@ -137,7 +137,7 @@ export function RegistrationSlide({
             <div className="flex flex-col">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-1.5">
-                  <span className="font-mono text-xs font-bold px-2 py-0.5 bg-[#25343F] text-[#EAEFEF] rounded">
+                  <span className="font-mono text-xs font-bold px-2 py-0.5 bg-[#1283c8] text-white rounded">
                     SLOT A
                   </span>
                   <span className="font-display font-black text-sm uppercase text-black">
@@ -167,17 +167,17 @@ export function RegistrationSlide({
               >
                 {referenceFile ? (
                   <div className="text-center w-full">
-                    <div className="w-12 h-12 rounded-full bg-[#FF9B51] border-2 border-black flex items-center justify-center mx-auto mb-2">
-                      <CheckCircle2 className="w-6 h-6 text-black stroke-[2.5]" />
+                    <div className="w-12 h-12 rounded-full bg-[#1283c8] border-2 border-black flex items-center justify-center mx-auto mb-2 text-white">
+                      <CheckCircle2 className="w-6 h-6 stroke-[2.5]" />
                     </div>
                     <span className="font-mono text-xs font-bold text-black block truncate max-w-[240px] mx-auto">
                       {referenceFile.name}
                     </span>
                     <span className="text-[11px] font-mono text-black/60 block mt-0.5">
-                      {(referenceFile.size / 1024).toFixed(1)} KB · Lunar Target Baseline
+                      {(referenceFile.size / 1024).toFixed(1)} KB · Base Coordinate Grid
                     </span>
                     <label className="mt-3 inline-block cursor-pointer">
-                      <span className="text-xs font-mono font-bold underline hover:text-[#FF9B51] bg-[#25343F] text-white px-2 py-1 rounded">
+                      <span className="text-xs font-mono font-bold underline hover:text-[#ef7618] bg-[#1283c8] text-white px-2 py-1 rounded">
                         REPLACE FILE
                       </span>
                       <input
@@ -199,7 +199,7 @@ export function RegistrationSlide({
                     <span className="text-xs font-sans text-black/60 mt-1 block">
                       LRO NAC, SELENE, or High-Altitude Baseline
                     </span>
-                    <span className="mt-3 px-3 py-1 bg-[#25343F] text-[#EAEFEF] font-mono text-xs font-bold rounded">
+                    <span className="mt-3 px-3 py-1 bg-[#1283c8] text-white font-mono text-xs font-bold rounded">
                       BROWSE FILES
                     </span>
                     <input
@@ -217,7 +217,7 @@ export function RegistrationSlide({
             <div className="flex flex-col">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-1.5">
-                  <span className="font-mono text-xs font-bold px-2 py-0.5 bg-[#FF9B51] text-black border border-black rounded">
+                  <span className="font-mono text-xs font-bold px-2 py-0.5 bg-[#ef7618] text-black border border-black rounded">
                     SLOT B
                   </span>
                   <span className="font-display font-black text-sm uppercase text-black">
@@ -247,7 +247,7 @@ export function RegistrationSlide({
               >
                 {sourceFile ? (
                   <div className="text-center w-full">
-                    <div className="w-12 h-12 rounded-full bg-[#FF9B51] border-2 border-black flex items-center justify-center mx-auto mb-2">
+                    <div className="w-12 h-12 rounded-full bg-[#ef7618] border-2 border-black flex items-center justify-center mx-auto mb-2">
                       <CheckCircle2 className="w-6 h-6 text-black stroke-[2.5]" />
                     </div>
                     <span className="font-mono text-xs font-bold text-black block truncate max-w-[240px] mx-auto">
@@ -257,7 +257,7 @@ export function RegistrationSlide({
                       {(sourceFile.size / 1024).toFixed(1)} KB · {selectedSensor} Optical Swath
                     </span>
                     <label className="mt-3 inline-block cursor-pointer">
-                      <span className="text-xs font-mono font-bold underline hover:text-[#FF9B51] bg-[#25343F] text-white px-2 py-1 rounded">
+                      <span className="text-xs font-mono font-bold underline hover:text-[#ef7618] bg-[#1283c8] text-white px-2 py-1 rounded">
                         REPLACE FILE
                       </span>
                       <input
@@ -279,7 +279,7 @@ export function RegistrationSlide({
                     <span className="text-xs font-sans text-black/60 mt-1 block">
                       OHRC (0.25m), TMC-2 (5m), or IIRS (80m)
                     </span>
-                    <span className="mt-3 px-3 py-1 bg-[#25343F] text-[#EAEFEF] font-mono text-xs font-bold rounded">
+                    <span className="mt-3 px-3 py-1 bg-[#1283c8] text-white font-mono text-xs font-bold rounded">
                       BROWSE FILES
                     </span>
                     <input

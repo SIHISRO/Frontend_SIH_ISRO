@@ -6,14 +6,8 @@ import { soundController } from "@/utils/soundController";
 import {
   Orbit,
   ExternalLink,
-  Layers,
-  SunMedium,
-  Maximize2,
-  Cpu,
   ShieldCheck,
-  Camera,
   ArrowRight,
-  Sparkles,
 } from "lucide-react";
 
 export default function AboutPage() {
@@ -25,7 +19,7 @@ export default function AboutPage() {
       altitude: "~100 km orbit",
       role: "High-resolution optical mapping for landing site hazard detection and surface topography.",
       spectral: "Panchromatic (0.45 - 0.70 µm)",
-      color: "bg-[#DEF915]",
+      color: "bg-[#ef7618] text-black",
     },
     {
       name: "TMC-2",
@@ -34,7 +28,7 @@ export default function AboutPage() {
       altitude: "~100 km orbit",
       role: "Stereo triplets (fore, nadir, aft) for generating high-accuracy 3D digital elevation models (DEM) of the Moon.",
       spectral: "Panchromatic (0.50 - 0.85 µm)",
-      color: "bg-[#FF87AB]",
+      color: "bg-[#1283c8] text-white",
     },
     {
       name: "IIRS",
@@ -93,7 +87,7 @@ export default function AboutPage() {
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
       {/* Hero */}
       <div className="text-center max-w-3xl mx-auto pt-4">
-        <div className="brutal-badge brutal-badge-yellow mb-4 font-mono font-bold text-xs tracking-widest shadow-[3px_3px_0_#000]">
+        <div className="brutal-badge brutal-badge-orange mb-4 font-mono font-bold text-xs tracking-widest shadow-[3px_3px_0_#000]">
           <Orbit className="w-4 h-4" />
           <span>ISRO · DEPARTMENT OF SPACE · SIH 2026 // PS SIH26166</span>
         </div>
@@ -118,10 +112,10 @@ export default function AboutPage() {
       </div>
 
       {/* Problem Statement Details Card */}
-      <div className="brutal-card p-6 sm:p-8 bg-[#FF87AB] shadow-[6px_6px_0_#000]">
+      <div className="brutal-card p-6 sm:p-8 bg-[#1283c8] text-white shadow-[6px_6px_0_#000]">
         <div className="flex items-center gap-2 border-b-3 border-black pb-3 mb-4">
-          <ShieldCheck className="w-6 h-6 text-black stroke-[2.5]" />
-          <h2 className="font-display text-xl sm:text-2xl uppercase font-black text-black">
+          <ShieldCheck className="w-6 h-6 text-white stroke-[2.5]" />
+          <h2 className="font-display text-xl sm:text-2xl uppercase font-black text-white">
             Official Problem Statement SIH26166
           </h2>
         </div>
@@ -131,17 +125,58 @@ export default function AboutPage() {
         </blockquote>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-mono font-bold">
-          <div className="p-3 bg-[#DEF915] border-2 border-black rounded-lg">
-            <span className="block text-black/60 text-[10px]">THEME</span>
+          <div className="p-3 bg-[#ef7618] text-black border-2 border-black rounded-lg">
+            <span className="block text-black/70 text-[10px]">THEME</span>
             <span className="text-black">Space Technology</span>
           </div>
-          <div className="p-3 bg-white border-2 border-black rounded-lg">
+          <div className="p-3 bg-white text-black border-2 border-black rounded-lg">
             <span className="block text-black/60 text-[10px]">ORGANIZATION</span>
             <span className="text-black">ISRO / Dept. of Space</span>
           </div>
-          <div className="p-3 bg-[#DEF915] border-2 border-black rounded-lg">
-            <span className="block text-black/60 text-[10px]">CATEGORY</span>
+          <div className="p-3 bg-[#ef7618] text-black border-2 border-black rounded-lg">
+            <span className="block text-black/70 text-[10px]">CATEGORY</span>
             <span className="text-black">Software & Deep Learning</span>
+          </div>
+        </div>
+      </div>
+
+      {/* CosmicYaan Solution Paradigm Card */}
+      <div className="brutal-card p-6 sm:p-8 bg-[#FAF7F2] border-3 border-black shadow-[6px_6px_0_#000]">
+        <div className="flex items-center justify-between border-b-3 border-black pb-3 mb-4">
+          <div className="flex items-center gap-2">
+            <span className="px-2.5 py-1 bg-[#ef7618] text-black font-display font-black text-sm uppercase rounded border border-black shadow-[2px_2px_0_#000]">
+              COSMICYAAN SOLUTION
+            </span>
+            <span className="font-mono text-xs font-bold text-black/70">
+              Deep Learning vs. Conventional SIFT
+            </span>
+          </div>
+          <span className="px-2 py-0.5 bg-[#1283c8] text-white font-mono text-xs font-black rounded border border-black hidden sm:inline-block">
+            SIH26166 ARCHITECTURE
+          </span>
+        </div>
+
+        <p className="font-sans text-sm sm:text-base text-black/90 font-medium leading-relaxed mb-6">
+          <strong>CosmicYaan</strong> takes two images of the same lunar region. The source can be a Chandrayaan-2 optical image (OHRC, TMC-2 or IIRS), while the reference can be a corresponding lunar image from LRO NAC or SELENE. The two images are given to a fine-tuned deep-learning correspondence model trained on lunar imagery. The model directly predicts corresponding point pairs between the source and reference images. This replaces the conventional SIFT-based correspondence stage, which can struggle with the appearance changes found in lunar imagery. The model is fine-tuned on lunar image data so that it can learn correspondences specific to the target domain. The predicted points are then passed to RANSAC to reject incorrect matches and retain geometrically consistent inliers. These reliable correspondences are used for homography estimation, after which the source image is warped and overlaid with the reference image to obtain the registered result.
+        </p>
+
+        {/* 4 Feasibility & Impact highlights */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs font-mono font-bold">
+          <div className="p-3 bg-white border-2 border-black rounded-lg">
+            <span className="text-[#ef7618] block text-[11px]">01 // REGISTERED IMAGERY</span>
+            <span className="text-black/80 font-sans font-medium text-xs">Aligned multi-source optical datasets with sub-pixel precision.</span>
+          </div>
+          <div className="p-3 bg-white border-2 border-black rounded-lg">
+            <span className="text-[#1283c8] block text-[11px]">02 // BETTER MAPPING</span>
+            <span className="text-black/80 font-sans font-medium text-xs">Consistent, detailed maps enabling reliable data comparison.</span>
+          </div>
+          <div className="p-3 bg-white border-2 border-black rounded-lg">
+            <span className="text-[#ef7618] block text-[11px]">03 // BETTER ANALYSIS</span>
+            <span className="text-black/80 font-sans font-medium text-xs">Automated correspondence reducing manual effort for scientists.</span>
+          </div>
+          <div className="p-3 bg-white border-2 border-black rounded-lg">
+            <span className="text-[#1283c8] block text-[11px]">04 // MISSION SUPPORT</span>
+            <span className="text-black/80 font-sans font-medium text-xs">Direct support for Chandrayaan-2 and future lunar landing missions.</span>
           </div>
         </div>
       </div>
@@ -171,7 +206,7 @@ export default function AboutPage() {
                     </span>
                     <span className="font-mono text-xs font-bold text-black">{payload.fullName}</span>
                   </div>
-                  <span className="font-mono text-xs font-black text-black bg-[#DEF915] px-1.5 py-0.5 border border-black rounded">
+                  <span className="font-mono text-xs font-black text-black bg-[#ef7618]/20 px-1.5 py-0.5 border border-black rounded">
                     {payload.resolution}
                   </span>
                 </div>
@@ -208,7 +243,7 @@ export default function AboutPage() {
               className="brutal-card p-4 bg-[#F3E6D6] shadow-[4px_4px_0_#000] flex flex-col justify-between"
             >
               <div>
-                <span className="font-mono text-xs font-black px-2 py-0.5 bg-[#DEF915] border border-black rounded inline-block mb-2">
+                <span className="font-mono text-xs font-black px-2 py-0.5 bg-[#ef7618] text-black border border-black rounded inline-block mb-2">
                   PHASE {step.step}
                 </span>
                 <h3 className="font-display text-sm uppercase font-black text-black mb-1.5">
@@ -233,7 +268,7 @@ export default function AboutPage() {
             href="https://chmapbrowse.issdc.gov.in/"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-3 bg-[#F3E6D6] border-2 border-black rounded-lg flex items-center justify-between hover:bg-[#DEF915] transition-colors"
+            className="p-3 bg-[#F3E6D6] border-2 border-black rounded-lg flex items-center justify-between hover:bg-[#ef7618] transition-colors"
           >
             <span>ISSDC Chandrayaan-2 Browse</span>
             <ExternalLink className="w-4 h-4" />
@@ -242,7 +277,7 @@ export default function AboutPage() {
             href="https://lroc.im-ldi.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-3 bg-[#F3E6D6] border-2 border-black rounded-lg flex items-center justify-between hover:bg-[#DEF915] transition-colors"
+            className="p-3 bg-[#F3E6D6] border-2 border-black rounded-lg flex items-center justify-between hover:bg-[#1283c8] hover:text-white transition-colors"
           >
             <span>NASA LROC Image Catalog</span>
             <ExternalLink className="w-4 h-4" />

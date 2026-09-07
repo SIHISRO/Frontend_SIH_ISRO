@@ -26,19 +26,19 @@ export function MetricsCard({
   className = "",
 }: MetricsCardProps) {
   const variantStyles = {
-    default: "border-[#BFC9D1]/20 bg-[#25343F]/80 text-[#EAEFEF]",
-    brand: "border-[#FF9B51]/40 bg-[#25343F]/90 text-[#EAEFEF] shadow-lg shadow-[#FF9B51]/10",
-    success: "border-emerald-500/40 bg-[#25343F]/90 text-[#EAEFEF] shadow-lg shadow-emerald-500/10",
-    warning: "border-amber-500/40 bg-[#25343F]/90 text-[#EAEFEF] shadow-lg shadow-amber-500/10",
-    error: "border-rose-500/40 bg-[#25343F]/90 text-[#EAEFEF] shadow-lg shadow-rose-500/10",
-    neutral: "border-[#BFC9D1]/20 bg-[#25343F]/70 text-[#EAEFEF]",
+    default: "border-[#BFC9D1]/20 bg-[#0b2545]/80 text-[#EAEFEF]",
+    brand: "border-[#ef7618]/40 bg-[#0b2545]/90 text-[#EAEFEF] shadow-lg shadow-[#ef7618]/10",
+    success: "border-emerald-500/40 bg-[#0b2545]/90 text-[#EAEFEF] shadow-lg shadow-emerald-500/10",
+    warning: "border-amber-500/40 bg-[#0b2545]/90 text-[#EAEFEF] shadow-lg shadow-amber-500/10",
+    error: "border-rose-500/40 bg-[#0b2545]/90 text-[#EAEFEF] shadow-lg shadow-rose-500/10",
+    neutral: "border-[#BFC9D1]/20 bg-[#0b2545]/70 text-[#EAEFEF]",
   };
 
   const valueColors = {
     default: "text-[#EAEFEF]",
-    brand: "text-[#FF9B51]",
+    brand: "text-[#ef7618]",
     success: "text-emerald-400",
-    warning: "text-[#FF9B51]",
+    warning: "text-[#ef7618]",
     error: "text-rose-400",
     neutral: "text-[#EAEFEF]",
   };
@@ -57,7 +57,7 @@ export function MetricsCard({
           )}
         </span>
         {icon && (
-          <div className="p-2 rounded-lg bg-[#384d5d]/40 text-[#FF9B51] border border-[#BFC9D1]/15">
+          <div className="p-2 rounded-lg bg-[#1283c8]/30 text-[#ef7618] border border-[#1283c8]/40">
             {icon}
           </div>
         )}

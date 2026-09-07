@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: sih-isro-client
+    container_name: cosmic-vision-client
     restart: unless-stopped
     ports:
       - "${PORT:-3000}:3000"

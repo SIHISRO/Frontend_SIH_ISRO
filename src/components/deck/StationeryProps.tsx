@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { soundController } from "@/utils/soundController";
-import { X, Sparkles, HelpCircle, ShieldCheck } from "lucide-react";
+import { X, Sparkles, ShieldCheck } from "lucide-react";
 
 interface StickyNoteProps {
   isOpen: boolean;
@@ -49,7 +49,7 @@ export function StickyNotesModal({ isOpen, onClose }: StickyNoteProps) {
             </ul>
           </div>
           <p className="text-xs text-black/75">
-            Tip: On <strong>Slide 04 (Studio)</strong>, click <em>&ldquo;Load Sample Chandrayaan-2 Pair&rdquo;</em> to run instant sub-pixel LoFTR homography without searching for files!
+            Tip: On <strong>Slide 06 (Registration Lab)</strong>, click <em>&ldquo;Load Sample Chandrayaan-2 Pair&rdquo;</em> to run instant sub-pixel LoFTR homography without searching for files!
           </p>
         </div>
 
@@ -92,18 +92,18 @@ export function FloatingHighlighter() {
     >
       <div className="w-10 sm:w-14 h-32 sm:h-40 relative filter drop-shadow-[4px_4px_0_#000000]">
         {/* Cap / Tip */}
-        <div className="w-full h-8 bg-[#FF9B51] border-3 border-black rounded-t-lg relative">
+        <div className="w-full h-8 bg-[#ef7618] border-3 border-black rounded-t-lg relative">
           <div className="absolute top-1 left-2 right-2 h-2 bg-black/15 rounded-sm" />
         </div>
         {/* Body */}
         <div className="w-full h-24 sm:h-28 bg-[#EAEFEF] border-3 border-t-0 border-black flex flex-col justify-center items-center">
-          <div className="w-2.5 h-full bg-[#FF9B51] border-x-2 border-black" />
+          <div className="w-2.5 h-full bg-[#ef7618] border-x-2 border-black" />
           <span className="absolute text-[8px] sm:text-[9px] font-mono font-bold tracking-widest uppercase rotate-90 text-black">
             LUNAR-LoFTR
           </span>
         </div>
         {/* Base */}
-        <div className="w-full h-4 bg-[#25343F] border-3 border-black rounded-b-md" />
+        <div className="w-full h-4 bg-[#1283c8] border-3 border-black rounded-b-md" />
       </div>
     </div>
   );

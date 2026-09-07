@@ -28,7 +28,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const baseStyles =
-      "inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#18232c] cursor-pointer disabled:cursor-not-allowed select-none active:scale-[0.98]";
+      "inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#0b2545] cursor-pointer disabled:cursor-not-allowed select-none active:scale-[0.98]";
 
     const sizeStyles = {
       sm: "px-3 py-1.5 text-xs gap-1.5",
@@ -38,13 +38,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     const variantStyles = {
       primary:
-        "bg-[#FF9B51] text-[#18232c] font-semibold hover:bg-[#ffaa69] active:bg-[#e6853a] focus:ring-[#FF9B51] shadow-md shadow-[#FF9B51]/20 disabled:opacity-50 disabled:shadow-none",
+        "bg-[#ef7618] text-black font-extrabold hover:bg-[#f38d38] active:bg-[#d5630e] focus:ring-[#ef7618] shadow-md shadow-[#ef7618]/25 disabled:opacity-50 disabled:shadow-none",
       secondary:
-        "bg-[#25343F] text-[#EAEFEF] border border-[#BFC9D1]/30 hover:bg-[#2f414f] hover:border-[#BFC9D1]/60 focus:ring-[#BFC9D1] disabled:opacity-50",
+        "bg-[#1283c8] text-white font-bold border border-[#1283c8]/50 hover:bg-[#1696e5] hover:border-[#1283c8] focus:ring-[#1283c8] disabled:opacity-50",
       outline:
         "bg-transparent text-[#EAEFEF] border border-[#BFC9D1]/40 hover:bg-[#BFC9D1]/10 hover:border-[#BFC9D1] focus:ring-[#BFC9D1] disabled:opacity-50",
       ghost:
-        "bg-transparent text-[#BFC9D1] hover:text-[#EAEFEF] hover:bg-[#25343F]/60 focus:ring-[#BFC9D1] disabled:opacity-50",
+        "bg-transparent text-[#BFC9D1] hover:text-[#EAEFEF] hover:bg-[#1283c8]/30 focus:ring-[#1283c8] disabled:opacity-50",
       danger:
         "bg-red-500/20 text-red-300 border border-red-500/40 hover:bg-red-500/30 focus:ring-red-500 disabled:opacity-50",
     };

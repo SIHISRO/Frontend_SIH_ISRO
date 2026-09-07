@@ -23,11 +23,11 @@ export function WarningBanner({
   return (
     <div
       role="status"
-      className={`rounded-xl border border-[#FF9B51]/50 bg-[#FF9B51]/10 px-4 py-3 sm:px-5 sm:py-3.5 backdrop-blur-sm ${className}`}
+      className={`rounded-xl border border-[#ef7618]/50 bg-[#ef7618]/10 px-4 py-3 sm:px-5 sm:py-3.5 backdrop-blur-sm ${className}`}
     >
       <div className="flex items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          <AlertTriangle className="w-5 h-5 text-[#FF9B51] flex-shrink-0" />
+          <AlertTriangle className="w-5 h-5 text-[#ef7618] flex-shrink-0" />
           <p className="text-sm font-medium text-[#EAEFEF] leading-snug">
             {message}
           </p>
@@ -37,7 +37,7 @@ export function WarningBanner({
             type="button"
             onClick={() => setDismissed(true)}
             aria-label="Dismiss warning"
-            className="p-1 rounded text-[#BFC9D1] hover:text-[#EAEFEF] hover:bg-[#25343F] transition-colors"
+            className="p-1 rounded text-[#BFC9D1] hover:text-[#EAEFEF] hover:bg-[#1283c8]/40 transition-colors"
           >
             <X className="w-4 h-4" />
           </button>

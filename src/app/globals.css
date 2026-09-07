@@ -2,13 +2,22 @@
 @import "tailwindcss";
 
 @theme {
-  /* User SIH Palette: https://colorhunt.co/palette/eaefefbfc9d125343fff9b51 */
+  /* ISRO Space Theme Palette */
   --color-sih-white: #EAEFEF;
   --color-sih-slate: #BFC9D1;
-  --color-sih-navy: #25343F;
-  --color-sih-orange: #FF9B51;
-  --color-sih-orange-hover: #ffaa69;
+  --color-sih-navy: #1283c8;
+  --color-sih-orange: #ef7618;
+  --color-sih-orange-hover: #f38d38;
   --color-sih-black: #000000;
+
+  /* Official ISRO Theme Tokens */
+  --color-isro-orange: #ef7618;
+  --color-isro-orange-hover: #f38d38;
+  --color-isro-orange-dark: #d5630e;
+  --color-isro-blue: #1283c8;
+  --color-isro-blue-hover: #1696e5;
+  --color-isro-blue-dark: #0d6ba6;
+  --color-isro-navy: #0b2545;
 
   --font-display: "Syne", "DM Sans", system-ui, sans-serif;
   --font-sans: "DM Sans", system-ui, sans-serif;
@@ -18,11 +27,15 @@
 :root {
   --sih-white: #EAEFEF;
   --sih-slate: #BFC9D1;
-  --sih-navy: #25343F;
-  --sih-orange: #FF9B51;
+  --sih-navy: #1283c8;
+  --sih-orange: #ef7618;
   --sih-black: #000000;
 
-  --background: #FF9B51;
+  --isro-orange: #ef7618;
+  --isro-blue: #1283c8;
+  --isro-navy: #0b2545;
+
+  --background: #ef7618;
   --text-color: #000000;
 }
 
@@ -39,8 +52,8 @@ html, body {
 }
 
 ::selection {
-  background-color: #000000;
-  color: #FF9B51;
+  background-color: #1283c8;
+  color: #ffffff;
 }
 
 /* Headings with punchy display style (Nodeck pattern) */
@@ -83,7 +96,7 @@ h1, h2, h3, .font-display {
   }
 }
 
-/* Neo-Brutalist Cards using SIH Palette */
+/* Neo-Brutalist Cards using ISRO Palette */
 .brutal-card {
   background-color: #EAEFEF;
   border: 3px solid #000000;
@@ -101,15 +114,15 @@ h1, h2, h3, .font-display {
 }
 
 .brutal-card-orange {
-  background-color: #FF9B51;
+  background-color: #ef7618;
   border: 3px solid #000000;
   border-radius: 12px;
   box-shadow: 4px 4px 0 0 #000000;
 }
 
 .brutal-card-navy {
-  background-color: #25343F;
-  color: #EAEFEF;
+  background-color: #1283c8;
+  color: #FFFFFF;
   border: 3px solid #000000;
   border-radius: 12px;
   box-shadow: 4px 4px 0 0 #000000;
@@ -122,9 +135,9 @@ h1, h2, h3, .font-display {
   box-shadow: 4px 4px 0 0 #000000;
 }
 
-/* Neo-Brutalist Tactile Buttons */
+/* Neo-Brutalist Tactile Buttons with ISRO Palette */
 .brutal-btn {
-  background-color: #FF9B51;
+  background-color: #ef7618;
   color: #000000;
   border: 3px solid #000000;
   border-radius: 10px;
@@ -145,7 +158,7 @@ h1, h2, h3, .font-display {
 .brutal-btn:hover:not(:disabled) {
   transform: translate(2px, 2px);
   box-shadow: 2px 2px 0 0 #000000;
-  background-color: #ffaa69;
+  background-color: #f38d38;
 }
 
 .brutal-btn:active:not(:disabled) {
@@ -188,8 +201,8 @@ h1, h2, h3, .font-display {
 }
 
 .brutal-btn-navy {
-  background-color: #25343F;
-  color: #EAEFEF;
+  background-color: #1283c8;
+  color: #FFFFFF;
   border: 3px solid #000000;
   border-radius: 10px;
   box-shadow: 4px 4px 0 0 #000000;
@@ -207,7 +220,7 @@ h1, h2, h3, .font-display {
 .brutal-btn-navy:hover:not(:disabled) {
   transform: translate(2px, 2px);
   box-shadow: 2px 2px 0 0 #000000;
-  background-color: #2f4352;
+  background-color: #1696e5;
 }
 
 .brutal-btn-navy:active:not(:disabled) {
@@ -258,13 +271,13 @@ h1, h2, h3, .font-display {
 }
 
 .brutal-badge-orange {
-  background-color: #FF9B51;
+  background-color: #ef7618;
   color: #000000;
 }
 
 .brutal-badge-navy {
-  background-color: #25343F;
-  color: #EAEFEF;
+  background-color: #1283c8;
+  color: #FFFFFF;
 }
 
 .brutal-badge-slate {
@@ -272,7 +285,7 @@ h1, h2, h3, .font-display {
   color: #000000;
 }
 
-/* Highlighter Text Effect with SIH Solar Orange */
+/* Highlighter Text Effect with ISRO Saffron */
 .text-highlight {
   position: relative;
   display: inline-block;
@@ -287,7 +300,7 @@ h1, h2, h3, .font-display {
   right: -4px;
   bottom: 8%;
   height: 70%;
-  background-color: #FF9B51;
+  background-color: #ef7618;
   border: 2px solid #000000;
   border-radius: 4px;
   z-index: -1;
@@ -333,7 +346,7 @@ h1, h2, h3, .font-display {
   box-shadow: 3px 3px 0 0 #000000;
 }
 
-/* Sticky Note Aesthetic with SIH Pale Ice White / Cream */
+/* Sticky Note Aesthetic with ISRO Pale Ice White / Cream */
 .sticky-note {
   background: #EAEFEF;
   border: 3px solid #000000;
@@ -349,7 +362,7 @@ h1, h2, h3, .font-display {
   left: 35%;
   width: 30%;
   height: 24px;
-  background: rgba(255, 155, 81, 0.85);
+  background: rgba(239, 118, 24, 0.85);
   border: 1.5px solid #000000;
   transform: rotate(2deg);
   box-shadow: 1px 1px 0 0 rgba(0,0,0,0.4);
@@ -369,7 +382,7 @@ h1, h2, h3, .font-display {
   pointer-events: auto;
 }
 
-/* Custom Neo-Brutalist Scrollbars with SIH palette */
+/* Custom Neo-Brutalist Scrollbars with ISRO palette */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -381,12 +394,12 @@ h1, h2, h3, .font-display {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #25343F;
+  background: #1283c8;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #FF9B51;
+  background: #ef7618;
   border: 2px solid #000000;
 }
 
@@ -505,5 +518,144 @@ h1, h2, h3, .font-display {
 .cube-animate-in-left {
   animation: cube-in-left 0.65s cubic-bezier(0.25, 1, 0.5, 1) forwards;
   transform-origin: 100% 50%;
+}
+
+/* ==========================================================================
+   Comic Look Arrow Cursors & Click Animations
+   ========================================================================== */
+
+/* On desktop devices with a mouse, hide the OS cursor so our custom animated comic cursor takes over seamlessly */
+@media (hover: hover) and (pointer: fine) {
+  html, body, *, button, a, [role="button"], input, select, summary {
+    cursor: none !important;
+  }
+}
+
+/* Comic Arrow Default Pointer Cursor (Fallback) */
+html, body {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='34' viewBox='0 0 34 34'%3E%3Cpolygon points='3,2 3,25 9,19 14,30 19,28 14,17 23,17' fill='%23000000' opacity='0.45' transform='translate(2, 2.5)'/%3E%3Cpolygon points='3,2 3,25 9,19 14,30 19,28 14,17 23,17' fill='%23ffffff' stroke='%23000000' stroke-width='3' stroke-linejoin='round' stroke-linecap='round'/%3E%3Cpolygon points='5,5 5,20 9.5,15.5 13.5,24.5 16,23.5 12,14.5 18.5,14.5' fill='%23ef7618'/%3E%3Ccircle cx='7.5' cy='7.5' r='1.3' fill='%23ffffff'/%3E%3C/svg%3E") 3 2, auto !important;
+}
+
+/* Comic Arrow Action Button Hover Cursor with Comic 'CLICK' Badge */
+button,
+button *,
+a,
+a *,
+[role="button"],
+[role="button"] *,
+input[type="button"],
+input[type="submit"],
+input[type="checkbox"],
+input[type="radio"],
+select,
+summary,
+.cursor-pointer,
+.cursor-pointer * {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='42' viewBox='0 0 48 42'%3E%3Cg transform='translate(2, 2)' opacity='0.45'%3E%3Cpolygon points='4,2 4,28 11,21 16,33 22,30 17,19 26,19' fill='%23000000'/%3E%3Crect x='23' y='8' width='23' height='13' rx='4' fill='%23000000'/%3E%3C/g%3E%3Cpolygon points='4,2 4,28 11,21 16,33 22,30 17,19 26,19' fill='%231283c8' stroke='%23000000' stroke-width='3' stroke-linejoin='round' stroke-linecap='round'/%3E%3Cpolygon points='6,6 6,23 11,18 15,28 18,27 14.5,17 21,17' fill='%23ef7618'/%3E%3Cpath d='M4,2 L1,0 M4,2 L4,-1 M4,2 L0,3 M7,1 L9,0' stroke='%23000000' stroke-width='2.5' stroke-linecap='round'/%3E%3Crect x='22' y='7' width='24' height='14' rx='4' fill='%23ef7618' stroke='%23000000' stroke-width='2'/%3E%3Ctext x='34' y='17' font-family='sans-serif' font-weight='900' font-size='8.5' fill='%23000000' text-anchor='middle' letter-spacing='0.5'%3ECLICK%3C/text%3E%3C/svg%3E") 4 2, pointer !important;
+}
+
+/* Active Clicked Cursor with Comic 'SIH' Badge */
+:active,
+*:active,
+button:active,
+button:active *,
+a:active,
+a:active *,
+[role="button"]:active,
+[role="button"]:active * {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='42' viewBox='0 0 48 42'%3E%3Cg transform='translate(1.5, 1.5)' opacity='0.35'%3E%3Cpolygon points='5,3 5,26 11,20 16,30 21,28 16,18 24,18' fill='%23000000'/%3E%3Crect x='22' y='9' width='23' height='13' rx='4' fill='%23000000'/%3E%3C/g%3E%3Cpolygon points='5,3 5,26 11,20 16,30 21,28 16,18 24,18' fill='%23ef7618' stroke='%23000000' stroke-width='3' stroke-linejoin='round' stroke-linecap='round'/%3E%3Cpolygon points='7,6 7,22 11,17 15,26 17.5,25 14,16 19.5,16' fill='%231283c8'/%3E%3Cpath d='M5,3 L2,0 M5,3 L5,-1 M5,3 L0,4 M8,2 L11,0' stroke='%23ef7618' stroke-width='3' stroke-linecap='round'/%3E%3Crect x='21' y='8' width='24' height='14' rx='4' fill='%23000000' stroke='%23000000' stroke-width='2'/%3E%3Ctext x='33' y='18' font-family='sans-serif' font-weight='900' font-size='8.5' fill='%23ef7618' text-anchor='middle' letter-spacing='0.5'%3ESIH%3C/text%3E%3C/svg%3E") 5 3, pointer !important;
+}
+
+/* Comic Burst Keyframe Animations */
+@keyframes comicPop {
+  0% {
+    transform: translate(-50%, -50%) scale(0) rotate(-15deg);
+    opacity: 0;
+  }
+  35% {
+    transform: translate(-50%, -50%) scale(1.3) rotate(6deg);
+    opacity: 1;
+  }
+  65% {
+    transform: translate(-50%, -50%) scale(1.1) rotate(-3deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.4) rotate(12deg);
+    opacity: 0;
+  }
+}
+
+@keyframes comicParticle {
+  0% {
+    transform: translate(0, 0) scale(0.4);
+    opacity: 1;
+  }
+  60% {
+    transform: translate(var(--dx), var(--dy)) scale(1.25);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(var(--dx) * 1.35), calc(var(--dy) * 1.35)) scale(0);
+    opacity: 0;
+  }
+}
+
+.animate-comic-pop {
+  animation: comicPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.animate-comic-particle {
+  animation: comicParticle 0.48s ease-out forwards;
+}
+
+/* ==========================================================================
+   Apple-Style App Opening & Closing Spring Animation
+   ========================================================================== */
+
+@keyframes apple-app-open {
+  0% {
+    opacity: 0;
+    transform: scale(0.68) translateY(32px);
+    filter: blur(12px);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(1.025) translateY(-3px);
+    filter: blur(0px);
+  }
+  85% {
+    transform: scale(0.99) translateY(1px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0px);
+  }
+}
+
+@keyframes apple-app-close {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.82) translateY(24px);
+    filter: blur(6px);
+  }
+}
+
+.animate-apple-open {
+  animation: apple-app-open 0.42s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform-origin: 50% 50%;
+  will-change: transform, opacity, filter;
+}
+
+.animate-apple-close {
+  animation: apple-app-close 0.22s cubic-bezier(0.4, 0, 1, 1) forwards;
+  transform-origin: 50% 50%;
+  will-change: transform, opacity, filter;
 }
 

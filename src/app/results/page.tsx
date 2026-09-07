@@ -32,7 +32,7 @@ export default function ResultsPage() {
     return (
       <PageLayout>
         <div className="flex flex-col items-center justify-center min-h-[50vh] text-center">
-          <div className="w-12 h-12 rounded-full border-2 border-[#FF9B51] border-t-transparent animate-spin mb-4" />
+          <div className="w-12 h-12 rounded-full border-2 border-[#ef7618] border-t-transparent animate-spin mb-4" />
           <p className="text-sm text-[#BFC9D1] font-mono">
             Loading registration results...
           </p>
@@ -75,7 +75,7 @@ export default function ResultsPage() {
         <button
           type="button"
           onClick={handleNewRegistration}
-          className="inline-flex items-center gap-1.5 text-xs font-mono text-[#BFC9D1] hover:text-[#FF9B51] transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs font-mono text-[#BFC9D1] hover:text-[#ef7618] transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Return to Upload / New Image Pair</span>
@@ -115,7 +115,7 @@ export default function ResultsPage() {
       {(meta.referencePreview || meta.sourcePreview) && (
         <div className="glass-panel p-4 rounded-2xl border border-[#BFC9D1]/20">
           <div className="flex items-center gap-2 mb-3">
-            <ImageIcon className="w-4 h-4 text-[#FF9B51]" />
+            <ImageIcon className="w-4 h-4 text-[#ef7618]" />
             <span className="text-xs font-mono uppercase font-bold text-[#EAEFEF]">
               Input Pair Referenced in Registration
             </span>

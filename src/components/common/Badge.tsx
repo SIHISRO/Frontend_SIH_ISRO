@@ -25,12 +25,12 @@ export function Badge({
   };
 
   const variantStyles = {
-    brand: "bg-[#FF9B51]/15 text-[#FF9B51] border border-[#FF9B51]/40",
+    brand: "bg-[#ef7618]/15 text-[#ef7618] border border-[#ef7618]/40",
     success: "bg-emerald-500/15 text-emerald-300 border border-emerald-500/40",
     warning: "bg-amber-500/15 text-amber-300 border border-amber-500/40",
     error: "bg-rose-500/15 text-rose-300 border border-rose-500/40",
     info: "bg-sky-500/15 text-sky-300 border border-sky-500/40",
-    neutral: "bg-[#25343F] text-[#BFC9D1] border border-[#BFC9D1]/30",
+    neutral: "bg-[#1283c8]/15 text-[#1283c8] border border-[#1283c8]/30",
   };
 
   return (

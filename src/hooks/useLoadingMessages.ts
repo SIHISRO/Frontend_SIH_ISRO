@@ -17,21 +17,23 @@ export function useLoadingMessages(isLoading: boolean, intervalMs: number = 2500
   const [messageIndex, setMessageIndex] = useState(0);
 
   useEffect(() => {
-    if (!isLoading) {
-      setMessageIndex(0);
-      return;
-    }
+    if (!isLoading) return;
 
     const interval = setInterval(() => {
       setMessageIndex((prev) => (prev + 1) % LOADING_MESSAGES.length);
     }, intervalMs);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      setMessageIndex(0);
+    };
   }, [isLoading, intervalMs]);
 
+  const activeIndex = isLoading ? messageIndex : 0;
+
   return {
-    currentMessage: LOADING_MESSAGES[messageIndex],
+    currentMessage: LOADING_MESSAGES[activeIndex],
     allMessages: LOADING_MESSAGES,
-    currentIndex: messageIndex,
+    currentIndex: activeIndex,
   };
 }

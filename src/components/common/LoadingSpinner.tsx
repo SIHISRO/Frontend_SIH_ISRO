@@ -23,7 +23,7 @@ export function LoadingSpinner({ size = "md", className }: LoadingSpinnerProps) 
       aria-label="Loading"
       className={twMerge(
         clsx(
-          "inline-block rounded-full border-solid border-[#FF9B51] border-r-transparent animate-spin motion-reduce:animate-none",
+          "inline-block rounded-full border-solid border-[#ef7618] border-r-transparent animate-spin motion-reduce:animate-none",
           sizeClasses[size],
           className
         )

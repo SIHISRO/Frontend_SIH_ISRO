@@ -1,8 +1,7 @@
 "use client";
 
 import React from "react";
-import { soundController } from "@/utils/soundController";
-import { Cpu, GitBranch, Layers, ShieldCheck, Check, Sparkles } from "lucide-react";
+import { ShieldCheck, Check } from "lucide-react";
 
 export function ArchitectureSlide() {
   const steps = [
@@ -61,7 +60,7 @@ export function ArchitectureSlide() {
             >
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <span className="font-mono text-xs font-black px-2 py-0.5 bg-[#FF9B51] border border-black rounded text-black">
+                  <span className="font-mono text-xs font-black px-2 py-0.5 bg-[#ef7618] border border-black rounded text-black">
                     {step.num}
                   </span>
                   <span className="text-[10px] font-mono font-bold text-black/60">
@@ -77,6 +76,26 @@ export function ArchitectureSlide() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* CosmicYaan Paradigm Callout Box */}
+        <div className="brutal-card p-5 bg-white text-left shadow-[6px_6px_0_#000] max-w-4xl mx-auto mb-6 border-3 border-black rounded-xl">
+          <div className="flex items-center justify-between border-b-2 border-black/20 pb-2 mb-3">
+            <div className="flex items-center gap-2">
+              <span className="font-display font-black text-xs uppercase px-2 py-0.5 bg-[#ef7618] text-black border border-black rounded shadow-[2px_2px_0_#000]">
+                THE COSMICYAAN SOLUTION
+              </span>
+              <span className="font-mono text-xs font-bold text-black">
+                End-to-End Lunar Correspondence
+              </span>
+            </div>
+            <span className="font-mono text-[10px] font-black px-1.5 py-0.5 bg-[#1283c8] text-white rounded border border-black hidden sm:inline-block">
+              REPLACES SIFT
+            </span>
+          </div>
+          <p className="font-sans text-xs sm:text-sm text-black/90 font-medium leading-relaxed">
+            <strong className="text-black font-bold">CosmicYaan</strong> takes two images of the same lunar region. The source can be a Chandrayaan-2 optical image (OHRC, TMC-2 or IIRS), while the reference can be a corresponding lunar image from LRO NAC or SELENE. The two images are given to a fine-tuned deep-learning correspondence model trained on lunar imagery. The model directly predicts corresponding point pairs between the source and reference images. This replaces the conventional SIFT-based correspondence stage, which can struggle with the appearance changes found in lunar imagery. The model is fine-tuned on lunar image data so that it can learn correspondences specific to the target domain. The predicted points are then passed to RANSAC to reject incorrect matches and retain geometrically consistent inliers. These reliable correspondences are used for homography estimation, after which the source image is warped and overlaid with the reference image to obtain the registered result.
+          </p>
         </div>
 
         {/* Deliverables Checklist Box */}

@@ -33,13 +33,13 @@ export function VisualizationPanel({
 
   return (
     <div
-      className={`group rounded-2xl glass-panel-elevated border border-[#BFC9D1]/25 overflow-hidden flex flex-col transition-all duration-200 hover:border-[#FF9B51]/60 hover:shadow-xl hover:shadow-[#FF9B51]/10 ${className}`}
+      className={`group rounded-2xl glass-panel-elevated border border-[#BFC9D1]/25 overflow-hidden flex flex-col transition-all duration-200 hover:border-[#ef7618]/60 hover:shadow-xl hover:shadow-[#ef7618]/10 ${className}`}
     >
       {/* Panel Header */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-[#BFC9D1]/15 bg-[#25343F]/90">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-[#BFC9D1]/15 bg-[#0b2545]/90">
         <div className="flex items-center gap-2 min-w-0">
           {badge && (
-            <span className="px-2 py-0.5 text-[10px] font-mono uppercase font-bold rounded bg-[#FF9B51]/20 text-[#FF9B51] border border-[#FF9B51]/30 flex-shrink-0">
+            <span className="px-2 py-0.5 text-[10px] font-mono uppercase font-bold rounded bg-[#ef7618]/20 text-[#ef7618] border border-[#ef7618]/30 flex-shrink-0">
               {badge}
             </span>
           )}
@@ -53,7 +53,7 @@ export function VisualizationPanel({
             type="button"
             onClick={onExpand}
             aria-label={`Expand ${title}`}
-            className="p-1.5 rounded-lg text-[#BFC9D1] hover:text-[#EAEFEF] hover:bg-[#384d5d]/60 border border-transparent hover:border-[#BFC9D1]/30 transition-all focus:outline-none focus:ring-2 focus:ring-[#FF9B51]"
+            className="p-1.5 rounded-lg text-[#BFC9D1] hover:text-[#EAEFEF] hover:bg-[#1283c8]/30 border border-transparent hover:border-[#BFC9D1]/30 transition-all focus:outline-none focus:ring-2 focus:ring-[#ef7618]"
             title="Full screen view"
           >
             <Maximize2 className="w-4 h-4" />
@@ -62,7 +62,7 @@ export function VisualizationPanel({
             type="button"
             onClick={handleDownload}
             aria-label={`Download ${filename}`}
-            className="p-1.5 rounded-lg text-[#FF9B51] hover:text-[#ffaa69] hover:bg-[#FF9B51]/15 border border-transparent hover:border-[#FF9B51]/40 transition-all focus:outline-none focus:ring-2 focus:ring-[#FF9B51]"
+            className="p-1.5 rounded-lg text-[#ef7618] hover:text-[#f38d38] hover:bg-[#ef7618]/15 border border-transparent hover:border-[#ef7618]/40 transition-all focus:outline-none focus:ring-2 focus:ring-[#ef7618]"
             title="Download image"
           >
             <Download className="w-4 h-4" />
@@ -82,7 +82,7 @@ export function VisualizationPanel({
           }
         }}
         aria-label={`Click to expand ${title}`}
-        className="relative w-full aspect-video bg-[#151d24] flex items-center justify-center overflow-hidden cursor-zoom-in group/img focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#FF9B51]"
+        className="relative w-full aspect-video bg-[#151d24] flex items-center justify-center overflow-hidden cursor-zoom-in group/img focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#ef7618]"
       >
         {src ? (
           // eslint-disable-next-line @next/next/no-img-element
@@ -101,8 +101,8 @@ export function VisualizationPanel({
 
         {/* Hover overlay hint */}
         <div className="absolute inset-0 bg-[#151d24]/30 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
-          <span className="px-3 py-1.5 rounded-lg bg-[#25343F]/90 border border-[#FF9B51]/40 text-xs text-[#EAEFEF] font-mono shadow-lg flex items-center gap-1.5">
-            <Maximize2 className="w-3.5 h-3.5 text-[#FF9B51]" />
+          <span className="px-3 py-1.5 rounded-lg bg-[#0b2545]/95 border border-[#ef7618]/40 text-xs text-[#EAEFEF] font-mono shadow-lg flex items-center gap-1.5">
+            <Maximize2 className="w-3.5 h-3.5 text-[#ef7618]" />
             Click to expand
           </span>
         </div>

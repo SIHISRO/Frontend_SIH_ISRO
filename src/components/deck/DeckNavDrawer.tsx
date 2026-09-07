@@ -33,7 +33,7 @@ export function DeckNavDrawer({
         {/* Header */}
         <div className="flex items-center justify-between border-b-3 border-black pb-4 mb-6">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-[#FF9B51] border-2 border-black flex items-center justify-center shadow-[2px_2px_0_#000]">
+            <div className="w-10 h-10 rounded-lg bg-[#ef7618] border-2 border-black flex items-center justify-center shadow-[2px_2px_0_#000]">
               <Sparkles className="w-5 h-5 text-black" />
             </div>
             <div>
@@ -51,15 +51,15 @@ export function DeckNavDrawer({
               soundController.playClick();
               onClose();
             }}
-            className="brutal-btn-round w-10 h-10 hover:bg-[#FF9B51]"
+            className="brutal-btn-round w-10 h-10 hover:bg-[#ef7618]"
             aria-label="Close drawer"
           >
             <X className="w-5 h-5 stroke-[3]" />
           </button>
         </div>
 
-        {/* 6-Card Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {/* 8-Card Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {slideData.map((item, idx) => {
             const isActive = currentSlide === idx;
             return (
@@ -72,7 +72,7 @@ export function DeckNavDrawer({
                 }}
                 className={`text-left p-4 sm:p-5 rounded-xl border-3 border-black transition-all group flex flex-col justify-between h-44 ${
                   isActive
-                    ? "bg-[#FF9B51] shadow-[6px_6px_0_#000000] translate-x-[-2px] translate-y-[-2px]"
+                    ? "bg-[#ef7618] shadow-[6px_6px_0_#000000] translate-x-[-2px] translate-y-[-2px]"
                     : "bg-white hover:bg-[#BFC9D1]/30 shadow-[3px_3px_0_#000000] hover:shadow-[5px_5px_0_#000000] hover:-translate-y-0.5"
                 }`}
               >

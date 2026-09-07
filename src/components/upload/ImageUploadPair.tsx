@@ -49,7 +49,7 @@ export function ImageUploadPair({
       {/* Quick Actions Bar */}
       <div className="flex flex-wrap items-center justify-between gap-3 pb-2">
         <div className="flex items-center gap-2">
-          <Layers className="w-4 h-4 text-[#FF9B51]" />
+          <Layers className="w-4 h-4 text-[#ef7618]" />
           <span className="text-xs font-semibold text-[#EAEFEF] uppercase tracking-wider font-mono">
             Sensor Image Pair Selection
           </span>
@@ -61,9 +61,9 @@ export function ImageUploadPair({
               type="button"
               onClick={onSwap}
               disabled={disabled}
-              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium text-[#BFC9D1] bg-[#25343F] border border-[#BFC9D1]/30 hover:text-[#EAEFEF] hover:border-[#FF9B51]/50 transition-colors disabled:opacity-50"
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium text-[#BFC9D1] bg-[#1283c8]/30 border border-[#1283c8]/40 hover:text-white hover:border-[#ef7618]/50 transition-colors disabled:opacity-50"
             >
-              <ArrowRightLeft className="w-3.5 h-3.5 text-[#FF9B51]" />
+              <ArrowRightLeft className="w-3.5 h-3.5 text-[#ef7618]" />
               <span>Swap Slots</span>
             </button>
           )}
@@ -73,7 +73,7 @@ export function ImageUploadPair({
               type="button"
               onClick={onLoadSample}
               disabled={disabled}
-              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold text-[#18232c] bg-gradient-to-r from-[#FF9B51] to-[#ffa96b] hover:brightness-105 shadow-sm transition-all disabled:opacity-50"
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold text-black bg-gradient-to-r from-[#ef7618] to-[#f38d38] hover:brightness-105 shadow-sm transition-all disabled:opacity-50"
             >
               <Sparkles className="w-3.5 h-3.5 stroke-[2.5]" />
               <span>Load Sample Lunar Pair</span>
@@ -123,7 +123,7 @@ export function ImageUploadPair({
         <div className="flex flex-col">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs font-mono uppercase tracking-wider text-[#BFC9D1] flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-[#FF9B51]" />
+              <span className="w-2 h-2 rounded-full bg-[#ef7618]" />
               Moving Source to Register (image2)
             </span>
           </div>

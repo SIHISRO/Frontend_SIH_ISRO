@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { soundController } from "@/utils/soundController";
-import { Orbit, ExternalLink, ShieldCheck } from "lucide-react";
+import { ExternalLink, ShieldCheck } from "lucide-react";
 
 export function AppFooter() {
   return (
@@ -13,11 +13,11 @@ export function AppFooter() {
           {/* Col 1: Brand & PS */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-2 text-black">
-              <div className="w-5 h-5 rounded-full bg-[#DEF915] border border-black flex items-center justify-center font-display font-black text-[10px]">
-                L
+              <div className="w-5 h-5 rounded-full bg-[#ef7618] border border-black flex items-center justify-center font-display font-black text-[10px] text-white">
+                CV
               </div>
               <span className="font-display font-black text-sm uppercase tracking-wide">
-                LUNAR·REG — SIH26166
+                COSMIC VISION — SIH26166
               </span>
             </div>
             <p className="text-black/75 text-xs leading-relaxed max-w-md font-sans font-medium">
@@ -32,10 +32,10 @@ export function AppFooter() {
             </h4>
             <ul className="space-y-1.5 font-mono text-xs text-black/80">
               <li>
-                <span className="font-bold bg-[#DEF915] px-1 border border-black rounded text-[10px]">OHRC</span> — 0.25m High-Res
+                <span className="font-bold bg-[#ef7618] text-black px-1 border border-black rounded text-[10px]">OHRC</span> — 0.25m High-Res
               </li>
               <li>
-                <span className="font-bold bg-[#FF87AB] px-1 border border-black rounded text-[10px]">TMC-2</span> — 5m Stereo DEM
+                <span className="font-bold bg-[#1283c8] text-white px-1 border border-black rounded text-[10px]">TMC-2</span> — 5m Stereo DEM
               </li>
               <li>
                 <span className="font-bold bg-white px-1 border border-black rounded text-[10px]">IIRS</span> — 80m Hyperspectral
@@ -90,7 +90,7 @@ export function AppFooter() {
         {/* Bottom Bar */}
         <div className="pt-4 border-t-2 border-dashed border-black/30 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] font-mono text-black/70">
           <p>
-            © 2026 LunarReg Team · ISRO PS SIH26166 · Smart India Hackathon
+            © 2026 Cosmic Vision Team · ISRO PS SIH26166 · Smart India Hackathon
           </p>
           <div className="flex items-center gap-1.5">
             <ShieldCheck className="w-3.5 h-3.5 text-black stroke-[2.5]" />

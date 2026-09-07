@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { bgmController } from "@/utils/bgmController";
 import { soundController } from "@/utils/soundController";
-import { Music, Disc3, VolumeX } from "lucide-react";
+import { Music, Disc3 } from "lucide-react";
 
 interface BgmPlayerBadgeProps {
   compact?: boolean;
@@ -30,7 +30,7 @@ export function BgmPlayerBadge({ compact = false }: BgmPlayerBadgeProps) {
         onClick={handleToggle}
         className={`brutal-btn-round w-9 h-9 sm:w-10 sm:h-10 transition-all ${
           isPlaying
-            ? "bg-[#FF9B51] border-3 border-black shadow-[2px_2px_0_#000]"
+            ? "bg-[#ef7618] border-3 border-black shadow-[2px_2px_0_#000]"
             : "bg-[#EAEFEF] border-3 border-black text-black/60"
         }`}
         title={
@@ -54,7 +54,7 @@ export function BgmPlayerBadge({ compact = false }: BgmPlayerBadgeProps) {
       onClick={handleToggle}
       className={`brutal-badge py-1 px-2.5 sm:px-3 flex items-center gap-2 transition-all cursor-pointer select-none ${
         isPlaying
-          ? "bg-[#FF9B51] text-black border-2 border-black shadow-[2px_2px_0_#000]"
+          ? "bg-[#ef7618] text-black border-2 border-black shadow-[2px_2px_0_#000]"
           : "bg-[#EAEFEF] text-black/80 hover:bg-white border-2 border-black"
       }`}
       title={

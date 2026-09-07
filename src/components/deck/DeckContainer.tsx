@@ -17,8 +17,11 @@ import { SensorsSlide } from "./slides/SensorsSlide";
 import { RegistrationSlide } from "./slides/RegistrationSlide";
 import { ResultsSlide } from "./slides/ResultsSlide";
 import { ArchitectureSlide } from "./slides/ArchitectureSlide";
+import { FeasibilitySlide } from "./slides/FeasibilitySlide";
+import { ImpactSlide } from "./slides/ImpactSlide";
 import { IntroRubLoader } from "./IntroRubLoader";
-import { BgmPlayerBadge } from "./BgmPlayerBadge";
+import { bgmController } from "@/utils/bgmController";
+import { ProblemStatementModal } from "@/components/common/ProblemStatementModal";
 
 export function DeckContainer() {
   const [showIntro, setShowIntro] = useState<boolean>(true);
@@ -28,8 +31,18 @@ export function DeckContainer() {
   const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
   const [isNotesOpen, setIsNotesOpen] = useState<boolean>(false);
   const [isGridOpen, setIsGridOpen] = useState<boolean>(false);
-  const [isMuted, setIsMuted] = useState<boolean>(soundController.getMuted());
+  const [isMuted, setIsMuted] = useState<boolean>(!bgmController.getIsPlaying());
   const [loadingSample, setLoadingSample] = useState<boolean>(false);
+  const [isPSModalOpen, setIsPSModalOpen] = useState<boolean>(false);
+
+  // Synchronize audio mute state with BGM playback
+  useEffect(() => {
+    const unsubscribe = bgmController.subscribe((playing) => {
+      setIsMuted(!playing);
+      soundController.setMuted(!playing);
+    });
+    return () => unsubscribe();
+  }, []);
 
   const {
     referenceFile,
@@ -45,22 +58,34 @@ export function DeckContainer() {
 
   const slideData = [
     {
-      title: "LUNAR·REG",
+      title: "COSMIC VISION",
       subtitle: "Multi-modal lunar correspondence engine for Chandrayaan-2 & ISRO.",
       tag: "OVERVIEW",
-      color: "#FF9B51",
+      color: "#1283c8",
     },
     {
       title: "THE PROBLEM",
       subtitle: "Sun angle shifts, shadow inversions, and 10× scale variations.",
       tag: "CHALLENGE",
-      color: "#25343F",
+      color: "#ef7618",
     },
     {
       title: "PAYLOAD SUITE",
       subtitle: "OHRC (0.25m), TMC-2 (stereo 5m), IIRS (80m IR), & LRO NAC baseline.",
       tag: "SENSORS",
       color: "#EAEFEF",
+    },
+    {
+      title: "FEASIBILITY & VIABILITY",
+      subtitle: "Can we build it? Can it work? Can it scale? Technical & deployment viability.",
+      tag: "FEASIBILITY",
+      color: "#F3E6D6",
+    },
+    {
+      title: "ML ARCHITECTURE",
+      subtitle: "Fine-tuned LoFTR, RANSAC inliers, and SIH26166 compliance.",
+      tag: "TECHNICAL",
+      color: "#1283c8",
     },
     {
       title: "REGISTRATION LAB",
@@ -75,10 +100,10 @@ export function DeckContainer() {
       color: "#EAEFEF",
     },
     {
-      title: "ML ARCHITECTURE",
-      subtitle: "Detector-free transformer attention and SIH26166 compliance.",
-      tag: "TECHNICAL",
-      color: "#25343F",
+      title: "IMPACT & ANALYSIS",
+      subtitle: "CosmicYaan: Registered lunar imagery, better mapping, analysis, & mission support.",
+      tag: "IMPACT",
+      color: "#F3E6D6",
     },
   ];
 
@@ -86,7 +111,7 @@ export function DeckContainer() {
   const slideTitles = slideData.map((s) => s.title);
 
   // Background color changes based on active slide (exact Nodeck pattern)
-  const activeBgColor = slideData[currentSlide]?.color || "#FF9B51";
+  const activeBgColor = slideData[currentSlide]?.color || "#1283c8";
 
   const goToSlide = useCallback((index: number) => {
     if (index === currentSlide || isTransitioning) return;
@@ -115,6 +140,27 @@ export function DeckContainer() {
       goToSlide(currentSlide + 1);
     }
   }, [currentSlide, totalSlides, goToSlide]);
+
+  // Audio toggle controller (mutes or starts both BGM and SFX)
+  const handleToggleAudio = useCallback(() => {
+    const isPlaying = bgmController.getIsPlaying();
+    if (isPlaying) {
+      bgmController.pause();
+      soundController.setMuted(true);
+      setIsMuted(true);
+      toast("Audio Muted", {
+        duration: 1500,
+      });
+    } else {
+      bgmController.play();
+      soundController.setMuted(false);
+      soundController.playPop();
+      setIsMuted(false);
+      toast("Audio Started", {
+        duration: 1500,
+      });
+    }
+  }, []);
 
   // Keyboard navigation shortcuts
   useEffect(() => {
@@ -145,8 +191,7 @@ export function DeckContainer() {
         setIsNotesOpen((prev) => !prev);
       } else if (e.key === "m" || e.key === "M") {
         e.preventDefault();
-        const muted = soundController.toggleMute();
-        setIsMuted(muted);
+        handleToggleAudio();
       } else if (e.key === "Escape") {
         setIsNotesOpen(false);
         setIsGridOpen(false);
@@ -155,7 +200,7 @@ export function DeckContainer() {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [handleNext, handlePrev]);
+  }, [handleNext, handlePrev, handleToggleAudio]);
 
   // Swap slots
   const handleSwap = () => {
@@ -223,19 +268,11 @@ export function DeckContainer() {
         sourcePreview: URL.createObjectURL(sourceFile),
       });
 
-      // Automatically advance to Results Slide (Slide index 4)
-      goToSlide(4);
+      // Automatically advance to Results Slide (Slide index 6)
+      goToSlide(6);
     } else {
       toast.error("Registration pipeline encountered an error.");
     }
-  };
-
-  const handleToggleMute = () => {
-    const muted = soundController.toggleMute();
-    setIsMuted(muted);
-    toast(muted ? "Sound Effects Muted" : "Sound Effects Active", {
-      duration: 1500,
-    });
   };
 
   const renderSlideContent = (slideIndex: number) => {
@@ -243,7 +280,7 @@ export function DeckContainer() {
       case 0:
         return (
           <CoverSlide
-            onGoToStudio={() => goToSlide(3)}
+            onGoToStudio={() => goToSlide(5)}
             onGoToProblem={() => goToSlide(1)}
           />
         );
@@ -256,10 +293,14 @@ export function DeckContainer() {
       case 2:
         return (
           <SensorsSlide
-            onGoToStudio={() => goToSlide(3)}
+            onGoToStudio={() => goToSlide(5)}
           />
         );
       case 3:
+        return <FeasibilitySlide />;
+      case 4:
+        return <ArchitectureSlide />;
+      case 5:
         return (
           <RegistrationSlide
             referenceFile={referenceFile}
@@ -276,16 +317,20 @@ export function DeckContainer() {
             error={error}
           />
         );
-      case 4:
+      case 6:
         return (
           <ResultsSlide
             result={result}
             meta={meta}
-            onGoToStudio={() => goToSlide(3)}
+            onGoToStudio={() => goToSlide(5)}
           />
         );
-      case 5:
-        return <ArchitectureSlide />;
+      case 7:
+        return (
+          <ImpactSlide
+            onGoToStudio={() => goToSlide(5)}
+          />
+        );
       default:
         return null;
     }
@@ -310,35 +355,39 @@ export function DeckContainer() {
           }}
           className="pointer-events-auto brutal-card-white py-1.5 px-3 flex items-center gap-2 hover:scale-105 active:scale-95 transition-transform"
         >
-          <div className="w-5 h-5 rounded-full bg-[#FF9B51] border-2 border-black flex items-center justify-center font-display font-black text-[10px] text-black">
-            L
+          <div className="w-5 h-5 rounded-full bg-[#ef7618] border-2 border-black flex items-center justify-center font-display font-black text-[10px] text-black">
+            CV
           </div>
           <span className="font-display font-black text-sm uppercase tracking-tight text-black">
-            LUNAR·REG
+            COSMIC VISION
           </span>
-          <span className="font-mono text-[10px] font-bold px-1.5 py-0.5 rounded bg-[#FF9B51] border border-black text-black">
+          <span className="font-mono text-[10px] font-bold px-1.5 py-0.5 rounded bg-[#ef7618] border border-black text-black">
             ISRO
           </span>
         </button>
 
-        {/* Current Slide Badge on Top Right, BGM Controller & Rub Intro Replay */}
+        {/* Rub Intro Replay & Mission Badge */}
         <div className="pointer-events-auto flex items-center gap-2 font-mono text-xs font-bold">
-          {/* Ambient BGM (meditativetiger-retro-color-moon) */}
-          <BgmPlayerBadge />
-
           <button
             onClick={() => {
               soundController.playPop();
               setShowIntro(true);
             }}
-            className="brutal-badge brutal-badge-white py-1 px-2.5 hover:bg-[#FF9B51] transition-colors cursor-pointer"
+            className="brutal-badge brutal-badge-white py-1 px-2.5 hover:bg-[#ef7618] transition-colors cursor-pointer"
             title="Replay PS SIH26166 rub intro animation"
           >
             <span>RUB INTRO</span>
           </button>
-          <span className="brutal-badge brutal-badge-navy py-1 px-2.5 hidden sm:inline-block">
-            PS SIH26166
-          </span>
+          <button
+            onClick={() => {
+              soundController.playPop();
+              setIsPSModalOpen(true);
+            }}
+            className="brutal-badge brutal-badge-navy py-1 px-2.5 hover:bg-[#ef7618] hover:text-black hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-[2px_2px_0_#000] hidden sm:inline-flex items-center gap-1.5"
+            title="Click to view official Problem Statement SIH26166 details"
+          >
+            <span>PS SIH26166</span>
+          </button>
         </div>
       </header>
 
@@ -355,7 +404,7 @@ export function DeckContainer() {
                   : "cube-animate-out-right"
               }`}
               style={{
-                backgroundColor: slideData[prevSlide]?.color || "#FF9B51",
+                backgroundColor: slideData[prevSlide]?.color || "#ef7618",
               }}
             >
               {renderSlideContent(prevSlide)}
@@ -374,7 +423,7 @@ export function DeckContainer() {
             }`}
             style={{
               backgroundColor: isTransitioning
-                ? slideData[currentSlide]?.color || "#FF9B51"
+                ? slideData[currentSlide]?.color || "#ef7618"
                 : "transparent",
             }}
           >
@@ -393,7 +442,7 @@ export function DeckContainer() {
         onToggleNotes={() => setIsNotesOpen(!isNotesOpen)}
         onToggleGrid={() => setIsGridOpen(!isGridOpen)}
         isMuted={isMuted}
-        onToggleMute={handleToggleMute}
+        onToggleMute={handleToggleAudio}
         slideTitles={slideTitles}
       />
 
@@ -416,6 +465,12 @@ export function DeckContainer() {
       {showIntro && (
         <IntroRubLoader onComplete={() => setShowIntro(false)} />
       )}
+
+      {/* Official Problem Statement Details Modal (Apple Open Animation) */}
+      <ProblemStatementModal
+        isOpen={isPSModalOpen}
+        onClose={() => setIsPSModalOpen(false)}
+      />
     </div>
   );
 }

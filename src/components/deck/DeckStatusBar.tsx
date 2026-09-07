@@ -2,7 +2,6 @@
 
 import React from "react";
 import { soundController } from "@/utils/soundController";
-import { BgmPlayerBadge } from "./BgmPlayerBadge";
 import {
   ChevronLeft,
   ChevronRight,
@@ -92,7 +91,7 @@ export function DeckStatusBar({
                 }}
                 className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full border-2 border-black transition-all ${
                   idx === currentSlide
-                    ? "bg-[#FF9B51] scale-125 shadow-[1px_1px_0_#000]"
+                    ? "bg-[#ef7618] scale-125 shadow-[1px_1px_0_#000]"
                     : "bg-[#EAEFEF] hover:bg-[#BFC9D1]"
                 }`}
                 title={`Go to slide ${idx + 1}: ${slideTitles[idx]}`}
@@ -117,19 +116,18 @@ export function DeckStatusBar({
 
         {/* Right Side: Sound Toggle & Grid Drawer */}
         <div className="flex items-center gap-2 self-end sm:self-auto">
-          {/* Background Ambient Music (Retro Color Moon) */}
-          <BgmPlayerBadge compact={true} />
-
-          {/* Tactical SFX Toggle */}
+          {/* Audio Toggle (Start audio / Mute audio) */}
           <button
             onClick={() => {
               onToggleMute();
             }}
-            className={`brutal-btn-round w-9 h-9 sm:w-10 sm:h-10 ${
-              isMuted ? "bg-white" : "bg-[#FF9B51]"
+            className={`brutal-btn-round w-9 h-9 sm:w-10 sm:h-10 transition-all ${
+              isMuted
+                ? "bg-white text-black/60 hover:bg-[#EAEFEF]"
+                : "bg-[#ef7618] text-black shadow-[2px_2px_0_#000]"
             }`}
-            title={isMuted ? "Unmute sound effects" : "Mute sound effects"}
-            aria-label="Toggle sound"
+            title={isMuted ? "Start audio (Shortcut: M)" : "Mute audio (Shortcut: M)"}
+            aria-label={isMuted ? "Start audio" : "Mute audio"}
           >
             {isMuted ? (
               <VolumeX className="w-4 h-4" />

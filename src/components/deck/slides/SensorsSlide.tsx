@@ -22,7 +22,7 @@ export function SensorsSlide({ onGoToStudio }: SensorsSlideProps) {
       role: "Moving Source Frame",
       highlight: "Highest resolution lunar imagery ever flown.",
       desc: "Captures minute boulders, crater rims, and lander landing hazards with unparalleled sub-meter spatial precision.",
-      color: "bg-[#FF9B51]",
+      color: "bg-[#ef7618] text-black",
       icon: Camera,
     },
     {
@@ -35,7 +35,7 @@ export function SensorsSlide({ onGoToStudio }: SensorsSlideProps) {
       role: "Moving Source Frame",
       highlight: "Generates high-fidelity 3D digital elevation models.",
       desc: "Stereo triplets capture elevation variations across impact craters, rilles, and lunar central peaks for 3D terrain reconstruction.",
-      color: "bg-[#25343F] text-[#EAEFEF]",
+      color: "bg-[#1283c8] text-white",
       icon: Eye,
     },
     {
@@ -91,7 +91,7 @@ export function SensorsSlide({ onGoToStudio }: SensorsSlideProps) {
               }}
               className={`font-mono text-xs sm:text-sm font-bold uppercase py-2 px-4 rounded-lg border-3 border-black transition-all ${
                 activeSensor === idx
-                  ? "bg-[#FF9B51] shadow-[4px_4px_0_#000000] -translate-y-1"
+                  ? "bg-[#ef7618] text-black shadow-[4px_4px_0_#000000] -translate-y-1"
                   : "bg-white hover:bg-[#BFC9D1]/30 shadow-[2px_2px_0_#000000]"
               }`}
             >
@@ -109,7 +109,7 @@ export function SensorsSlide({ onGoToStudio }: SensorsSlideProps) {
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b-3 border-black pb-4 mb-6">
                 <div className="flex items-center gap-4">
                   <div className={`w-14 h-14 rounded-2xl border-3 border-black flex items-center justify-center ${s.color} shadow-[3px_3px_0_#000]`}>
-                    <Icon className="w-8 h-8 text-black stroke-[2.5]" />
+                    <Icon className="w-8 h-8 stroke-[2.5]" />
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
@@ -128,7 +128,7 @@ export function SensorsSlide({ onGoToStudio }: SensorsSlideProps) {
 
                 <div className="text-left md:text-right">
                   <span className="text-xs font-mono font-bold block text-black/60 uppercase">Spatial Resolution</span>
-                  <span className="font-mono text-sm sm:text-base font-black text-black bg-[#FF9B51] px-2 py-0.5 border border-black rounded">
+                  <span className="font-mono text-sm sm:text-base font-black text-black bg-[#ef7618] px-2 py-0.5 border border-black rounded">
                     {s.resolution}
                   </span>
                 </div>
@@ -147,7 +147,7 @@ export function SensorsSlide({ onGoToStudio }: SensorsSlideProps) {
               </div>
 
               {/* Highlight callout */}
-              <div className="p-4 bg-[#FF9B51]/20 border-2 border-black rounded-lg mb-6 flex items-start gap-3">
+              <div className="p-4 bg-[#ef7618]/20 border-2 border-black rounded-lg mb-6 flex items-start gap-3">
                 <Check className="w-5 h-5 text-black stroke-[3] shrink-0 mt-0.5" />
                 <div>
                   <strong className="font-display text-sm uppercase text-black block mb-0.5">

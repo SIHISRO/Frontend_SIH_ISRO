@@ -3,7 +3,7 @@
 import React from "react";
 import { soundController } from "@/utils/soundController";
 import { FloatingHighlighter, StampBadge } from "../StationeryProps";
-import { ArrowRight, Sparkles, Orbit, Layers, ShieldCheck } from "lucide-react";
+import { ArrowRight, Layers } from "lucide-react";
 
 interface CoverSlideProps {
   onGoToStudio: () => void;
@@ -25,28 +25,21 @@ export function CoverSlide({ onGoToStudio, onGoToProblem }: CoverSlideProps) {
 
       {/* Main Container */}
       <div className="max-w-5xl mx-auto text-center relative z-10 flex flex-col items-center">
-        
-        {/* Eyebrow Pill */}
-        <div className="brutal-badge brutal-badge-navy mb-6 sm:mb-8 font-mono tracking-widest text-xs sm:text-sm py-1.5 px-4 shadow-[3px_3px_0_#000]">
-          <Orbit className="w-4 h-4 animate-spin [animation-duration:8s] text-[#FF9B51]" />
-          <span>CHANDRAYAAN-2 OPTICAL IMAGE CORRESPONDENCE</span>
-        </div>
-
         {/* Massive Punchy Display Title (Nodeck style) */}
-        <h1 className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl uppercase font-black tracking-tight leading-[0.92] text-black mb-6 select-none">
-          LUNAR<span className="text-[#EAEFEF] drop-shadow-[5px_5px_0_#000000]">-REG</span>
+        <h1 className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl uppercase font-black tracking-tight leading-[0.92] text-white mb-6 select-none">
+          COSMIC<span className="text-[#ef7618] drop-shadow-[5px_5px_0_#000000]">YAAN</span>
         </h1>
 
         {/* Tagline with highlighter mark */}
-        <p className="font-display text-xl sm:text-3xl md:text-4xl text-black font-extrabold max-w-3xl leading-snug mb-8">
+        <p className="font-display text-xl sm:text-3xl md:text-4xl text-white font-extrabold max-w-3xl leading-snug mb-6">
           A lunar correspondence tool that sells{" "}
-          <span className="text-highlight-light">thinking & sub-pixel precision,</span>{" "}
+          <span className="bg-[#ef7618] text-black px-2 py-0.5 rounded border-2 border-black inline-block shadow-[2px_2px_0_#000]">thinking & sub-pixel precision,</span>{" "}
           not misaligned crater slides.
         </p>
 
-        {/* Subtitle / Explainer */}
-        <p className="font-sans text-sm sm:text-base md:text-lg text-black font-semibold max-w-2xl leading-relaxed mb-10">
-          Geometric alignment and keypoint matching across extreme sun azimuth variations, shadow inversions, and multi-sensor scale shifts (OHRC, TMC-2, IIRS) using fine-tuned LoFTR.
+        {/* Subtitle / Explainer with exact solution statement */}
+        <p className="font-sans text-xs sm:text-sm md:text-base text-black font-semibold max-w-3xl leading-relaxed mb-10 bg-white p-4 rounded-xl border-3 border-black shadow-[4px_4px_0_#000]">
+          CosmicYaan takes two images of the same lunar region—Chandrayaan-2 optical (OHRC, TMC-2, IIRS) and reference (LRO NAC, SELENE)—and uses a fine-tuned deep-learning LoFTR model with RANSAC homography to replace fragile SIFT matching across extreme Sun angles and scale variations.
         </p>
 
         {/* Tactile Action Buttons */}
@@ -56,9 +49,9 @@ export function CoverSlide({ onGoToStudio, onGoToProblem }: CoverSlideProps) {
               soundController.playPop();
               onGoToStudio();
             }}
-            className="brutal-btn-navy text-base sm:text-lg py-3.5 px-8 shadow-[6px_6px_0_#000000] hover:shadow-[3px_3px_0_#000000]"
+            className="brutal-btn text-base sm:text-lg py-3.5 px-8 shadow-[6px_6px_0_#000000] hover:shadow-[3px_3px_0_#000000]"
           >
-            <Layers className="w-5 h-5 text-[#FF9B51] stroke-[2.5]" />
+            <Layers className="w-5 h-5 text-black stroke-[2.5]" />
             <span>LAUNCH REGISTRATION STUDIO</span>
             <ArrowRight className="w-5 h-5 stroke-[2.5]" />
           </button>

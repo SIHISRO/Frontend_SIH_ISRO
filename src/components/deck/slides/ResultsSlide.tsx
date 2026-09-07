@@ -7,6 +7,7 @@ import {
   CheckCircle2,
   Layers,
   Copy,
+  Check,
   Download,
   ArrowRight,
   ShieldCheck,
@@ -16,7 +17,7 @@ import { toast } from "sonner";
 
 interface ResultsSlideProps {
   result: PredictResponse | null;
-  meta: {
+  meta?: {
     referenceName?: string | null;
     sourceName?: string | null;
     referencePreview?: string | null;
@@ -25,7 +26,7 @@ interface ResultsSlideProps {
   onGoToStudio: () => void;
 }
 
-export function ResultsSlide({ result, meta, onGoToStudio }: ResultsSlideProps) {
+export function ResultsSlide({ result, onGoToStudio }: ResultsSlideProps) {
   const [activeTab, setActiveTab] = useState<"matches" | "warped" | "overlay" | "ref" | "src">("matches");
   const [copiedMatrix, setCopiedMatrix] = useState(false);
 
@@ -34,7 +35,7 @@ export function ResultsSlide({ result, meta, onGoToStudio }: ResultsSlideProps) 
     return (
       <div className="w-full min-h-[calc(100vh-8rem)] flex flex-col justify-center items-center px-4 sm:px-8 py-8 relative">
         <div className="brutal-card p-8 max-w-xl mx-auto text-center shadow-[6px_6px_0_#000]">
-          <div className="w-16 h-16 rounded-2xl bg-[#DEF915] border-3 border-black flex items-center justify-center mx-auto mb-4 shadow-[3px_3px_0_#000]">
+          <div className="w-16 h-16 rounded-2xl bg-[#ef7618] border-3 border-black flex items-center justify-center mx-auto mb-4 shadow-[3px_3px_0_#000]">
             <Layers className="w-8 h-8 text-black stroke-[2.5]" />
           </div>
           <h3 className="font-display text-2xl sm:text-3xl uppercase font-black text-black mb-2">
@@ -158,7 +159,7 @@ export function ResultsSlide({ result, meta, onGoToStudio }: ResultsSlideProps) 
             </span>
           </div>
 
-          <div className="brutal-card p-4 text-left shadow-[4px_4px_0_#000] bg-[#FF9B51]">
+          <div className="brutal-card p-4 text-left shadow-[4px_4px_0_#000] bg-[#ef7618]">
             <span className="font-mono text-[11px] font-bold text-black/80 uppercase block">Geometric RMSE</span>
             <span className="font-display text-3xl sm:text-4xl font-black text-black block mt-1">
               {typeof rmseVal === "number" ? rmseVal.toFixed(3) : rmseVal} <span className="text-sm font-mono">px</span>
@@ -194,7 +195,7 @@ export function ResultsSlide({ result, meta, onGoToStudio }: ResultsSlideProps) 
                   }}
                   className={`text-xs font-mono font-bold uppercase px-3 py-1.5 rounded border-2 border-black transition-all ${
                     activeTab === "matches"
-                      ? "bg-[#FF9B51] shadow-[2px_2px_0_#000] font-black"
+                      ? "bg-[#ef7618] shadow-[2px_2px_0_#000] font-black"
                       : "bg-white hover:bg-[#BFC9D1]/30"
                   }`}
                 >
@@ -207,7 +208,7 @@ export function ResultsSlide({ result, meta, onGoToStudio }: ResultsSlideProps) 
                   }}
                   className={`text-xs font-mono font-bold uppercase px-3 py-1.5 rounded border-2 border-black transition-all ${
                     activeTab === "warped"
-                      ? "bg-[#FF9B51] shadow-[2px_2px_0_#000] font-black"
+                      ? "bg-[#ef7618] shadow-[2px_2px_0_#000] font-black"
                       : "bg-white hover:bg-[#BFC9D1]/30"
                   }`}
                 >
@@ -220,7 +221,7 @@ export function ResultsSlide({ result, meta, onGoToStudio }: ResultsSlideProps) 
                   }}
                   className={`text-xs font-mono font-bold uppercase px-3 py-1.5 rounded border-2 border-black transition-all ${
                     activeTab === "overlay"
-                      ? "bg-[#FF9B51] shadow-[2px_2px_0_#000] font-black"
+                      ? "bg-[#ef7618] shadow-[2px_2px_0_#000] font-black"
                       : "bg-white hover:bg-[#BFC9D1]/30"
                   }`}
                 >
@@ -234,7 +235,7 @@ export function ResultsSlide({ result, meta, onGoToStudio }: ResultsSlideProps) 
             </div>
 
             {/* Active Image Box */}
-            <div className="w-full bg-[#25343F] border-2 border-black rounded-lg overflow-hidden min-h-[300px] sm:min-h-[380px] flex items-center justify-center relative">
+            <div className="w-full bg-[#0b2545] border-2 border-black rounded-lg overflow-hidden min-h-[300px] sm:min-h-[380px] flex items-center justify-center relative">
               {activeTab === "matches" && visualizations?.match_lines && (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
@@ -274,10 +275,10 @@ export function ResultsSlide({ result, meta, onGoToStudio }: ResultsSlideProps) 
                 </span>
                 <button
                   onClick={handleCopyMatrix}
-                  className="p-1 hover:bg-[#FF9B51] rounded border border-black transition-colors"
+                  className="p-1 hover:bg-[#ef7618] rounded border border-black transition-colors"
                   title="Copy matrix"
                 >
-                  <Copy className="w-3.5 h-3.5" />
+                  {copiedMatrix ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
                 </button>
               </div>
 
@@ -297,13 +298,13 @@ export function ResultsSlide({ result, meta, onGoToStudio }: ResultsSlideProps) 
 
               <div className="mt-4 pt-3 border-t-2 border-dashed border-black/20 text-xs font-sans text-black/80">
                 <p className="font-medium leading-relaxed">
-                  The projective matrix transforms coordinates <code className="bg-[#25343F] text-[#EAEFEF] px-1 rounded text-[10px]">[x, y, 1]ᵀ</code> from the moving frame to the fixed reference frame with sub-pixel alignment.
+                  The projective matrix transforms coordinates <code className="bg-[#1283c8] text-white px-1 rounded text-[10px]">[x, y, 1]ᵀ</code> from the moving frame to the fixed reference frame with sub-pixel alignment.
                 </p>
               </div>
             </div>
 
             {/* Inlier Verification Stamp Box */}
-            <div className="brutal-card p-4 bg-[#FF9B51] shadow-[4px_4px_0_#000]">
+            <div className="brutal-card p-4 bg-[#ef7618] shadow-[4px_4px_0_#000]">
               <div className="flex items-center gap-2">
                 <ShieldCheck className="w-5 h-5 text-black stroke-[2.5]" />
                 <span className="font-display font-black text-xs uppercase text-black">

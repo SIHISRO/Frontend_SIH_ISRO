@@ -99,11 +99,11 @@ export function ImageDropzone({
         onDrop={handleDrop}
         className={`relative flex flex-col items-center justify-center p-8 sm:p-10 rounded-2xl border-2 border-dashed transition-all duration-200 cursor-pointer select-none text-center min-h-[260px] ${
           isDragging
-            ? "border-[#FF9B51] bg-[#FF9B51]/15 scale-[1.01] shadow-lg shadow-[#FF9B51]/20"
+            ? "border-[#ef7618] bg-[#ef7618]/15 scale-[1.01] shadow-lg shadow-[#ef7618]/20"
             : displayError
             ? "border-rose-500/50 bg-rose-950/20 hover:border-rose-500"
-            : "border-[#BFC9D1]/30 bg-[#25343F]/60 hover:bg-[#25343F]/90 hover:border-[#FF9B51]/60"
-        } ${disabled ? "opacity-50 cursor-not-allowed pointer-events-none" : "focus:outline-none focus:ring-2 focus:ring-[#FF9B51]"}`}
+            : "border-[#BFC9D1]/30 bg-[#0b2545]/60 hover:bg-[#0b2545]/90 hover:border-[#ef7618]/60"
+        } ${disabled ? "opacity-50 cursor-not-allowed pointer-events-none" : "focus:outline-none focus:ring-2 focus:ring-[#ef7618]"}`}
       >
         <input
           ref={inputRef}
@@ -117,7 +117,7 @@ export function ImageDropzone({
 
         {/* Slot Category Badge */}
         {slotBadge && (
-          <span className="absolute top-4 left-4 px-2.5 py-0.5 text-[11px] font-mono uppercase font-semibold rounded-full bg-[#384d5d]/80 text-[#BFC9D1] border border-[#BFC9D1]/30">
+          <span className="absolute top-4 left-4 px-2.5 py-0.5 text-[11px] font-mono uppercase font-semibold rounded-full bg-[#1283c8]/40 text-[#BFC9D1] border border-[#1283c8]/40">
             {slotBadge}
           </span>
         )}
@@ -126,8 +126,8 @@ export function ImageDropzone({
         <div
           className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-4 transition-all ${
             isDragging
-              ? "bg-[#FF9B51] text-[#18232c] shadow-lg shadow-[#FF9B51]/30 scale-110"
-              : "bg-[#384d5d]/60 text-[#FF9B51] border border-[#BFC9D1]/20"
+              ? "bg-[#ef7618] text-black shadow-lg shadow-[#ef7618]/30 scale-110"
+              : "bg-[#1283c8]/20 text-[#ef7618] border border-[#1283c8]/40"
           }`}
         >
           {isDragging ? (
@@ -149,7 +149,7 @@ export function ImageDropzone({
 
         <p className="text-xs text-[#BFC9D1]/70 max-w-xs">
           Drag & drop lunar image here, or{" "}
-          <span className="text-[#FF9B51] font-semibold underline underline-offset-2">
+          <span className="text-[#ef7618] font-semibold underline underline-offset-2">
             browse file
           </span>
         </p>
