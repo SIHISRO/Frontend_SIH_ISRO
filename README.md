@@ -29,8 +29,26 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
+## Deploy with Docker
+
+### Using Docker Compose (Recommended)
+```bash
+docker compose up -d --build
+```
+The app will be available at [http://localhost:3000](http://localhost:3000).
+
+### Using Docker CLI
+```bash
+# Build image
+docker build -t sih-isro-client .
+
+# Run container
+docker run -p 3000:3000 -e FASTAPI_BASE_URL="http://host.docker.internal:8000" sih-isro-client
+```
+
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
