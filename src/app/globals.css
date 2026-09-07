@@ -1,0 +1,509 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  /* User SIH Palette: https://colorhunt.co/palette/eaefefbfc9d125343fff9b51 */
+  --color-sih-white: #EAEFEF;
+  --color-sih-slate: #BFC9D1;
+  --color-sih-navy: #25343F;
+  --color-sih-orange: #FF9B51;
+  --color-sih-orange-hover: #ffaa69;
+  --color-sih-black: #000000;
+
+  --font-display: "Syne", "DM Sans", system-ui, sans-serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-mono: "Space Mono", monospace;
+}
+
+:root {
+  --sih-white: #EAEFEF;
+  --sih-slate: #BFC9D1;
+  --sih-navy: #25343F;
+  --sih-orange: #FF9B51;
+  --sih-black: #000000;
+
+  --background: #FF9B51;
+  --text-color: #000000;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans), "DM Sans", sans-serif;
+  color: #000000;
+  background-color: var(--sih-orange);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  user-select: auto;
+}
+
+::selection {
+  background-color: #000000;
+  color: #FF9B51;
+}
+
+/* Headings with punchy display style (Nodeck pattern) */
+h1, h2, h3, .font-display {
+  font-family: var(--font-display), "Syne", "DM Sans", sans-serif;
+  letter-spacing: -0.03em;
+  font-weight: 800;
+}
+
+.font-mono {
+  font-family: var(--font-mono), "Space Mono", monospace;
+}
+
+/* Drifting Geometric Background Pattern */
+.background-pattern-wrapper {
+  pointer-events: none;
+  z-index: 0;
+  width: 300%;
+  height: 300%;
+  animation: 40s linear infinite drift;
+  position: fixed;
+  top: -100%;
+  left: -100%;
+}
+
+.background-pattern--checker {
+  width: 100%;
+  height: 100%;
+  opacity: 0.12;
+  background-image: url("data:image/svg+xml,%3Csvg width='36' height='36' viewBox='0 0 36 36' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='1' fill-rule='evenodd'%3E%3Cpath d='M0 0h18v18H0V0zm18 18h18v18H18V18z'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 36px 36px;
+}
+
+@keyframes drift {
+  0% {
+    transform: rotate(-8deg) translate(0, 0);
+  }
+  100% {
+    transform: rotate(-8deg) translate(288px, 288px);
+  }
+}
+
+/* Neo-Brutalist Cards using SIH Palette */
+.brutal-card {
+  background-color: #EAEFEF;
+  border: 3px solid #000000;
+  border-radius: 12px;
+  box-shadow: 4px 4px 0 0 #000000;
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.brutal-card-white {
+  background-color: #FFFFFF;
+  border: 3px solid #000000;
+  border-radius: 12px;
+  box-shadow: 4px 4px 0 0 #000000;
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.brutal-card-orange {
+  background-color: #FF9B51;
+  border: 3px solid #000000;
+  border-radius: 12px;
+  box-shadow: 4px 4px 0 0 #000000;
+}
+
+.brutal-card-navy {
+  background-color: #25343F;
+  color: #EAEFEF;
+  border: 3px solid #000000;
+  border-radius: 12px;
+  box-shadow: 4px 4px 0 0 #000000;
+}
+
+.brutal-card-slate {
+  background-color: #BFC9D1;
+  border: 3px solid #000000;
+  border-radius: 12px;
+  box-shadow: 4px 4px 0 0 #000000;
+}
+
+/* Neo-Brutalist Tactile Buttons */
+.brutal-btn {
+  background-color: #FF9B51;
+  color: #000000;
+  border: 3px solid #000000;
+  border-radius: 10px;
+  box-shadow: 4px 4px 0 0 #000000;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  padding: 0.65rem 1.4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.1s ease-out;
+  user-select: none;
+}
+
+.brutal-btn:hover:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 0 #000000;
+  background-color: #ffaa69;
+}
+
+.brutal-btn:active:not(:disabled) {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 0 #000000;
+}
+
+.brutal-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(40%);
+}
+
+.brutal-btn-white {
+  background-color: #EAEFEF;
+  color: #000000;
+  border: 3px solid #000000;
+  border-radius: 10px;
+  box-shadow: 4px 4px 0 0 #000000;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 0.65rem 1.4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.1s ease-out;
+}
+
+.brutal-btn-white:hover:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 0 #000000;
+  background-color: #FFFFFF;
+}
+
+.brutal-btn-white:active:not(:disabled) {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 0 #000000;
+}
+
+.brutal-btn-navy {
+  background-color: #25343F;
+  color: #EAEFEF;
+  border: 3px solid #000000;
+  border-radius: 10px;
+  box-shadow: 4px 4px 0 0 #000000;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 0.65rem 1.4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.1s ease-out;
+}
+
+.brutal-btn-navy:hover:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 0 #000000;
+  background-color: #2f4352;
+}
+
+.brutal-btn-navy:active:not(:disabled) {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 0 #000000;
+}
+
+.brutal-btn-round {
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 9999px;
+  border: 3px solid #000000;
+  box-shadow: 3px 3px 0 0 #000000;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #EAEFEF;
+  color: #000000;
+  cursor: pointer;
+  transition: all 0.1s ease-out;
+}
+
+.brutal-btn-round:hover:not(:disabled) {
+  transform: translate(1.5px, 1.5px);
+  box-shadow: 1.5px 1.5px 0 0 #000000;
+  background-color: #FFFFFF;
+}
+
+.brutal-btn-round:active:not(:disabled) {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 0 #000000;
+}
+
+/* Badges & Tags */
+.brutal-badge {
+  background-color: #EAEFEF;
+  border: 2px solid #000000;
+  border-radius: 9999px;
+  padding: 0.2rem 0.75rem;
+  font-weight: 800;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  box-shadow: 2px 2px 0 0 #000000;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #000000;
+}
+
+.brutal-badge-orange {
+  background-color: #FF9B51;
+  color: #000000;
+}
+
+.brutal-badge-navy {
+  background-color: #25343F;
+  color: #EAEFEF;
+}
+
+.brutal-badge-slate {
+  background-color: #BFC9D1;
+  color: #000000;
+}
+
+/* Highlighter Text Effect with SIH Solar Orange */
+.text-highlight {
+  position: relative;
+  display: inline-block;
+  white-space: normal;
+  z-index: 1;
+}
+
+.text-highlight::after {
+  content: "";
+  position: absolute;
+  left: -4px;
+  right: -4px;
+  bottom: 8%;
+  height: 70%;
+  background-color: #FF9B51;
+  border: 2px solid #000000;
+  border-radius: 4px;
+  z-index: -1;
+  transform: rotate(-1deg) skewX(-4deg);
+  box-shadow: 2px 2px 0 0 #000000;
+}
+
+/* Text Highlight on dark background */
+.text-highlight-light {
+  position: relative;
+  display: inline-block;
+  white-space: normal;
+  z-index: 1;
+}
+
+.text-highlight-light::after {
+  content: "";
+  position: absolute;
+  left: -4px;
+  right: -4px;
+  bottom: 8%;
+  height: 70%;
+  background-color: #EAEFEF;
+  border: 2px solid #000000;
+  border-radius: 4px;
+  z-index: -1;
+  transform: rotate(-1deg) skewX(-4deg);
+  box-shadow: 2px 2px 0 0 #000000;
+}
+
+/* Rubber Stamp Effect */
+.rubber-stamp {
+  display: inline-block;
+  padding: 0.35rem 0.85rem;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 0.8rem;
+  border: 3px dashed #000000;
+  border-radius: 8px;
+  color: #000000;
+  background-color: #EAEFEF;
+  transform: rotate(-4deg);
+  box-shadow: 3px 3px 0 0 #000000;
+}
+
+/* Sticky Note Aesthetic with SIH Pale Ice White / Cream */
+.sticky-note {
+  background: #EAEFEF;
+  border: 3px solid #000000;
+  box-shadow: 6px 6px 0 0 rgba(0,0,0,1);
+  transform: rotate(-1.5deg);
+  position: relative;
+}
+
+.sticky-note::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 35%;
+  width: 30%;
+  height: 24px;
+  background: rgba(255, 155, 81, 0.85);
+  border: 1.5px solid #000000;
+  transform: rotate(2deg);
+  box-shadow: 1px 1px 0 0 rgba(0,0,0,0.4);
+}
+
+/* Bottom Statusbar (Nodeck signature) */
+.statusbar {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  pointer-events: none;
+}
+
+.statusbar > * {
+  pointer-events: auto;
+}
+
+/* Custom Neo-Brutalist Scrollbars with SIH palette */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #BFC9D1;
+  border-left: 2px solid #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #25343F;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #FF9B51;
+  border: 2px solid #000000;
+}
+
+/* 3D Cube Slide Transitions */
+.cube-viewport {
+  perspective: 1500px;
+  perspective-origin: 50% 50%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.cube-wrapper {
+  transform-style: preserve-3d;
+  width: 100%;
+  position: relative;
+}
+
+.cube-face {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform, opacity, filter;
+}
+
+/* Next: Rotate Cube Left */
+@keyframes cube-out-left {
+  0% {
+    transform: rotateY(0deg) translateZ(0);
+    filter: brightness(1);
+    opacity: 1;
+  }
+  50% {
+    transform: rotateY(-45deg) translateZ(-160px) scale(0.92);
+    filter: brightness(0.85);
+  }
+  100% {
+    transform: rotateY(-90deg) translateZ(-320px) scale(0.84);
+    filter: brightness(0.6);
+    opacity: 0;
+  }
+}
+
+@keyframes cube-in-right {
+  0% {
+    transform: rotateY(90deg) translateZ(-320px) scale(0.84);
+    filter: brightness(0.6);
+    opacity: 0;
+  }
+  50% {
+    transform: rotateY(45deg) translateZ(-160px) scale(0.92);
+    filter: brightness(0.85);
+  }
+  100% {
+    transform: rotateY(0deg) translateZ(0) scale(1);
+    filter: brightness(1);
+    opacity: 1;
+  }
+}
+
+/* Prev: Rotate Cube Right */
+@keyframes cube-out-right {
+  0% {
+    transform: rotateY(0deg) translateZ(0);
+    filter: brightness(1);
+    opacity: 1;
+  }
+  50% {
+    transform: rotateY(45deg) translateZ(-160px) scale(0.92);
+    filter: brightness(0.85);
+  }
+  100% {
+    transform: rotateY(90deg) translateZ(-320px) scale(0.84);
+    filter: brightness(0.6);
+    opacity: 0;
+  }
+}
+
+@keyframes cube-in-left {
+  0% {
+    transform: rotateY(-90deg) translateZ(-320px) scale(0.84);
+    filter: brightness(0.6);
+    opacity: 0;
+  }
+  50% {
+    transform: rotateY(-45deg) translateZ(-160px) scale(0.92);
+    filter: brightness(0.85);
+  }
+  100% {
+    transform: rotateY(0deg) translateZ(0) scale(1);
+    filter: brightness(1);
+    opacity: 1;
+  }
+}
+
+.cube-animate-out-left {
+  animation: cube-out-left 0.65s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  transform-origin: 100% 50%;
+  pointer-events: none;
+}
+
+.cube-animate-in-right {
+  animation: cube-in-right 0.65s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  transform-origin: 0% 50%;
+}
+
+.cube-animate-out-right {
+  animation: cube-out-right 0.65s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  transform-origin: 0% 50%;
+  pointer-events: none;
+}
+
+.cube-animate-in-left {
+  animation: cube-in-left 0.65s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  transform-origin: 100% 50%;
+}
+

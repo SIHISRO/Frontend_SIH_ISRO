@@ -1,0 +1,254 @@
+"use client";
+
+import React from "react";
+import Link from "next/link";
+import { soundController } from "@/utils/soundController";
+import {
+  Orbit,
+  ExternalLink,
+  Layers,
+  SunMedium,
+  Maximize2,
+  Cpu,
+  ShieldCheck,
+  Camera,
+  ArrowRight,
+  Sparkles,
+} from "lucide-react";
+
+export default function AboutPage() {
+  const payloads = [
+    {
+      name: "OHRC",
+      fullName: "Orbiter High Resolution Camera",
+      resolution: "0.25 m spatial resolution",
+      altitude: "~100 km orbit",
+      role: "High-resolution optical mapping for landing site hazard detection and surface topography.",
+      spectral: "Panchromatic (0.45 - 0.70 µm)",
+      color: "bg-[#DEF915]",
+    },
+    {
+      name: "TMC-2",
+      fullName: "Terrain Mapping Camera-2",
+      resolution: "5 m spatial resolution",
+      altitude: "~100 km orbit",
+      role: "Stereo triplets (fore, nadir, aft) for generating high-accuracy 3D digital elevation models (DEM) of the Moon.",
+      spectral: "Panchromatic (0.50 - 0.85 µm)",
+      color: "bg-[#FF87AB]",
+    },
+    {
+      name: "IIRS",
+      fullName: "Imaging Infrared Spectrometer",
+      resolution: "~80 m spatial resolution",
+      altitude: "~100 km orbit",
+      role: "Hyperspectral imaging from 0.8 to 5.0 µm for mineralogical mapping and lunar water ice detection.",
+      spectral: "Short-wave to mid-wave infrared",
+      color: "bg-white",
+    },
+    {
+      name: "LRO NAC",
+      fullName: "Lunar Reconnaissance Orbiter (NASA)",
+      resolution: "0.5 m to 2.0 m",
+      altitude: "Variable elliptical orbit",
+      role: "Primary global reference baseline dataset for geo-referencing and photometric validation.",
+      spectral: "Panchromatic",
+      color: "bg-[#D3DCCD]",
+    },
+  ];
+
+  const pipelineSteps = [
+    {
+      step: "01",
+      title: "Contrast Equalization & Normalization",
+      desc: "Images are scaled and pre-processed to enhance shadow crater rims and level sensor-specific dynamic range.",
+    },
+    {
+      step: "02",
+      title: "LoFTR CNN Backbone Feature Extraction",
+      desc: "Standard FPN extracts multi-scale convolutional feature maps at 1/8 and 1/2 of input dimensions without discrete keypoint detectors.",
+    },
+    {
+      step: "03",
+      title: "Local Feature Transformer (Self/Cross Attention)",
+      desc: "Interleaved self-attention and cross-attention transform features by conditioning both images on each other's global context.",
+    },
+    {
+      step: "04",
+      title: "Coarse Match Probability Matrix",
+      desc: "Dual-softmax operator calculates mutual nearest neighbor match probabilities, filtering out low-confidence ambiguities.",
+    },
+    {
+      step: "05",
+      title: "Sub-Pixel Fine Correspondence Refinement",
+      desc: "Feature patches around coarse candidates are cropped at 1/2 resolution to regress exact sub-pixel coordinates.",
+    },
+    {
+      step: "06",
+      title: "RANSAC Homography & Warp Generation",
+      desc: "Geometric RANSAC estimates the robust 3×3 projective homography matrix, producing the rectified source and 50/50 overlay.",
+    },
+  ];
+
+  return (
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+      {/* Hero */}
+      <div className="text-center max-w-3xl mx-auto pt-4">
+        <div className="brutal-badge brutal-badge-yellow mb-4 font-mono font-bold text-xs tracking-widest shadow-[3px_3px_0_#000]">
+          <Orbit className="w-4 h-4" />
+          <span>ISRO · DEPARTMENT OF SPACE · SIH 2026 // PS SIH26166</span>
+        </div>
+
+        <h1 className="font-display text-4xl sm:text-6xl uppercase font-black tracking-tight text-black mb-4">
+          Mission & Technology
+        </h1>
+        <p className="font-sans text-sm sm:text-base text-black/80 font-medium leading-relaxed max-w-2xl mx-auto">
+          Solving the lunar correspondence problem across Sun angle variations and extreme scale shifts using Chandrayaan-2 payloads and detector-free Local Feature Transformers.
+        </p>
+
+        <div className="mt-6 flex items-center justify-center gap-3">
+          <Link
+            href="/"
+            onClick={() => soundController.playPop()}
+            className="brutal-btn py-2.5 px-5 text-xs font-mono font-bold flex items-center gap-1.5"
+          >
+            <span>OPEN SLIDE DECK</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+      </div>
+
+      {/* Problem Statement Details Card */}
+      <div className="brutal-card p-6 sm:p-8 bg-[#FF87AB] shadow-[6px_6px_0_#000]">
+        <div className="flex items-center gap-2 border-b-3 border-black pb-3 mb-4">
+          <ShieldCheck className="w-6 h-6 text-black stroke-[2.5]" />
+          <h2 className="font-display text-xl sm:text-2xl uppercase font-black text-black">
+            Official Problem Statement SIH26166
+          </h2>
+        </div>
+
+        <blockquote className="bg-white p-4 border-2 border-black rounded-lg text-xs sm:text-sm font-sans font-medium text-black leading-relaxed mb-4 shadow-[2px_2px_0_#000]">
+          &ldquo;Generic software solution for finding correspondence between Chandrayaan-2 acquired optical images and Lunar reference images with sub-pixel accuracy of source image maintaining uniform distribution across the images.&rdquo;
+        </blockquote>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-mono font-bold">
+          <div className="p-3 bg-[#DEF915] border-2 border-black rounded-lg">
+            <span className="block text-black/60 text-[10px]">THEME</span>
+            <span className="text-black">Space Technology</span>
+          </div>
+          <div className="p-3 bg-white border-2 border-black rounded-lg">
+            <span className="block text-black/60 text-[10px]">ORGANIZATION</span>
+            <span className="text-black">ISRO / Dept. of Space</span>
+          </div>
+          <div className="p-3 bg-[#DEF915] border-2 border-black rounded-lg">
+            <span className="block text-black/60 text-[10px]">CATEGORY</span>
+            <span className="text-black">Software & Deep Learning</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Optical Payloads Grid */}
+      <div>
+        <div className="mb-6">
+          <span className="font-mono text-xs font-bold uppercase tracking-wider text-black/60">
+            HARDWARE COMPATIBILITY
+          </span>
+          <h2 className="font-display text-2xl sm:text-3xl uppercase font-black text-black">
+            Chandrayaan-2 Optical Payloads
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {payloads.map((payload) => (
+            <div
+              key={payload.name}
+              className="brutal-card p-5 bg-white shadow-[4px_4px_0_#000] flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-3 border-b-2 border-black/10 pb-2">
+                  <div className="flex items-center gap-2">
+                    <span className={`px-2 py-0.5 font-display font-black text-xs border border-black rounded ${payload.color}`}>
+                      {payload.name}
+                    </span>
+                    <span className="font-mono text-xs font-bold text-black">{payload.fullName}</span>
+                  </div>
+                  <span className="font-mono text-xs font-black text-black bg-[#DEF915] px-1.5 py-0.5 border border-black rounded">
+                    {payload.resolution}
+                  </span>
+                </div>
+
+                <p className="text-xs font-sans text-black/80 font-medium leading-relaxed mb-3">
+                  {payload.role}
+                </p>
+              </div>
+
+              <div className="pt-2 border-t-2 border-dashed border-black/20 text-[11px] font-mono text-black/70 flex justify-between">
+                <span>Spectral: {payload.spectral}</span>
+                <span>{payload.altitude}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* 6-Step Pipeline Architecture */}
+      <div>
+        <div className="mb-6">
+          <span className="font-mono text-xs font-bold uppercase tracking-wider text-black/60">
+            ML SPECIFICATION
+          </span>
+          <h2 className="font-display text-2xl sm:text-3xl uppercase font-black text-black">
+            6-Step LoFTR Registration Pipeline
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {pipelineSteps.map((step) => (
+            <div
+              key={step.step}
+              className="brutal-card p-4 bg-[#F3E6D6] shadow-[4px_4px_0_#000] flex flex-col justify-between"
+            >
+              <div>
+                <span className="font-mono text-xs font-black px-2 py-0.5 bg-[#DEF915] border border-black rounded inline-block mb-2">
+                  PHASE {step.step}
+                </span>
+                <h3 className="font-display text-sm uppercase font-black text-black mb-1.5">
+                  {step.title}
+                </h3>
+                <p className="font-sans text-xs text-black/80 font-medium leading-relaxed">
+                  {step.desc}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* External Portals Box */}
+      <div className="brutal-card p-6 bg-white shadow-[6px_6px_0_#000]">
+        <h3 className="font-display text-lg uppercase font-black text-black mb-4">
+          External Lunar Portals & Ground Truth
+        </h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono font-bold">
+          <a
+            href="https://chmapbrowse.issdc.gov.in/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-3 bg-[#F3E6D6] border-2 border-black rounded-lg flex items-center justify-between hover:bg-[#DEF915] transition-colors"
+          >
+            <span>ISSDC Chandrayaan-2 Browse</span>
+            <ExternalLink className="w-4 h-4" />
+          </a>
+          <a
+            href="https://lroc.im-ldi.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-3 bg-[#F3E6D6] border-2 border-black rounded-lg flex items-center justify-between hover:bg-[#DEF915] transition-colors"
+          >
+            <span>NASA LROC Image Catalog</span>
+            <ExternalLink className="w-4 h-4" />
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
