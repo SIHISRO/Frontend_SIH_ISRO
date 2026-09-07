@@ -13,11 +13,14 @@ export function ProblemSlide({ onNext }: ProblemSlideProps) {
     <div className="w-full min-h-[calc(100vh-8rem)] flex flex-col justify-center items-center px-4 sm:px-8 py-8 relative">
       <div className="max-w-5xl mx-auto text-center relative z-10">
         
-        {/* Big Headline in Jet Black with Blue Collapse Badge */}
-        <h2 className="font-display text-3xl sm:text-5xl md:text-6xl uppercase font-black tracking-tight leading-[1.05] text-black mb-8">
+        {/* Big Headline in Jet Black with Angled Neo-Brutalist Badges */}
+        <h2 className="font-display text-3xl sm:text-5xl md:text-6xl uppercase font-black tracking-tight leading-[1.12] text-black mb-8">
           Every orbit, sun angles shift by 45°, crater shadows{" "}
-          <span className="bg-white text-black px-2 py-0.5 rounded border-2 border-black inline-block shadow-[2px_2px_0_#000]">invert 180°,</span> and scale scales 10×.{" "}
-          <span className="bg-[#1283c8] text-white px-2 py-0.5 rounded-md inline-block mt-1 border-2 border-black shadow-[2px_2px_0_#000]">
+          <span className="bg-white text-black px-2.5 py-1 rounded border-2 sm:border-3 border-black inline-block -rotate-2 sm:-rotate-3 shadow-[3px_3px_0_#000] hover:rotate-0 transition-transform select-none">
+            invert 180°,
+          </span>{" "}
+          and scale scales 10×.{" "}
+          <span className="bg-[#1283c8] text-white px-3 py-1.5 rounded-md inline-block mt-2 border-2 sm:border-3 border-black shadow-[4px_4px_0_#000] -rotate-1 sm:-rotate-1.5 hover:rotate-0 transition-transform select-none">
             Classical feature matching collapses.
           </span>
         </h2>

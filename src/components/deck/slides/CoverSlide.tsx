@@ -35,7 +35,7 @@ export function CoverSlide({ onGoToStudio, onGoToProblem }: CoverSlideProps) {
         {/* Tagline with highlighter mark */}
         <p className="font-display text-xl sm:text-3xl md:text-4xl text-white font-extrabold max-w-3xl leading-snug mb-6">
           A lunar correspondence tool that sells{" "}
-          <span className="bg-[#ef7618] text-black px-2 py-0.5 rounded border-2 border-black inline-block shadow-[2px_2px_0_#000]">
+          <span className="bg-[#ef7618] text-black px-2.5 py-1 rounded border-2 sm:border-3 border-black inline-block -rotate-1 sm:-rotate-2 shadow-[3px_3px_0_#000] hover:rotate-0 transition-transform select-none">
             thinking & sub-pixel precision,
           </span>{" "}
           not misaligned crater slides.
