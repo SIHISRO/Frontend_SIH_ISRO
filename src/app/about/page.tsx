@@ -58,8 +58,8 @@ export default function AboutPage() {
     },
     {
       step: "02",
-      title: "LoFTR CNN Backbone Feature Extraction",
-      desc: "Standard FPN extracts multi-scale convolutional feature maps at 1/8 and 1/2 of input dimensions without discrete keypoint detectors.",
+      title: "Lunar Feature Backbone Extraction",
+      desc: "Multi-scale CNN extracts coarse and fine feature maps from Chandrayaan-2 and reference images.",
     },
     {
       step: "03",

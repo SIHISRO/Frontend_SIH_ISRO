@@ -22,6 +22,9 @@ export const metadata: Metadata = {
     "Lunar Image Registration",
     "Homography",
   ],
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({

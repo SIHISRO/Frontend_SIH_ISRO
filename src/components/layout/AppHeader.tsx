@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { soundController } from "@/utils/soundController";
 import { Menu, X } from "lucide-react";
@@ -34,8 +35,15 @@ export function AppHeader() {
             onClick={() => soundController.playPop()}
             className="flex items-center gap-2.5 brutal-card-white py-1.5 px-3 hover:scale-105 active:scale-95 transition-transform"
           >
-            <div className="w-6 h-6 rounded-full bg-[#ef7618] border-2 border-black flex items-center justify-center font-display font-black text-xs text-white">
-              CV
+            <div className="w-7 h-7 rounded-lg overflow-hidden border-2 border-black shadow-[1px_1px_0_#000] flex-shrink-0 bg-black">
+              <Image
+                src="/favicon.png"
+                alt="Cosmic Vision Logo"
+                width={28}
+                height={28}
+                className="w-full h-full object-cover"
+                priority
+              />
             </div>
             <div className="flex items-center gap-1.5">
               <span className="font-display font-black text-base uppercase tracking-tight text-black">

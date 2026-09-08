@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import gsap from "gsap";
 import { soundController } from "@/utils/soundController";
 import {
   Camera,
@@ -12,8 +13,6 @@ import {
   Layers,
   Scale,
   Sun,
-  ShieldCheck,
-  Zap,
 } from "lucide-react";
 
 interface SensorsSlideProps {
@@ -21,7 +20,15 @@ interface SensorsSlideProps {
 }
 
 export function SensorsSlide({ onGoToStudio }: SensorsSlideProps) {
-  const [activeSensor, setActiveSensor] = useState<number>(0);
+  // LRO-NAC is selected by default (requirement 4)
+  const [activeSensor, setActiveSensor] = useState<number>(3);
+  const [displaySensor, setDisplaySensor] = useState<number>(3);
+  const isTransitioningRef = useRef<boolean>(false);
+  const cardContentRef = useRef<HTMLDivElement>(null);
+  const dockRef = useRef<HTMLDivElement>(null);
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const indicatorRef = useRef<HTMLDivElement>(null);
+
 
   const sensors = [
     {
@@ -38,6 +45,7 @@ export function SensorsSlide({ onGoToStudio }: SensorsSlideProps) {
       icon: Camera,
       ratio: "0.5× to Reference",
       invariance: "Sub-meter boulder & rim geometry",
+      tagline: "0.25m · Optical",
     },
     {
       id: "TMC-2",
@@ -53,6 +61,7 @@ export function SensorsSlide({ onGoToStudio }: SensorsSlideProps) {
       icon: Eye,
       ratio: "10× Scale Gap to OHRC",
       invariance: "Stereo parallax & elevation robustness",
+      tagline: "5m · Stereo 3D",
     },
     {
       id: "IIRS",
@@ -68,6 +77,7 @@ export function SensorsSlide({ onGoToStudio }: SensorsSlideProps) {
       icon: Disc,
       ratio: "160× Scale Gap to LRO",
       invariance: "Cross-spectral morphological rims",
+      tagline: "80m · Infrared",
     },
     {
       id: "LRO-NAC",
@@ -83,6 +93,7 @@ export function SensorsSlide({ onGoToStudio }: SensorsSlideProps) {
       icon: Satellite,
       ratio: "1.0× Fixed Coordinate Baseline",
       invariance: "Canonical selenographic map grid",
+      tagline: "0.5m · Reference",
     },
   ];
 
@@ -104,6 +115,87 @@ export function SensorsSlide({ onGoToStudio }: SensorsSlideProps) {
     },
   ];
 
+  // Move indicator to current tab
+  const positionIndicator = (animate = true) => {
+    const tabEl = tabRefs.current[activeSensor];
+    const dockEl = dockRef.current;
+    const indEl = indicatorRef.current;
+    if (!tabEl || !dockEl || !indEl) return;
+
+    const dockRect = dockEl.getBoundingClientRect();
+    const tabRect = tabEl.getBoundingClientRect();
+    const targetY = tabRect.top - dockRect.top + tabRect.height / 2 - 8;
+
+    if (animate) {
+      gsap.to(indEl, {
+        y: targetY,
+        duration: 0.28,
+        ease: "power2.out",
+      });
+    } else {
+      gsap.set(indEl, { y: targetY });
+    }
+  };
+
+  useEffect(() => {
+    positionIndicator(true);
+  }, [activeSensor]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      positionIndicator(false);
+    }, 50);
+
+    const handleResize = () => positionIndicator(false);
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const handleSensorSelect = (idx: number) => {
+    if (idx === activeSensor || isTransitioningRef.current) return;
+
+    soundController.playPop();
+    setActiveSensor(idx);
+
+    if (cardContentRef.current) {
+      isTransitioningRef.current = true;
+      // Fade & slide out current content (fast & subtle: 120ms)
+      gsap.to(cardContentRef.current, {
+        opacity: 0,
+        y: -8,
+        duration: 0.12,
+        ease: "power2.in",
+        onComplete: () => {
+          setDisplaySensor(idx);
+          // Fade & slide in new content (fast & subtle: 180ms)
+          gsap.fromTo(
+            cardContentRef.current,
+            { opacity: 0, y: 8 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.18,
+              ease: "power2.out",
+              clearProps: "transform,opacity",
+              onComplete: () => {
+                isTransitioningRef.current = false;
+              },
+            }
+          );
+        },
+      });
+    } else {
+      setDisplaySensor(idx);
+    }
+  };
+
+  const s = sensors[displaySensor];
+  const Icon = s.icon;
+
   return (
     <div className="w-full min-h-[calc(100vh-8rem)] flex flex-col justify-center items-center px-4 sm:px-8 py-8 relative">
       <div className="max-w-6xl mx-auto w-full text-center relative z-10">
@@ -116,105 +208,196 @@ export function SensorsSlide({ onGoToStudio }: SensorsSlideProps) {
           Chandrayaan-2 Optical Payloads ↔ NASA LRO NAC Reference Baseline
         </p>
 
-        {/* Tab Selector Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-6">
-          {sensors.map((sensor, idx) => (
-            <button
-              key={sensor.id}
-              onClick={() => {
-                soundController.playPop();
-                setActiveSensor(idx);
-              }}
-              className={`font-mono text-xs sm:text-sm font-bold uppercase py-2 px-4 rounded-lg border-3 border-black transition-all ${
-                activeSensor === idx
-                  ? "bg-[#ef7618] text-black shadow-[4px_4px_0_#000000] -translate-y-1"
-                  : "bg-white hover:bg-[#BFC9D1]/30 shadow-[2px_2px_0_#000000]"
-              }`}
+        {/* Sensor Cockpit Section: Docked Vertical Navigation + Main Sensor Card */}
+        <div className="max-w-5xl mx-auto w-full mb-6 text-left">
+          <div className="flex flex-col md:flex-row items-stretch gap-3 lg:gap-3.5 relative">
+            
+            {/* Left Vertical Dock Navigation */}
+            <div
+              ref={dockRef}
+              className="w-full md:w-52 lg:w-60 shrink-0 flex flex-col justify-between relative"
             >
-              {sensor.id}
-            </button>
-          ))}
-        </div>
+              {/* Telemetry Header (Desktop) */}
+              <div className="hidden md:flex items-center justify-between px-3 py-2 bg-[#FAF7F2] border-3 border-black rounded-xl shadow-[3px_3px_0_#000] mb-2.5">
+                <div className="flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#ef7618] border border-black animate-pulse" />
+                  <span className="font-mono text-[11px] font-black uppercase text-black tracking-wider">
+                    SENSOR DOCK
+                  </span>
+                </div>
+                <span className="font-mono text-[10px] font-black px-1.5 py-0.5 bg-white border border-black rounded shadow-[1px_1px_0_#000]">
+                  0{activeSensor + 1}/04
+                </span>
+              </div>
 
-        {/* Active Sensor Display Card */}
-        {(() => {
-          const s = sensors[activeSensor];
-          const Icon = s.icon;
-          return (
-            <div className="brutal-card p-6 sm:p-7 text-left relative max-w-5xl mx-auto mb-6 shadow-[6px_6px_0_0_#000000] border-3 border-black rounded-2xl bg-white">
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b-3 border-black pb-4 mb-5">
-                <div className="flex items-center gap-4">
-                  <div className={`w-14 h-14 rounded-2xl border-3 border-black flex items-center justify-center ${s.color} shadow-[3px_3px_0_#000]`}>
-                    <Icon className="w-8 h-8 stroke-[2.5]" />
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <h3 className="font-display text-2xl sm:text-3xl uppercase font-black text-black">
-                        {s.id}
-                      </h3>
-                      <span className="text-xs font-mono font-bold px-2 py-0.5 border border-black rounded bg-white">
-                        {s.role}
-                      </span>
+              {/* Four Sensor Tabs (Horizontal on mobile/tablet, vertical stack on desktop) */}
+              <div className="flex flex-row md:flex-col overflow-x-auto md:overflow-visible no-scrollbar gap-2 md:gap-2.5 w-full flex-1 md:justify-between mb-3 md:mb-0">
+                {sensors.map((sensor, idx) => {
+                  const SensorIcon = sensor.icon;
+                  const isActive = activeSensor === idx;
+                  return (
+                    <button
+                      key={sensor.id}
+                      ref={(el) => {
+                        tabRefs.current[idx] = el;
+                      }}
+                      onClick={() => handleSensorSelect(idx)}
+                      className={`font-mono text-xs sm:text-sm font-bold uppercase transition-all rounded-xl border-3 border-black text-left flex items-center justify-between shrink-0 md:w-full ${
+                        isActive
+                          ? "bg-[#ef7618] text-black shadow-[4px_4px_0_#000000] -translate-y-0.5 md:translate-y-0 md:translate-x-1.5 font-black"
+                          : "bg-white text-black hover:bg-[#FAF7F2] hover:-translate-y-0.5 md:hover:translate-y-0 md:hover:translate-x-0.5 shadow-[2px_2px_0_#000000] hover:shadow-[3px_3px_0_#000000]"
+                      } p-2 sm:p-2.5 md:p-3 lg:p-3.5`}
+                    >
+                      <div className="flex items-center gap-2 sm:gap-2.5 min-w-0">
+                        <div
+                          className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg border-2 border-black flex items-center justify-center shrink-0 ${
+                            isActive ? "bg-black text-[#ef7618]" : sensor.color
+                          }`}
+                        >
+                          <SensorIcon className="w-4 h-4 stroke-[2.5]" />
+                        </div>
+                        <div className="text-left min-w-0">
+                          <div className="font-display font-black text-xs sm:text-sm uppercase tracking-tight leading-tight truncate">
+                            {sensor.id}
+                          </div>
+                          <div className="hidden md:block font-mono text-[10px] font-bold text-black/65 truncate">
+                            {sensor.tagline}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Right Indicator Arrow for Active Tab */}
+                      <div className="hidden md:flex items-center ml-1 shrink-0">
+                        {isActive ? (
+                          <div className="w-5 h-5 rounded bg-black text-[#ef7618] flex items-center justify-center shadow-[1px_1px_0_#000]">
+                            <ArrowRight className="w-3 h-3 stroke-[3]" />
+                          </div>
+                        ) : (
+                          <div className="w-5 h-5 rounded bg-black/5 border border-black/15 flex items-center justify-center opacity-40">
+                            <span className="text-[10px] font-mono font-bold">0{idx + 1}</span>
+                          </div>
+                        )}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Moving Dock Indicator Pin at Seam (Desktop) */}
+              <div
+                ref={indicatorRef}
+                className="hidden md:flex absolute -right-2 top-0 z-30 pointer-events-none items-center justify-center"
+                style={{ transform: "translateY(0px)" }}
+              >
+                <div className="w-4 h-4 bg-[#ef7618] border-2 border-black rotate-45 shadow-[1px_1px_0_#000]" />
+              </div>
+
+              {/* Bottom Telemetry Status Pill (Desktop) */}
+              <div className="hidden md:flex items-center justify-between p-2.5 bg-[#FAF7F2] border-2 border-black rounded-xl mt-2.5 shadow-[2px_2px_0_#000]">
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-black" />
+                  <span className="text-[10px] font-mono font-bold text-black/70 uppercase">Frame Type</span>
+                </div>
+                <span className="text-[10px] font-mono font-black text-black uppercase bg-white px-2 py-0.5 rounded border border-black">
+                  {sensors[activeSensor].role.includes("Reference") ? "Fixed Ref" : "Moving Source"}
+                </span>
+              </div>
+            </div>
+
+            {/* Main Sensor Information Card */}
+            <div className="flex-1 min-w-0 brutal-card p-6 sm:p-7 text-left relative shadow-[6px_6px_0_0_#000000] border-3 border-black rounded-2xl bg-white flex flex-col justify-between">
+              <div ref={cardContentRef} className="w-full flex-1 flex flex-col justify-between">
+                {/* Header */}
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b-3 border-black pb-4 mb-5">
+                  <div className="flex items-center gap-4">
+                    <div
+                      className={`w-14 h-14 rounded-2xl border-3 border-black flex items-center justify-center ${s.color} shadow-[3px_3px_0_#000]`}
+                    >
+                      <Icon className="w-8 h-8 stroke-[2.5]" />
                     </div>
-                    <p className="font-sans text-xs sm:text-sm text-black/75 font-semibold">
-                      {s.name} · {s.mission}
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <h3 className="font-display text-2xl sm:text-3xl uppercase font-black text-black">
+                          {s.id}
+                        </h3>
+                        <span className="text-xs font-mono font-bold px-2 py-0.5 border border-black rounded bg-white">
+                          {s.role}
+                        </span>
+                      </div>
+                      <p className="font-sans text-xs sm:text-sm text-black/75 font-semibold">
+                        {s.name} · {s.mission}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="text-left md:text-right">
+                    <span className="text-xs font-mono font-bold block text-black/60 uppercase">
+                      Spatial Resolution
+                    </span>
+                    <span className="font-mono text-sm sm:text-base font-black text-black bg-[#ef7618] px-2.5 py-1 border border-black rounded shadow-[2px_2px_0_#000] inline-block">
+                      {s.resolution}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Specs Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mb-5">
+                  <div className="p-3.5 bg-[#FAF7F2] border-2 border-black rounded-lg">
+                    <span className="text-[10px] font-mono uppercase font-bold text-black/60 block mb-0.5">
+                      Swath Coverage
+                    </span>
+                    <span className="font-sans text-xs sm:text-sm font-black text-black">
+                      {s.swath}
+                    </span>
+                  </div>
+                  <div className="p-3.5 bg-[#FAF7F2] border-2 border-black rounded-lg">
+                    <span className="text-[10px] font-mono uppercase font-bold text-black/60 block mb-0.5">
+                      Spectral Range
+                    </span>
+                    <span className="font-sans text-xs sm:text-sm font-black text-black">
+                      {s.wavelength}
+                    </span>
+                  </div>
+                  <div className="p-3.5 bg-[#FAF7F2] border-2 border-black rounded-lg">
+                    <span className="text-[10px] font-mono uppercase font-bold text-black/60 block mb-0.5">
+                      Scale Ratio / Target
+                    </span>
+                    <span className="font-sans text-xs sm:text-sm font-black text-[#1283c8]">
+                      {s.ratio}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Highlight callout */}
+                <div className="p-4 bg-[#ef7618]/15 border-2 border-black rounded-lg mb-5 flex items-start gap-3">
+                  <Check className="w-5 h-5 text-black stroke-[3] shrink-0 mt-0.5" />
+                  <div>
+                    <strong className="font-display text-xs sm:text-sm uppercase text-black block mb-0.5">
+                      {s.highlight}
+                    </strong>
+                    <p className="text-xs font-sans text-black/80 leading-relaxed font-medium">
+                      {s.desc}
                     </p>
                   </div>
                 </div>
 
-                <div className="text-left md:text-right">
-                  <span className="text-xs font-mono font-bold block text-black/60 uppercase">Spatial Resolution</span>
-                  <span className="font-mono text-sm sm:text-base font-black text-black bg-[#ef7618] px-2.5 py-1 border border-black rounded shadow-[2px_2px_0_#000] inline-block">
-                    {s.resolution}
-                  </span>
+                {/* Bottom Launch Button */}
+                <div className="flex justify-end">
+                  <button
+                    onClick={() => {
+                      soundController.playPop();
+                      onGoToStudio();
+                    }}
+                    className="brutal-btn py-2 px-5 text-xs sm:text-sm flex items-center gap-2 shadow-[3px_3px_0_#000]"
+                  >
+                    <span>REGISTER {s.id} IN STUDIO</span>
+                    <ArrowRight className="w-4 h-4 stroke-[2.5]" />
+                  </button>
                 </div>
-              </div>
-
-              {/* Specs Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mb-5">
-                <div className="p-3.5 bg-[#FAF7F2] border-2 border-black rounded-lg">
-                  <span className="text-[10px] font-mono uppercase font-bold text-black/60 block mb-0.5">Swath Coverage</span>
-                  <span className="font-sans text-xs sm:text-sm font-black text-black">{s.swath}</span>
-                </div>
-                <div className="p-3.5 bg-[#FAF7F2] border-2 border-black rounded-lg">
-                  <span className="text-[10px] font-mono uppercase font-bold text-black/60 block mb-0.5">Spectral Range</span>
-                  <span className="font-sans text-xs sm:text-sm font-black text-black">{s.wavelength}</span>
-                </div>
-                <div className="p-3.5 bg-[#FAF7F2] border-2 border-black rounded-lg">
-                  <span className="text-[10px] font-mono uppercase font-bold text-black/60 block mb-0.5">Scale Ratio / Target</span>
-                  <span className="font-sans text-xs sm:text-sm font-black text-[#1283c8]">{s.ratio}</span>
-                </div>
-              </div>
-
-              {/* Highlight callout */}
-              <div className="p-4 bg-[#ef7618]/15 border-2 border-black rounded-lg mb-5 flex items-start gap-3">
-                <Check className="w-5 h-5 text-black stroke-[3] shrink-0 mt-0.5" />
-                <div>
-                  <strong className="font-display text-xs sm:text-sm uppercase text-black block mb-0.5">
-                    {s.highlight}
-                  </strong>
-                  <p className="text-xs font-sans text-black/80 leading-relaxed font-medium">
-                    {s.desc}
-                  </p>
-                </div>
-              </div>
-
-              {/* Bottom Launch Button */}
-              <div className="flex justify-end">
-                <button
-                  onClick={() => {
-                    soundController.playPop();
-                    onGoToStudio();
-                  }}
-                  className="brutal-btn py-2 px-5 text-xs sm:text-sm flex items-center gap-2 shadow-[3px_3px_0_#000]"
-                >
-                  <span>REGISTER {s.id} IN STUDIO</span>
-                  <ArrowRight className="w-4 h-4 stroke-[2.5]" />
-                </button>
               </div>
             </div>
-          );
-        })()}
+          </div>
+        </div>
 
         {/* --- NEW FILLED SECTION: CROSS-MISSION DATASET REGISTRATION MATRIX --- */}
         <div className="brutal-card p-6 sm:p-7 bg-[#FAF7F2] border-3 border-black shadow-[6px_6px_0_#000] rounded-2xl max-w-5xl mx-auto mb-6 text-left">

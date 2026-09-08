@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
+import Image from "next/image";
 import { soundController } from "@/utils/soundController";
 import { useImageUpload } from "@/hooks/useImageUpload";
 import { usePrediction } from "@/hooks/usePrediction";
@@ -365,8 +366,15 @@ export function DeckContainer() {
           }}
           className="pointer-events-auto brutal-card-white py-1.5 px-3 flex items-center gap-2 hover:scale-105 active:scale-95 transition-transform"
         >
-          <div className="w-5 h-5 rounded-full bg-[#ef7618] border-2 border-black flex items-center justify-center font-display font-black text-[10px] text-black">
-            CV
+          <div className="w-6 h-6 rounded-lg overflow-hidden border-2 border-black shadow-[1px_1px_0_#000] flex-shrink-0 bg-black">
+            <Image
+              src="/favicon.png"
+              alt="Cosmic Vision Logo"
+              width={24}
+              height={24}
+              className="w-full h-full object-cover"
+              priority
+            />
           </div>
           <span className="font-display font-black text-sm uppercase tracking-tight text-black">
             COSMIC VISION

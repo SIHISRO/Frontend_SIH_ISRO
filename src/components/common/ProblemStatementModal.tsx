@@ -84,9 +84,9 @@ export function ProblemStatementModal({ isOpen, onClose }: ProblemStatementModal
               </div>
             </div>
 
-            <div className="h-8 w-px bg-black/20 hidden sm:block" />
+            <div className="h-8 w-px bg-black/20 hidden md:block" />
 
-            <div className="hidden sm:block">
+            <div className="hidden md:block">
               <span className="font-mono text-[10px] font-bold text-black/60 uppercase block">
                 MINISTRY OF EDUCATION & ISRO
               </span>
