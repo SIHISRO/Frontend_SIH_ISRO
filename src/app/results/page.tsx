@@ -105,8 +105,8 @@ export default function ResultsPage() {
         />
       )}
 
-      {/* 3. Metrics Grid (4 cards: matches, inliers, ratio, RMSE) */}
-      <MetricsGrid metrics={metrics} />
+      {/* 3. Metrics Grid (4 cards: matches, inliers, ratio, transform) */}
+      <MetricsGrid metrics={metrics} homography={homography} />
 
       {/* 4. Plain Language Registration Status Banner */}
       <RegistrationStatus metrics={metrics} homography={homography} />

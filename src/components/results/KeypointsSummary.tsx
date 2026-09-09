@@ -73,10 +73,10 @@ export function KeypointsSummary({
           </div>
           <div>
             <h3 className="text-base font-bold text-[#EAEFEF]">
-              Sub-Pixel Correspondence Point Cloud
+              Keypoint Correspondence Point Cloud
             </h3>
             <p className="text-xs text-[#BFC9D1] font-mono">
-              {totalPoints} total matches detected · {inlierPoints} geometric inliers
+              {totalPoints} total matches detected · {inlierPoints} inlier matches
             </p>
           </div>
         </div>

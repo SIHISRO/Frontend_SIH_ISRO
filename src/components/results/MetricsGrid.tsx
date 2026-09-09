@@ -8,14 +8,15 @@ import {
   getInlierRatioDisplay,
   getRMSEDisplay,
 } from "@/utils/metricsUtils";
-import { Target, CheckCheck, Percent, Gauge } from "lucide-react";
+import { Target, CheckCheck, Percent, Gauge, Layers } from "lucide-react";
 
 export interface MetricsGridProps {
   metrics: PredictMetrics;
+  homography?: number[][] | null;
   className?: string;
 }
 
-export function MetricsGrid({ metrics, className = "" }: MetricsGridProps) {
+export function MetricsGrid({ metrics, homography, className = "" }: MetricsGridProps) {
   const inlierRatioVal = getInlierRatio(metrics);
   const ratioDisplay = getInlierRatioDisplay(metrics);
   const rmseDisplay = getRMSEDisplay(metrics);
@@ -39,14 +40,14 @@ export function MetricsGrid({ metrics, className = "" }: MetricsGridProps) {
         subtitle="Initial detector-free pairs"
       />
 
-      {/* 2. Inlier Count */}
+      {/* 2. Inlier Matches */}
       <MetricsCard
         label="Inlier Matches"
         value={metrics.inliers_count.toLocaleString()}
         icon={<CheckCheck className="w-4 h-4" />}
         variant="brand"
         tooltip="Correspondences verified by RANSAC as geometrically conforming to projective planar transformation."
-        subtitle="Sub-pixel verified"
+        subtitle="RANSAC verified inliers"
       />
 
       {/* 3. Inlier Ratio */}
@@ -65,15 +66,26 @@ export function MetricsGrid({ metrics, className = "" }: MetricsGridProps) {
         }
       />
 
-      {/* 4. RMSE */}
-      <MetricsCard
-        label="Reprojection RMSE"
-        value={rmseDisplay}
-        icon={<Gauge className="w-4 h-4" />}
-        variant={metrics.rmse !== undefined ? "brand" : "neutral"}
-        tooltip="Root Mean Square Error of keypoint reprojection in pixels. Sub-pixel accuracy (< 1.0 px) is the target."
-        subtitle={metrics.rmse !== undefined ? "Sub-pixel error" : "TBD (Evaluated via H-matrix)"}
-      />
+      {/* 4. Homography Matrix or RMSE */}
+      {metrics.rmse !== undefined ? (
+        <MetricsCard
+          label="Reprojection RMSE"
+          value={rmseDisplay}
+          icon={<Gauge className="w-4 h-4" />}
+          variant="brand"
+          tooltip="Root Mean Square Error of keypoint reprojection in pixels."
+          subtitle="Geometric reprojection error"
+        />
+      ) : (
+        <MetricsCard
+          label="Transformation Matrix"
+          value={homography && homography.length >= 3 ? "3×3 Valid" : "Projective H"}
+          icon={<Layers className="w-4 h-4" />}
+          variant="brand"
+          tooltip="3×3 Projective Homography Matrix computed from verified geometric inliers."
+          subtitle="Planar alignment matrix"
+        />
+      )}
     </div>
   );
 }

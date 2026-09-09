@@ -24,6 +24,8 @@ export async function predictImageRegistration(
   signal?: AbortSignal
 ): Promise<PredictResponse> {
   const formData = new FormData();
+  formData.append("ref_img", reference, reference.name);
+  formData.append("src_img", source, source.name);
   formData.append("image1", reference, reference.name);
   formData.append("image2", source, source.name);
 

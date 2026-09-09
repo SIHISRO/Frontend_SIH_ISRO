@@ -41,7 +41,7 @@ export function ResultsSlide({ result, onGoToStudio }: ResultsSlideProps) {
             No Active Correspondence Telemetry
           </h3>
           <p className="font-sans text-xs sm:text-sm text-black/75 mb-6 leading-relaxed">
-            Run the registration pipeline on Slide 04 (Studio) with your own lunar images or the 1-click Chandrayaan-2 sample pair to view matches, homography, and sub-pixel metrics.
+            Run the registration pipeline on Slide 05 (Studio) with your own lunar images or the 1-click Chandrayaan-2 sample pair to view matches, homography, and sub-pixel metrics.
           </p>
           <button
             onClick={() => {
@@ -60,9 +60,8 @@ export function ResultsSlide({ result, onGoToStudio }: ResultsSlideProps) {
 
   const { metrics, homography, visualizations } = result;
   const inlierCount = metrics?.inliers_count ?? 0;
-  const totalMatches = metrics?.total_matches ?? inlierCount;
-  const inlierRatio = totalMatches > 0 ? (inlierCount / totalMatches) * 100 : 92.4;
-  const rmseVal = metrics?.rmse ?? 0.38;
+  const totalMatches = metrics?.total_matches ?? 0;
+  const inlierRatio = totalMatches > 0 ? (inlierCount / totalMatches) * 100 : 0;
 
   const handleCopyMatrix = () => {
     soundController.playClick();
@@ -130,12 +129,22 @@ export function ResultsSlide({ result, onGoToStudio }: ResultsSlideProps) {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
           
           <div className="brutal-card p-4 text-left shadow-[4px_4px_0_#000]">
-            <span className="font-mono text-[11px] font-bold text-black/60 uppercase block">Inlier Keypoints</span>
+            <span className="font-mono text-[11px] font-bold text-black/60 uppercase block">Total Matches</span>
+            <span className="font-display text-3xl sm:text-4xl font-black text-black block mt-1">
+              {totalMatches.toLocaleString()}
+            </span>
+            <span className="text-[11px] font-mono text-black/70 mt-1 block">
+              Raw LoFTR correspondences
+            </span>
+          </div>
+
+          <div className="brutal-card p-4 text-left shadow-[4px_4px_0_#000] bg-[#ef7618]">
+            <span className="font-mono text-[11px] font-bold text-black/80 uppercase block">Inlier Matches</span>
             <span className="font-display text-3xl sm:text-4xl font-black text-black block mt-1">
               {inlierCount.toLocaleString()}
             </span>
-            <span className="text-[11px] font-mono text-black/70 mt-1 block">
-              Uniform spatial distribution
+            <span className="text-[11px] font-mono text-black font-bold mt-1 block">
+              ★ RANSAC VERIFIED INLIERS
             </span>
           </div>
 
@@ -145,17 +154,7 @@ export function ResultsSlide({ result, onGoToStudio }: ResultsSlideProps) {
               {inlierRatio.toFixed(1)}%
             </span>
             <span className="text-[11px] font-mono text-black/70 mt-1 block">
-              Confidence threshold ≥ 0.70
-            </span>
-          </div>
-
-          <div className="brutal-card p-4 text-left shadow-[4px_4px_0_#000] bg-[#ef7618]">
-            <span className="font-mono text-[11px] font-bold text-black/80 uppercase block">Geometric RMSE</span>
-            <span className="font-display text-3xl sm:text-4xl font-black text-black block mt-1">
-              {typeof rmseVal === "number" ? rmseVal.toFixed(3) : rmseVal} <span className="text-sm font-mono">px</span>
-            </span>
-            <span className="text-[11px] font-mono text-black font-bold mt-1 block">
-              ★ SUB-PIXEL ACCURACY ACHIEVED
+              {totalMatches > 0 ? "Inliers / Total detected" : "No correspondences detected"}
             </span>
           </div>
 
@@ -302,7 +301,7 @@ export function ResultsSlide({ result, onGoToStudio }: ResultsSlideProps) {
                 </span>
               </div>
               <p className="text-[11px] font-mono text-black mt-1 leading-snug">
-                Satisfies sub-pixel threshold (&lt; 0.50 px) & uniform regolith distribution constraint.
+                Verified geometric inliers & uniform regolith distribution constraint.
               </p>
             </div>
 

@@ -18,7 +18,6 @@ import { SensorsSlide } from "./slides/SensorsSlide";
 import { RegistrationSlide } from "./slides/RegistrationSlide";
 import { ResultsSlide } from "./slides/ResultsSlide";
 import { ArchitectureSlide } from "./slides/ArchitectureSlide";
-import { FeasibilitySlide } from "./slides/FeasibilitySlide";
 import { ImpactSlide } from "./slides/ImpactSlide";
 import { IntroRubLoader } from "./IntroRubLoader";
 import { bgmController } from "@/utils/bgmController";
@@ -76,12 +75,6 @@ export function DeckContainer() {
       subtitle: "OHRC (0.25m), TMC-2 (stereo 5m), IIRS (80m IR), & LRO NAC baseline.",
       tag: "SENSORS",
       color: "#EAEFEF",
-    },
-    {
-      title: "FEASIBILITY & VIABILITY",
-      subtitle: "Can we build it? Can it work? Can it scale? Technical & deployment viability.",
-      tag: "FEASIBILITY",
-      color: "#F3E6D6",
     },
     {
       title: "ML ARCHITECTURE",
@@ -279,8 +272,8 @@ export function DeckContainer() {
         sourcePreview: URL.createObjectURL(sourceFile),
       });
 
-      // Automatically advance to Results Slide (Slide index 6)
-      goToSlide(6);
+      // Automatically advance to Results Slide (Slide index 5)
+      goToSlide(5);
     } else {
       toast.error("Registration pipeline encountered an error.");
     }
@@ -291,7 +284,7 @@ export function DeckContainer() {
       case 0:
         return (
           <CoverSlide
-            onGoToStudio={() => goToSlide(5)}
+            onGoToStudio={() => goToSlide(4)}
             onGoToProblem={() => goToSlide(1)}
           />
         );
@@ -304,14 +297,12 @@ export function DeckContainer() {
       case 2:
         return (
           <SensorsSlide
-            onGoToStudio={() => goToSlide(5)}
+            onGoToStudio={() => goToSlide(4)}
           />
         );
       case 3:
-        return <FeasibilitySlide />;
-      case 4:
         return <ArchitectureSlide />;
-      case 5:
+      case 4:
         return (
           <RegistrationSlide
             referenceFile={referenceFile}
@@ -328,18 +319,18 @@ export function DeckContainer() {
             error={error}
           />
         );
-      case 6:
+      case 5:
         return (
           <ResultsSlide
             result={result}
             meta={meta}
-            onGoToStudio={() => goToSlide(5)}
+            onGoToStudio={() => goToSlide(4)}
           />
         );
-      case 7:
+      case 6:
         return (
           <ImpactSlide
-            onGoToStudio={() => goToSlide(5)}
+            onGoToStudio={() => goToSlide(4)}
           />
         );
       default:

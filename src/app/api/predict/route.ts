@@ -3,31 +3,41 @@ import { NextRequest, NextResponse } from "next/server";
 export const maxDuration = 120; // 120 seconds timeout for LoFTR inference
 
 export async function POST(req: NextRequest) {
-  const backendBaseUrl = process.env.FASTAPI_BASE_URL || "http://localhost:8000";
-  const targetUrl = `${backendBaseUrl.replace(/\/+$/, "")}/api/v1/predict`;
+  const rawBackendUrl = process.env.FASTAPI_BASE_URL || "http://3.109.52.22:8000";
+  const backendBaseUrl = rawBackendUrl.trim().replace(/\/+$/, "");
+  const targetUrl = `${backendBaseUrl}/api/v1/predict`;
 
   try {
     const incomingFormData = await req.formData();
-    const image1 = incomingFormData.get("image1");
-    const image2 = incomingFormData.get("image2");
+    const image1 = incomingFormData.get("ref_img") || incomingFormData.get("image1");
+    const image2 = incomingFormData.get("src_img") || incomingFormData.get("image2");
 
     if (!image1 || !(image1 instanceof Blob)) {
       return NextResponse.json(
-        { detail: "Missing or invalid 'image1' (Reference Image)." },
+        { detail: "Missing or invalid Reference Image ('ref_img' or 'image1')." },
         { status: 422 }
       );
     }
 
     if (!image2 || !(image2 instanceof Blob)) {
       return NextResponse.json(
-        { detail: "Missing or invalid 'image2' (Source Image)." },
+        { detail: "Missing or invalid Source Image ('src_img' or 'image2')." },
         { status: 422 }
       );
     }
 
+    // Backend expects ref_img and src_img (exactly 2 files)
     const outgoingFormData = new FormData();
-    outgoingFormData.append("image1", image1, (image1 as File).name || "reference.jpg");
-    outgoingFormData.append("image2", image2, (image2 as File).name || "source.jpg");
+    outgoingFormData.append(
+      "ref_img",
+      image1,
+      (image1 as File).name || "reference.png"
+    );
+    outgoingFormData.append(
+      "src_img",
+      image2,
+      (image2 as File).name || "source.png"
+    );
 
     // 120 second timeout controller
     const controller = new AbortController();

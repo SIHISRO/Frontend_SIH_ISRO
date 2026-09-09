@@ -49,7 +49,7 @@ export function StickyNotesModal({ isOpen, onClose }: StickyNoteProps) {
             </ul>
           </div>
           <p className="text-xs text-black/75">
-            Tip: On <strong>Slide 06 (Registration Lab)</strong>, click <em>&ldquo;Load Sample Chandrayaan-2 Pair&rdquo;</em> to run instant sub-pixel LoFTR homography without searching for files!
+            Tip: On <strong>Slide 05 (Registration Lab)</strong>, click <em>&ldquo;Load Sample Chandrayaan-2 Pair&rdquo;</em> to run instant sub-pixel LoFTR homography without searching for files!
           </p>
         </div>
 
