@@ -97,17 +97,17 @@ export function ResultsSlide({ result, onGoToStudio }: ResultsSlideProps) {
       <div className="max-w-6xl mx-auto w-full relative z-10">
         
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b-3 border-black pb-4 mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 border-b-2 sm:border-b-3 border-black pb-3.5 sm:pb-4 mb-4 sm:mb-6">
           <div>
-            <h2 className="font-display text-2xl sm:text-4xl uppercase font-black tracking-tight text-black">
+            <h2 className="font-display text-xl xs:text-2xl sm:text-4xl uppercase font-black tracking-tight text-black">
               Correspondence & Metrics Report
             </h2>
           </div>
 
-          <div className="flex items-center gap-2 self-start sm:self-auto">
+          <div className="flex flex-wrap items-center gap-2 self-start sm:self-auto">
             <button
               onClick={handleExportJSON}
-              className="brutal-btn-white py-1.5 px-3 text-xs font-mono font-bold flex items-center gap-1.5"
+              className="brutal-btn-white py-1.5 px-2.5 sm:px-3 text-[11px] sm:text-xs font-mono font-bold flex items-center gap-1.5"
             >
               <Download className="w-3.5 h-3.5" />
               <span>EXPORT JSON</span>
@@ -117,7 +117,7 @@ export function ResultsSlide({ result, onGoToStudio }: ResultsSlideProps) {
                 soundController.playPop();
                 onGoToStudio();
               }}
-              className="brutal-btn py-1.5 px-3 text-xs font-mono font-bold flex items-center gap-1.5"
+              className="brutal-btn py-1.5 px-2.5 sm:px-3 text-[11px] sm:text-xs font-mono font-bold flex items-center gap-1.5"
             >
               <SlidersHorizontal className="w-3.5 h-3.5" />
               <span>NEW REGISTRATION</span>
@@ -126,45 +126,45 @@ export function ResultsSlide({ result, onGoToStudio }: ResultsSlideProps) {
         </div>
 
         {/* 4 Neo-Brutalist Metric Cards */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 mb-6">
           
-          <div className="brutal-card p-4 text-left shadow-[4px_4px_0_#000]">
-            <span className="font-mono text-[11px] font-bold text-black/60 uppercase block">Total Matches</span>
-            <span className="font-display text-3xl sm:text-4xl font-black text-black block mt-1">
+          <div className="brutal-card p-3 sm:p-4 text-left shadow-[3px_3px_0_#000] sm:shadow-[4px_4px_0_#000]">
+            <span className="font-mono text-[10px] sm:text-[11px] font-bold text-black/60 uppercase block">Total Matches</span>
+            <span className="font-display text-2xl sm:text-4xl font-black text-black block mt-1">
               {totalMatches.toLocaleString()}
             </span>
-            <span className="text-[11px] font-mono text-black/70 mt-1 block">
-              Raw LoFTR correspondences
+            <span className="text-[10px] sm:text-[11px] font-mono text-black/70 mt-1 block">
+              Raw LoFTR matches
             </span>
           </div>
 
-          <div className="brutal-card p-4 text-left shadow-[4px_4px_0_#000] bg-[#ef7618]">
-            <span className="font-mono text-[11px] font-bold text-black/80 uppercase block">Inlier Matches</span>
-            <span className="font-display text-3xl sm:text-4xl font-black text-black block mt-1">
+          <div className="brutal-card p-3 sm:p-4 text-left shadow-[3px_3px_0_#000] sm:shadow-[4px_4px_0_#000] bg-[#ef7618]">
+            <span className="font-mono text-[10px] sm:text-[11px] font-bold text-black/80 uppercase block">Inlier Matches</span>
+            <span className="font-display text-2xl sm:text-4xl font-black text-black block mt-1">
               {inlierCount.toLocaleString()}
             </span>
-            <span className="text-[11px] font-mono text-black font-bold mt-1 block">
-              ★ RANSAC VERIFIED INLIERS
+            <span className="text-[10px] sm:text-[11px] font-mono text-black font-bold mt-1 block truncate">
+              ★ RANSAC INLIERS
             </span>
           </div>
 
-          <div className="brutal-card p-4 text-left shadow-[4px_4px_0_#000]">
-            <span className="font-mono text-[11px] font-bold text-black/60 uppercase block">Inlier Match Ratio</span>
-            <span className="font-display text-3xl sm:text-4xl font-black text-black block mt-1">
+          <div className="brutal-card p-3 sm:p-4 text-left shadow-[3px_3px_0_#000] sm:shadow-[4px_4px_0_#000]">
+            <span className="font-mono text-[10px] sm:text-[11px] font-bold text-black/60 uppercase block">Inlier Match Ratio</span>
+            <span className="font-display text-2xl sm:text-4xl font-black text-black block mt-1">
               {inlierRatio.toFixed(1)}%
             </span>
-            <span className="text-[11px] font-mono text-black/70 mt-1 block">
-              {totalMatches > 0 ? "Inliers / Total detected" : "No correspondences detected"}
+            <span className="text-[10px] sm:text-[11px] font-mono text-black/70 mt-1 block truncate">
+              {totalMatches > 0 ? "Inliers / Total" : "No matches"}
             </span>
           </div>
 
-          <div className="brutal-card p-4 text-left shadow-[4px_4px_0_#000]">
-            <span className="font-mono text-[11px] font-bold text-black/60 uppercase block">Homography Solution</span>
-            <span className="font-display text-2xl sm:text-3xl font-black text-black block mt-1">
+          <div className="brutal-card p-3 sm:p-4 text-left shadow-[3px_3px_0_#000] sm:shadow-[4px_4px_0_#000]">
+            <span className="font-mono text-[10px] sm:text-[11px] font-bold text-black/60 uppercase block">Homography</span>
+            <span className="font-display text-xl sm:text-3xl font-black text-black block mt-1">
               PROJ 3×3
             </span>
-            <span className="text-[11px] font-mono text-black/70 mt-1 block">
-              RANSAC inlier consensus
+            <span className="text-[10px] sm:text-[11px] font-mono text-black/70 mt-1 block truncate">
+              Consensus Matrix
             </span>
           </div>
 
@@ -174,7 +174,7 @@ export function ResultsSlide({ result, onGoToStudio }: ResultsSlideProps) {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           
           {/* Main Visualizer Container */}
-          <div className="lg:col-span-2 brutal-card p-5 bg-white shadow-[6px_6px_0_#000]">
+          <div className="lg:col-span-2 brutal-card p-3.5 sm:p-5 bg-white shadow-[4px_4px_0_#000] sm:shadow-[6px_6px_0_#000]">
             <div className="flex items-center justify-between border-b-2 border-black pb-3 mb-4">
               <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
                 <button
@@ -182,7 +182,7 @@ export function ResultsSlide({ result, onGoToStudio }: ResultsSlideProps) {
                     soundController.playClick();
                     setActiveTab("matches");
                   }}
-                  className={`text-xs font-mono font-bold uppercase px-3 py-1.5 rounded border-2 border-black transition-all ${
+                  className={`text-[11px] sm:text-xs font-mono font-bold uppercase px-2.5 sm:px-3 py-1 sm:py-1.5 rounded border-2 border-black transition-all ${
                     activeTab === "matches"
                       ? "bg-[#ef7618] shadow-[2px_2px_0_#000] font-black"
                       : "bg-white hover:bg-[#BFC9D1]/30"

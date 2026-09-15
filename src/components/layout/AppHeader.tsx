@@ -15,6 +15,7 @@ export function AppHeader() {
 
   const navLinks = [
     { href: "/", label: "SLIDE DECK" },
+    { href: "/references", label: "REFERENCES & PAPERS" },
     { href: "/about", label: "ABOUT MISSION & PS" },
     { href: "/results", label: "TELEMETRY RESULTS" },
   ];

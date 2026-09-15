@@ -201,10 +201,10 @@ export function SensorsSlide({ onGoToStudio }: SensorsSlideProps) {
       <div className="max-w-6xl mx-auto w-full text-center relative z-10">
         
         {/* Headline */}
-        <h2 className="font-display text-3xl sm:text-5xl uppercase font-black tracking-tight text-black mb-2">
+        <h2 className="font-display text-2xl xs:text-3xl sm:text-5xl uppercase font-black tracking-tight text-black mb-1.5 sm:mb-2">
           Multi-Modal Sensor Suite
         </h2>
-        <p className="font-mono text-xs sm:text-sm font-bold text-black/75 uppercase mb-6 tracking-wide">
+        <p className="font-mono text-xs sm:text-sm font-bold text-black/75 uppercase mb-4 sm:mb-6 tracking-wide">
           Chandrayaan-2 Optical Payloads ↔ NASA LRO NAC Reference Baseline
         </p>
 
@@ -231,7 +231,7 @@ export function SensorsSlide({ onGoToStudio }: SensorsSlideProps) {
               </div>
 
               {/* Four Sensor Tabs (Horizontal on mobile/tablet, vertical stack on desktop) */}
-              <div className="flex flex-row md:flex-col overflow-x-auto md:overflow-visible no-scrollbar gap-2 md:gap-2.5 w-full flex-1 md:justify-between mb-3 md:mb-0">
+              <div className="flex flex-row md:flex-col overflow-x-auto md:overflow-visible no-scrollbar gap-2 md:gap-2.5 w-full flex-1 md:justify-between mb-3 md:mb-0 pb-1 md:pb-0">
                 {sensors.map((sensor, idx) => {
                   const SensorIcon = sensor.icon;
                   const isActive = activeSensor === idx;
@@ -242,9 +242,9 @@ export function SensorsSlide({ onGoToStudio }: SensorsSlideProps) {
                         tabRefs.current[idx] = el;
                       }}
                       onClick={() => handleSensorSelect(idx)}
-                      className={`font-mono text-xs sm:text-sm font-bold uppercase transition-all rounded-xl border-3 border-black text-left flex items-center justify-between shrink-0 md:w-full ${
+                      className={`font-mono text-xs sm:text-sm font-bold uppercase transition-all rounded-xl border-3 border-black text-left flex items-center justify-between shrink-0 min-w-[110px] xs:min-w-[125px] md:min-w-0 md:w-full ${
                         isActive
-                          ? "bg-[#ef7618] text-black shadow-[4px_4px_0_#000000] -translate-y-0.5 md:translate-y-0 md:translate-x-1.5 font-black"
+                          ? "bg-[#ef7618] text-black shadow-[3px_3px_0_#000000] sm:shadow-[4px_4px_0_#000000] -translate-y-0.5 md:translate-y-0 md:translate-x-1.5 font-black"
                           : "bg-white text-black hover:bg-[#FAF7F2] hover:-translate-y-0.5 md:hover:translate-y-0 md:hover:translate-x-0.5 shadow-[2px_2px_0_#000000] hover:shadow-[3px_3px_0_#000000]"
                       } p-2 sm:p-2.5 md:p-3 lg:p-3.5`}
                     >
@@ -305,22 +305,22 @@ export function SensorsSlide({ onGoToStudio }: SensorsSlideProps) {
             </div>
 
             {/* Main Sensor Information Card */}
-            <div className="flex-1 min-w-0 brutal-card p-6 sm:p-7 text-left relative shadow-[6px_6px_0_0_#000000] border-3 border-black rounded-2xl bg-white flex flex-col justify-between">
+            <div className="flex-1 min-w-0 brutal-card p-4 xs:p-6 sm:p-7 text-left relative shadow-[4px_4px_0_0_#000000] sm:shadow-[6px_6px_0_0_#000000] border-3 border-black rounded-2xl bg-white flex flex-col justify-between">
               <div ref={cardContentRef} className="w-full flex-1 flex flex-col justify-between">
                 {/* Header */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b-3 border-black pb-4 mb-5">
-                  <div className="flex items-center gap-4">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 border-b-2 sm:border-b-3 border-black pb-3.5 sm:pb-4 mb-4 sm:mb-5">
+                  <div className="flex items-center gap-3 sm:gap-4">
                     <div
-                      className={`w-14 h-14 rounded-2xl border-3 border-black flex items-center justify-center ${s.color} shadow-[3px_3px_0_#000]`}
+                      className={`w-11 h-11 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl border-2 sm:border-3 border-black flex items-center justify-center ${s.color} shadow-[2px_2px_0_#000] sm:shadow-[3px_3px_0_#000] shrink-0`}
                     >
-                      <Icon className="w-8 h-8 stroke-[2.5]" />
+                      <Icon className="w-6 h-6 sm:w-8 sm:h-8 stroke-[2.5]" />
                     </div>
                     <div>
                       <div className="flex items-center gap-2">
-                        <h3 className="font-display text-2xl sm:text-3xl uppercase font-black text-black">
+                        <h3 className="font-display text-xl sm:text-2xl md:text-3xl uppercase font-black text-black">
                           {s.id}
                         </h3>
-                        <span className="text-xs font-mono font-bold px-2 py-0.5 border border-black rounded bg-white">
+                        <span className="text-[10px] sm:text-xs font-mono font-bold px-1.5 sm:px-2 py-0.5 border border-black rounded bg-white">
                           {s.role}
                         </span>
                       </div>
@@ -330,11 +330,11 @@ export function SensorsSlide({ onGoToStudio }: SensorsSlideProps) {
                     </div>
                   </div>
 
-                  <div className="text-left md:text-right">
-                    <span className="text-xs font-mono font-bold block text-black/60 uppercase">
+                  <div className="text-left sm:text-right">
+                    <span className="text-[10px] sm:text-xs font-mono font-bold block text-black/60 uppercase">
                       Spatial Resolution
                     </span>
-                    <span className="font-mono text-sm sm:text-base font-black text-black bg-[#ef7618] px-2.5 py-1 border border-black rounded shadow-[2px_2px_0_#000] inline-block">
+                    <span className="font-mono text-xs sm:text-base font-black text-black bg-[#ef7618] px-2 sm:px-2.5 py-0.5 sm:py-1 border border-black rounded shadow-[2px_2px_0_#000] inline-block">
                       {s.resolution}
                     </span>
                   </div>
@@ -400,10 +400,10 @@ export function SensorsSlide({ onGoToStudio }: SensorsSlideProps) {
         </div>
 
         {/* --- NEW FILLED SECTION: CROSS-MISSION DATASET REGISTRATION MATRIX --- */}
-        <div className="brutal-card p-6 sm:p-7 bg-[#FAF7F2] border-3 border-black shadow-[6px_6px_0_#000] rounded-2xl max-w-5xl mx-auto mb-6 text-left">
+        <div className="brutal-card p-4 xs:p-6 sm:p-7 bg-[#FAF7F2] border-3 border-black shadow-[4px_4px_0_#000] sm:shadow-[6px_6px_0_#000] rounded-2xl max-w-5xl mx-auto mb-6 text-left">
           <div className="flex items-center justify-between border-b-2 border-black pb-3 mb-4">
             <div className="flex items-center gap-2">
-              <span className="font-display font-black text-sm uppercase px-2.5 py-0.5 bg-[#ef7618] text-black border border-black rounded shadow-[2px_2px_0_#000]">
+              <span className="font-display font-black text-xs sm:text-sm uppercase px-2 sm:px-2.5 py-0.5 bg-[#ef7618] text-black border border-black rounded shadow-[2px_2px_0_#000]">
                 CROSS-MISSION DATASET MATRIX
               </span>
               <span className="font-mono text-xs font-bold text-black hidden sm:inline-block">

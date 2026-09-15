@@ -108,7 +108,7 @@ export function SlideCurtainTransition({
         </span>
 
         {/* Large bold black title: "THE PROBLEM", "COSMIC VISION", etc. */}
-        <h1 className="font-display font-black text-4xl sm:text-6xl md:text-8xl lg:text-9xl uppercase tracking-tight text-black leading-none select-none">
+        <h1 className="font-display font-black text-2xl xs:text-3xl sm:text-6xl md:text-8xl lg:text-9xl uppercase tracking-tight text-black leading-tight sm:leading-none select-none max-w-full px-2 break-words">
           {targetSlideTitle}
         </h1>
 

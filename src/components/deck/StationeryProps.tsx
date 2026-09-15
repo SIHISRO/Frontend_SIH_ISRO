@@ -15,7 +15,7 @@ export function StickyNotesModal({ isOpen, onClose }: StickyNoteProps) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs animate-in fade-in duration-200">
       <div
-        className="sticky-note max-w-md w-full p-6 text-black rounded-lg relative"
+        className="sticky-note max-w-md w-full p-4 sm:p-6 text-black rounded-lg relative"
         style={{ transform: "rotate(-1deg)" }}
       >
         <button

@@ -93,11 +93,11 @@ export function ProblemSlide({ onNext }: ProblemSlideProps) {
     let maxRotate = 8;
 
     if (isMobile) {
-      xRadius = Math.min(containerWidth * 0.38, 140);
-      yRadius = 45;
-      baseScale = 1.0;
-      scaleDrop = 0.14;
-      maxRotate = 5;
+      xRadius = Math.min(containerWidth * 0.34, 120);
+      yRadius = 40;
+      baseScale = 0.96;
+      scaleDrop = 0.12;
+      maxRotate = 4;
     } else if (isTablet) {
       xRadius = Math.min(containerWidth * 0.40, 260);
       yRadius = 70;
@@ -305,13 +305,13 @@ export function ProblemSlide({ onNext }: ProblemSlideProps) {
       <div className="max-w-6xl mx-auto text-center relative z-10 w-full">
         
         {/* Big Headline with Angled Neo-Brutalist Badges */}
-        <h2 className="font-display text-3xl sm:text-5xl md:text-6xl uppercase font-black tracking-tight leading-[1.12] text-black mb-8">
+        <h2 className="font-display text-2xl xs:text-3xl sm:text-5xl md:text-6xl uppercase font-black tracking-tight leading-[1.14] text-black mb-6 sm:mb-8">
           Every orbit, sun angles shift by 45°, crater shadows{" "}
-          <span className="bg-white text-black px-2.5 py-1 rounded border-2 sm:border-3 border-black inline-block -rotate-2 sm:-rotate-3 shadow-[3px_3px_0_#000] hover:rotate-0 transition-transform select-none">
+          <span className="bg-white text-black px-2 sm:px-2.5 py-0.5 sm:py-1 rounded border-2 sm:border-3 border-black inline-block -rotate-2 sm:-rotate-3 shadow-[2px_2px_0_#000] sm:shadow-[3px_3px_0_#000] hover:rotate-0 transition-transform select-none">
             invert 180°,
           </span>{" "}
           and scale scales 10×.{" "}
-          <span className="bg-[#1283c8] text-white px-3 py-1.5 rounded-md inline-block mt-2 border-2 sm:border-3 border-black shadow-[4px_4px_0_#000] -rotate-1 sm:-rotate-1.5 hover:rotate-0 transition-transform select-none">
+          <span className="bg-[#1283c8] text-white px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-md inline-block mt-2 border-2 sm:border-3 border-black shadow-[3px_3px_0_#000] sm:shadow-[4px_4px_0_#000] -rotate-1 sm:-rotate-1.5 hover:rotate-0 transition-transform select-none">
             Classical feature matching collapses.
           </span>
         </h2>
@@ -398,15 +398,15 @@ export function ProblemSlide({ onNext }: ProblemSlideProps) {
           </div>
 
           {/* Monumental Hero Heading with subtle float & hover lift */}
-          <div ref={headingFloatRef} className="my-1">
-            <div className="group inline-flex items-center justify-center gap-2 sm:gap-3.5 bg-white px-6 sm:px-10 py-3.5 sm:py-5 rounded-2xl sm:rounded-3xl border-3 sm:border-4 border-black shadow-[7px_7px_0_#000] sm:shadow-[9px_9px_0_#000] hover:scale-[1.02] hover:-translate-y-1 hover:shadow-[11px_11px_0_#000] transition-all duration-200 cursor-default select-none">
-              <span className="font-display font-black text-3xl sm:text-5xl md:text-6xl uppercase tracking-tight text-black">
+          <div ref={headingFloatRef} className="my-1 w-full flex justify-center">
+            <div className="group inline-flex items-center justify-center gap-1.5 xs:gap-2 sm:gap-3.5 bg-white px-3.5 xs:px-6 sm:px-10 py-2.5 xs:py-3.5 sm:py-5 rounded-xl sm:rounded-3xl border-3 sm:border-4 border-black shadow-[5px_5px_0_#000] sm:shadow-[9px_9px_0_#000] hover:scale-[1.02] hover:-translate-y-1 hover:shadow-[11px_11px_0_#000] transition-all duration-200 cursor-default select-none">
+              <span className="font-display font-black text-2xl xs:text-3xl sm:text-5xl md:text-6xl uppercase tracking-tight text-black">
                 WHY
               </span>
-              <span className="font-display font-black text-3xl sm:text-5xl md:text-6xl uppercase tracking-tight text-white bg-[#1283c8] px-2.5 sm:px-4 py-0.5 sm:py-1 rounded-xl sm:rounded-2xl border-2 sm:border-3 border-black shadow-[3px_3px_0_#000] group-hover:bg-[#1696e5] transition-colors">
+              <span className="font-display font-black text-2xl xs:text-3xl sm:text-5xl md:text-6xl uppercase tracking-tight text-white bg-[#1283c8] px-2 xs:px-3 sm:px-4 py-0.5 sm:py-1 rounded-lg sm:rounded-2xl border-2 sm:border-3 border-black shadow-[2px_2px_0_#000] sm:shadow-[3px_3px_0_#000] group-hover:bg-[#1696e5] transition-colors">
                 COSMIC
               </span>
-              <span className="font-display font-black text-3xl sm:text-5xl md:text-6xl uppercase tracking-tight text-black bg-[#ef7618] px-2.5 sm:px-4 py-0.5 sm:py-1 rounded-xl sm:rounded-2xl border-2 sm:border-3 border-black shadow-[3px_3px_0_#000] group-hover:bg-[#f38d38] transition-colors">
+              <span className="font-display font-black text-2xl xs:text-3xl sm:text-5xl md:text-6xl uppercase tracking-tight text-black bg-[#ef7618] px-2 xs:px-3 sm:px-4 py-0.5 sm:py-1 rounded-lg sm:rounded-2xl border-2 sm:border-3 border-black shadow-[2px_2px_0_#000] sm:shadow-[3px_3px_0_#000] group-hover:bg-[#f38d38] transition-colors">
                 YAAN?
               </span>
             </div>
@@ -432,7 +432,7 @@ export function ProblemSlide({ onNext }: ProblemSlideProps) {
         </div>
 
         {/* --- 5-PILLAR REVOLVING ARCHITECTURE MATRIX CARD --- */}
-        <div className="brutal-card p-6 sm:p-7 bg-[#FAF7F2] border-3 border-black shadow-[6px_6px_0_#000] rounded-2xl mb-8 text-left">
+        <div className="brutal-card p-4 xs:p-6 sm:p-7 bg-[#FAF7F2] border-3 border-black shadow-[4px_4px_0_#000] sm:shadow-[6px_6px_0_#000] rounded-2xl mb-8 text-left">
           
           {/* Header row with status badge & synchronized carousel controls */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b-3 border-black pb-4 mb-3">
@@ -533,10 +533,10 @@ export function ProblemSlide({ onNext }: ProblemSlideProps) {
                     cardRefs.current[idx] = el;
                   }}
                   onClick={() => goToCard(idx)}
-                  className={`absolute left-1/2 top-4 -translate-x-1/2 w-[220px] sm:w-[245px] md:w-[260px] min-h-[220px] p-4 bg-white rounded-xl transition-shadow flex flex-col justify-between cursor-pointer ${
+                  className={`absolute left-1/2 top-4 -translate-x-1/2 w-[195px] xs:w-[220px] sm:w-[245px] md:w-[260px] min-h-[200px] sm:min-h-[220px] p-3 sm:p-4 bg-white rounded-xl transition-shadow flex flex-col justify-between cursor-pointer ${
                     isCenter
-                      ? "border-3 border-black shadow-[6px_6px_0_#000] ring-2 ring-[#ef7618]/60"
-                      : "border-2 border-black shadow-[3px_3px_0_#000] hover:shadow-[5px_5px_0_#000]"
+                      ? "border-3 border-black shadow-[4px_4px_0_#000] sm:shadow-[6px_6px_0_#000] ring-2 ring-[#ef7618]/60"
+                      : "border-2 border-black shadow-[2px_2px_0_#000] sm:shadow-[3px_3px_0_#000] hover:shadow-[4px_4px_0_#000]"
                   }`}
                   style={{
                     transformOrigin: "50% 120%",

@@ -76,6 +76,15 @@ export function AppFooter() {
               </li>
               <li>
                 <Link
+                  href="/references"
+                  onClick={() => soundController.playClick()}
+                  className="hover:underline font-bold"
+                >
+                  References & Datasets
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/about"
                   onClick={() => soundController.playClick()}
                   className="hover:underline font-bold"

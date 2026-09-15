@@ -71,17 +71,17 @@ export default function ResultsPage() {
   return (
     <PageLayout className="space-y-8">
       {/* Back button link */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <button
           type="button"
           onClick={handleNewRegistration}
-          className="inline-flex items-center gap-1.5 text-xs font-mono text-[#BFC9D1] hover:text-[#ef7618] transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs font-mono text-[#BFC9D1] hover:text-[#ef7618] transition-colors self-start sm:self-auto"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Return to Upload / New Image Pair</span>
         </button>
 
-        <span className="text-xs font-mono text-[#BFC9D1]/60">
+        <span className="text-[11px] sm:text-xs font-mono text-[#BFC9D1]/60">
           LoFTR Pipeline v2.0 · Chandrayaan-2 Optical Suite
         </span>
       </div>
@@ -163,7 +163,7 @@ export default function ResultsPage() {
 
       {/* 5. Visualization Grid (5 products with lightbox & individual download) */}
       <div className="space-y-4">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-2">
           <h2 className="text-lg sm:text-xl font-bold text-[#EAEFEF]">
             Registration Visualizations & Verification
           </h2>

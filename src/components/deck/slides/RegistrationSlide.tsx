@@ -64,7 +64,7 @@ export function RegistrationSlide({
         
         {/* Headline */}
         <div className="text-center mb-6">
-          <h2 className="font-display text-3xl sm:text-5xl uppercase font-black tracking-tight text-black">
+          <h2 className="font-display text-2xl xs:text-3xl sm:text-5xl uppercase font-black tracking-tight text-black">
             Upload Sensor Imagery
           </h2>
           <p className="font-sans text-xs sm:text-sm text-black/75 max-w-xl mx-auto font-medium mt-1">
@@ -73,12 +73,12 @@ export function RegistrationSlide({
         </div>
 
         {/* Studio Box */}
-        <div className="brutal-card p-6 sm:p-8 bg-[#EAEFEF] shadow-[8px_8px_0_0_#000000] relative overflow-hidden">
+        <div className="brutal-card p-4 xs:p-6 sm:p-8 bg-[#EAEFEF] shadow-[5px_5px_0_0_#000000] sm:shadow-[8px_8px_0_0_#000000] relative overflow-hidden">
           
           {/* Top Quick Actions Bar */}
-          <div className="flex flex-wrap items-center justify-between gap-3 border-b-3 border-black pb-4 mb-6">
-            <div className="flex items-center gap-2">
-              <span className="font-mono text-xs font-bold uppercase text-black/70">Payload Tag:</span>
+          <div className="flex flex-col xs:flex-row items-start xs:items-center justify-between gap-3 border-b-2 sm:border-b-3 border-black pb-3.5 sm:pb-4 mb-4 sm:mb-6">
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <span className="font-mono text-[11px] sm:text-xs font-bold uppercase text-black/70">Payload:</span>
               {["OHRC", "TMC-2", "IIRS"].map((sensor) => (
                 <button
                   key={sensor}
@@ -156,7 +156,7 @@ export function RegistrationSlide({
               </div>
 
               <div
-                className={`border-3 border-dashed border-black rounded-xl p-5 flex flex-col items-center justify-center min-h-[220px] transition-all relative ${
+                className={`border-3 border-dashed border-black rounded-xl p-4 sm:p-5 flex flex-col items-center justify-center min-h-[190px] sm:min-h-[220px] transition-all relative ${
                   referenceFile
                     ? "bg-white border-solid shadow-[3px_3px_0_#000]"
                     : "bg-[#BFC9D1]/30 hover:bg-[#BFC9D1]/60"
@@ -236,7 +236,7 @@ export function RegistrationSlide({
               </div>
 
               <div
-                className={`border-3 border-dashed border-black rounded-xl p-5 flex flex-col items-center justify-center min-h-[220px] transition-all relative ${
+                className={`border-3 border-dashed border-black rounded-xl p-4 sm:p-5 flex flex-col items-center justify-center min-h-[190px] sm:min-h-[220px] transition-all relative ${
                   sourceFile
                     ? "bg-white border-solid shadow-[3px_3px_0_#000]"
                     : "bg-[#BFC9D1]/30 hover:bg-[#BFC9D1]/60"

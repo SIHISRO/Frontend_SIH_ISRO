@@ -27,20 +27,20 @@ export function DeckNavDrawer({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200">
-      <div className="brutal-card max-w-4xl w-full p-6 sm:p-8 bg-[#EAEFEF] max-h-[90vh] overflow-y-auto relative shadow-[8px_8px_0_0_#000000]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200">
+      <div className="brutal-card max-w-4xl w-full p-4 xs:p-6 sm:p-8 bg-[#EAEFEF] max-h-[90vh] overflow-y-auto relative shadow-[5px_5px_0_0_#000000] sm:shadow-[8px_8px_0_0_#000000]">
         
         {/* Header */}
-        <div className="flex items-center justify-between border-b-3 border-black pb-4 mb-6">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-[#ef7618] border-2 border-black flex items-center justify-center shadow-[2px_2px_0_#000]">
-              <Sparkles className="w-5 h-5 text-black" />
+        <div className="flex items-center justify-between border-b-2 sm:border-b-3 border-black pb-3.5 sm:pb-4 mb-4 sm:mb-6">
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-[#ef7618] border-2 border-black flex items-center justify-center shadow-[2px_2px_0_#000] shrink-0">
+              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-black" />
             </div>
             <div>
-              <h2 className="font-display text-xl sm:text-2xl uppercase font-black tracking-tight text-black">
+              <h2 className="font-display text-lg sm:text-2xl uppercase font-black tracking-tight text-black">
                 Mission Slide Deck Map
               </h2>
-              <p className="text-xs sm:text-sm font-sans text-black/70 font-medium">
+              <p className="text-[11px] sm:text-sm font-sans text-black/70 font-medium">
                 Jump directly to any section of the ISRO SIH26166 correspondence platform.
               </p>
             </div>

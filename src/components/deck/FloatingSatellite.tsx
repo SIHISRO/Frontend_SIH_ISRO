@@ -312,7 +312,7 @@ export function FloatingSatellite({ className = "" }: FloatingSatelliteProps) {
       {/* Outer wrapper controls X/Y translation smoothly across hero section */}
       <div
         ref={outerRef}
-        className="absolute top-0 left-0 pointer-events-auto cursor-pointer select-none opacity-0 z-20"
+        className="absolute top-0 left-0 pointer-events-none sm:pointer-events-auto cursor-pointer select-none opacity-0 z-20"
         style={{ willChange: "transform" }}
         onClick={handleClick}
         title="Chandrayaan-2 Satellite: Constantly floating in orbit across lunar space!"

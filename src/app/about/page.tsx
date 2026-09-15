@@ -92,10 +92,10 @@ export default function AboutPage() {
           <span>ISRO · DEPARTMENT OF SPACE · SIH 2026 // PS SIH26166</span>
         </div>
 
-        <h1 className="font-display text-4xl sm:text-6xl uppercase font-black tracking-tight text-black mb-4">
+        <h1 className="font-display text-3xl sm:text-6xl uppercase font-black tracking-tight text-black mb-4">
           Mission & Technology
         </h1>
-        <p className="font-sans text-sm sm:text-base text-black/80 font-medium leading-relaxed max-w-2xl mx-auto">
+        <p className="font-sans text-xs sm:text-base text-black/80 font-medium leading-relaxed max-w-2xl mx-auto">
           Solving the lunar correspondence problem across Sun angle variations and extreme scale shifts using Chandrayaan-2 payloads and detector-free Local Feature Transformers.
         </p>
 
@@ -103,7 +103,7 @@ export default function AboutPage() {
           <Link
             href="/"
             onClick={() => soundController.playPop()}
-            className="brutal-btn py-2.5 px-5 text-xs font-mono font-bold flex items-center gap-1.5"
+            className="brutal-btn py-2 sm:py-2.5 px-4 sm:px-5 text-xs font-mono font-bold flex items-center gap-1.5"
           >
             <span>OPEN SLIDE DECK</span>
             <ArrowRight className="w-4 h-4" />
@@ -112,10 +112,10 @@ export default function AboutPage() {
       </div>
 
       {/* Problem Statement Details Card */}
-      <div className="brutal-card p-6 sm:p-8 bg-[#1283c8] text-white shadow-[6px_6px_0_#000]">
-        <div className="flex items-center gap-2 border-b-3 border-black pb-3 mb-4">
+      <div className="brutal-card p-4 sm:p-8 bg-[#1283c8] text-white shadow-[4px_4px_0_#000] sm:shadow-[6px_6px_0_#000]">
+        <div className="flex items-center gap-2 border-b-2 sm:border-b-3 border-black pb-3 mb-4">
           <ShieldCheck className="w-6 h-6 text-white stroke-[2.5]" />
-          <h2 className="font-display text-xl sm:text-2xl uppercase font-black text-white">
+          <h2 className="font-display text-lg sm:text-2xl uppercase font-black text-white">
             Official Problem Statement SIH26166
           </h2>
         </div>
@@ -141,10 +141,10 @@ export default function AboutPage() {
       </div>
 
       {/* CosmicYaan Solution Paradigm Card */}
-      <div className="brutal-card p-6 sm:p-8 bg-[#FAF7F2] border-3 border-black shadow-[6px_6px_0_#000]">
-        <div className="flex items-center justify-between border-b-3 border-black pb-3 mb-4">
+      <div className="brutal-card p-4 sm:p-8 bg-[#FAF7F2] border-3 border-black shadow-[4px_4px_0_#000] sm:shadow-[6px_6px_0_#000]">
+        <div className="flex items-center justify-between border-b-2 sm:border-b-3 border-black pb-3 mb-4">
           <div className="flex items-center gap-2">
-            <span className="px-2.5 py-1 bg-[#ef7618] text-black font-display font-black text-sm uppercase rounded border border-black shadow-[2px_2px_0_#000]">
+            <span className="px-2 sm:px-2.5 py-0.5 sm:py-1 bg-[#ef7618] text-black font-display font-black text-xs sm:text-sm uppercase rounded border border-black shadow-[2px_2px_0_#000]">
               COSMICYAAN SOLUTION
             </span>
             <span className="font-mono text-xs font-bold text-black/70">

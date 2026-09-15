@@ -18,7 +18,7 @@ import { SensorsSlide } from "./slides/SensorsSlide";
 import { RegistrationSlide } from "./slides/RegistrationSlide";
 import { ResultsSlide } from "./slides/ResultsSlide";
 import { ArchitectureSlide } from "./slides/ArchitectureSlide";
-import { ImpactSlide } from "./slides/ImpactSlide";
+import { ReferencesSlide } from "./slides/ReferencesSlide";
 import { IntroRubLoader } from "./IntroRubLoader";
 import { bgmController } from "@/utils/bgmController";
 import { ProblemStatementModal } from "@/components/common/ProblemStatementModal";
@@ -95,9 +95,9 @@ export function DeckContainer() {
       color: "#EAEFEF",
     },
     {
-      title: "IMPACT & ANALYSIS",
-      subtitle: "CosmicYaan: Registered lunar imagery, better mapping, analysis, & mission support.",
-      tag: "IMPACT",
+      title: "REFERENCES & DATASETS",
+      subtitle: "Peer-reviewed research (Geo-LoFTR, Chandrayaan-2 evaluation) and official ISRO data archives.",
+      tag: "REFERENCES",
       color: "#F3E6D6",
     },
   ];
@@ -329,7 +329,8 @@ export function DeckContainer() {
         );
       case 6:
         return (
-          <ImpactSlide
+          <ReferencesSlide
+            isActive={currentSlide === 6}
             onGoToStudio={() => goToSlide(4)}
           />
         );
@@ -349,15 +350,15 @@ export function DeckContainer() {
       </div>
 
       {/* Top Floating Logo / Home Button */}
-      <header className="fixed top-3 left-4 right-4 z-40 flex items-center justify-between pointer-events-none">
+      <header className="fixed top-2 left-2 right-2 sm:top-3 sm:left-4 sm:right-4 z-40 flex items-center justify-between pointer-events-none">
         <button
           onClick={() => {
             soundController.playPop();
             goToSlide(0);
           }}
-          className="pointer-events-auto brutal-card-white py-1.5 px-3 flex items-center gap-2 hover:scale-105 active:scale-95 transition-transform"
+          className="pointer-events-auto brutal-card-white py-1 sm:py-1.5 px-2 sm:px-3 flex items-center gap-1.5 sm:gap-2 hover:scale-105 active:scale-95 transition-transform"
         >
-          <div className="w-6 h-6 rounded-lg overflow-hidden border-2 border-black shadow-[1px_1px_0_#000] flex-shrink-0 bg-black">
+          <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-lg overflow-hidden border-2 border-black shadow-[1px_1px_0_#000] flex-shrink-0 bg-black">
             <Image
               src="/favicon.png"
               alt="Cosmic Vision Logo"
@@ -367,22 +368,22 @@ export function DeckContainer() {
               priority
             />
           </div>
-          <span className="font-display font-black text-sm uppercase tracking-tight text-black">
+          <span className="font-display font-black text-xs sm:text-sm uppercase tracking-tight text-black">
             COSMIC VISION
           </span>
-          <span className="font-mono text-[10px] font-bold px-1.5 py-0.5 rounded bg-[#ef7618] border border-black text-black">
+          <span className="font-mono text-[9px] sm:text-[10px] font-bold px-1 sm:px-1.5 py-0.5 rounded bg-[#ef7618] border border-black text-black">
             ISRO
           </span>
         </button>
 
         {/* Rub Intro Replay & Mission Badge */}
-        <div className="pointer-events-auto flex items-center gap-2 font-mono text-xs font-bold">
+        <div className="pointer-events-auto flex items-center gap-1.5 sm:gap-2 font-mono text-[11px] sm:text-xs font-bold">
           <button
             onClick={() => {
               soundController.playPop();
               setShowIntro(true);
             }}
-            className="brutal-badge brutal-badge-white py-1 px-2.5 hover:bg-[#ef7618] transition-colors cursor-pointer"
+            className="brutal-badge brutal-badge-white py-1 px-2 sm:px-2.5 hover:bg-[#ef7618] transition-colors cursor-pointer text-[10px] sm:text-xs"
             title="Replay PS SIH26166 rub intro animation"
           >
             <span>RUB INTRO</span>
@@ -403,7 +404,7 @@ export function DeckContainer() {
       {/* Main Slide Stage with Free Natural Scrolling */}
       <main
         ref={slideContainerRef}
-        className="slide-stage-viewport flex-1 w-full min-h-[calc(100vh-6rem)] pt-14 pb-24 relative z-10 flex flex-col items-center justify-start overflow-y-auto overflow-x-hidden scroll-smooth"
+        className="slide-stage-viewport flex-1 w-full min-h-[calc(100vh-6rem)] pt-12 sm:pt-14 pb-28 sm:pb-24 relative z-10 flex flex-col items-center justify-start overflow-y-auto overflow-x-hidden scroll-smooth"
       >
         <div className="w-full flex-1 flex flex-col items-center justify-center relative min-h-full">
           {renderSlideContent(currentSlide)}
